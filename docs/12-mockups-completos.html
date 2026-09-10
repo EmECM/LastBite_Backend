@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mockups completos · Last Bite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+
+:root{
+  --noche:#0C1210; --noche-2:#131B17; --panel:#18211C; --panel-2:#1F2A23;
+  --linea:#28322B; --linea-2:#3B4A41;
+  --crema:#ECF1E7; --crema-2:#A6B3A9; --crema-3:#75847B;
+  --ocre:#E8913F; --ocre-2:#F5B978; --ocre-tenue:#2A2016;
+  --fe:#3D86C7; --be:#20A163; --bd:#D4791F;
+  --rojo:#E28379; --rojo-tenue:#2E1B18;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noche);background-image:radial-gradient(110% 70% at 84% 0%, rgba(232,145,63,.09), transparent 60%);color:var(--crema);font-family:var(--serif);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1300px;margin:0 auto;padding:0 26px}
+.col{max-width:700px;margin-left:auto;margin-right:auto}
+
+.top{border-bottom:1px solid var(--linea);background:var(--noche-2)}
+.top .wrap{padding:54px 26px 40px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ocre);display:flex;gap:10px;flex-wrap:wrap}
+.kicker span:not(:first-child)::before{content:"/";color:var(--crema-3);margin-right:10px}
+h1{font-family:var(--sans);font-weight:800;font-size:clamp(32px,5.2vw,52px);line-height:1.03;letter-spacing:-.028em;margin:18px 0 0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--ocre)}
+.lema{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--crema-3);margin:14px 0 0}
+.dek{font-size:clamp(17px,2.2vw,20px);color:var(--crema-2);max-width:62ch;margin:20px 0 0}
+.datos{display:flex;flex-wrap:wrap;gap:8px 30px;margin-top:24px;font-family:var(--mono);font-size:12.5px;color:var(--crema-3)}
+.datos b{color:var(--crema-2);font-weight:500}
+.toc{margin-top:28px;padding-top:20px;border-top:1px dashed var(--linea-2);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 26px}
+.toc a{font-family:var(--mono);font-size:13px;color:var(--crema-2);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;display:flex;gap:10px}
+.toc a i{color:var(--ocre);font-style:normal}
+.toc a:hover{color:var(--crema);border-bottom-color:var(--ocre)}
+a:focus-visible{outline:2px solid var(--ocre);outline-offset:3px;border-radius:2px}
+
+section{padding:58px 0 10px}
+section + section{border-top:1px solid var(--linea)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--crema-3);margin-bottom:12px}
+.eyebrow b{color:var(--ocre);font-weight:600}
+h2{font-family:var(--sans);font-weight:700;letter-spacing:-.022em;font-size:clamp(25px,3.6vw,34px);line-height:1.14;margin:0 0 14px;text-wrap:balance}
+h3{font-family:var(--sans);font-weight:600;font-size:19px;margin:32px 0 10px;letter-spacing:-.01em}
+p{margin:0 0 16px}
+.lead{font-size:19px;color:var(--crema-2)}
+.col ul{margin:0 0 18px;padding-left:22px;color:var(--crema-2)}
+.col li{margin-bottom:9px}
+em.t{font-style:normal;font-family:var(--mono);font-size:.87em;background:var(--panel-2);color:var(--crema-2);padding:1px 6px;border-radius:4px}
+strong{font-weight:600;color:var(--crema)}
+
+figure{margin:0}
+.lienzo{border:1px solid var(--linea);border-radius:12px;background:var(--noche-2);padding:16px;overflow-x:auto;margin:20px 0 0}
+.lienzo svg{display:block;min-width:1040px;width:100%;height:auto}
+figcaption{font-family:var(--mono);font-size:12px;color:var(--crema-3);line-height:1.6;margin-top:12px}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 22px;margin:16px 0 0;font-family:var(--mono);font-size:12px;color:var(--crema-3)}
+.leyenda span{display:flex;align-items:center;gap:8px}
+.sw{width:22px;height:12px;border-radius:3px;display:inline-block;border:1.5px solid}
+.sw.fe{background:#16232E;border-color:var(--fe)}
+.sw.be{background:#0F2A1E;border-color:var(--be)}
+.sw.bd{background:#2C1E10;border-color:var(--bd)}
+
+.tabla-wrap{overflow-x:auto;border:1px solid var(--linea);border-radius:12px;background:var(--panel);margin-top:20px}
+table{border-collapse:collapse;width:100%;min-width:1020px;font-size:13px}
+thead th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--crema-3);background:var(--panel-2);padding:10px 13px;border-bottom:1px solid var(--linea-2);white-space:nowrap;font-weight:600}
+tbody td{padding:11px 13px;border-bottom:1px solid var(--linea);vertical-align:top;color:var(--crema-2);font-family:var(--mono);font-size:11.5px;line-height:1.6}
+tbody tr:last-child td{border-bottom:none}
+td.cod{color:var(--ocre-2);font-weight:600}
+td.c1{color:var(--crema);white-space:nowrap;font-weight:500}
+td.due{color:var(--crema);white-space:nowrap}
+td.esq{color:var(--bd)}
+td.dep{color:var(--crema-3);white-space:nowrap}
+td.q{font-family:var(--serif);font-size:14px;min-width:190px}
+
+.fichas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:24px}
+.ficha{background:var(--panel);border:1px solid var(--linea);border-left:3px solid var(--c);border-radius:0 12px 12px 0;padding:18px 20px 14px}
+.ficha header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ficha h3{margin:0;font-size:19px;color:var(--c)}
+.ficha .rol{font-family:var(--mono);font-size:11px;color:var(--crema-3)}
+.ficha .apodo{font-size:14.5px;color:var(--crema-3);font-style:italic;margin:4px 0 12px}
+.ficha h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--crema-3);margin:12px 0 6px}
+.ficha ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--crema-2);line-height:1.5}
+.ficha li{margin-bottom:6px}
+.ficha .no li{color:var(--crema-3)}
+
+.dos-listas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:22px 0 8px}
+.lista{background:var(--panel);border:1px solid var(--linea);border-radius:10px;padding:16px 20px 12px}
+.lista.si{border-left:3px solid var(--be)}
+.lista.no{border-left:3px solid var(--ocre)}
+.lista h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+.lista.si h4{color:var(--be)}
+.lista.no h4{color:var(--ocre-2)}
+.lista ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--crema-2);line-height:1.55}
+.lista li{margin-bottom:7px}
+.riesgos{display:grid;gap:14px;margin-top:22px}
+.riesgo{background:var(--panel);border:1px solid var(--linea);border-radius:10px;padding:16px 20px 12px}
+.riesgo h4{font-family:var(--sans);font-size:16px;margin:0 0 8px;color:var(--crema)}
+.riesgo p{margin:0 0 6px;font-size:15px;color:var(--crema-2)}
+.riesgo b{color:var(--crema)}
+.riesgo .pq b{color:var(--rojo)}
+.riesgo .mi b{color:var(--be)}
+
+.reglas{display:grid;margin:22px 0 8px;border-top:1px solid var(--linea)}
+.regla{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--linea);align-items:start}
+.regla code{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ocre-2);background:var(--ocre-tenue);padding:3px 7px;border-radius:4px;text-align:center}
+.regla p{margin:0;font-size:15.5px}
+
+.nota{border-left:3px solid var(--ocre);background:var(--panel);padding:14px 18px;border-radius:0 10px 10px 0;margin:22px 0}
+.nota p{margin:0;font-size:15.5px;color:var(--crema-2)}
+.nota p + p{margin-top:10px}
+.nota b{color:var(--crema)}
+.nota.si{border-left-color:var(--be)}
+.nota.no{border-left-color:var(--rojo)}
+
+.recorte{counter-reset:r;list-style:none;padding:0;margin:18px 0 0}
+.recorte li{counter-increment:r;position:relative;padding:10px 0 10px 42px;border-bottom:1px solid var(--linea);font-size:15.5px;color:var(--crema-2)}
+.recorte li::before{content:counter(r);position:absolute;left:0;top:9px;width:26px;height:26px;border-radius:50%;background:var(--rojo-tenue);color:var(--rojo);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:600}
+
+footer{border-top:1px solid var(--linea);margin-top:52px;padding:32px 0 62px;font-family:var(--mono);font-size:12.5px;color:var(--crema-3)}
+@media (max-width:640px){body{font-size:16px}section{padding:44px 0 6px}.fichas{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+.fon{width:300px;height:620px;background:#FDF8F0;border:9px solid #0E1512;border-radius:30px;
+     overflow:hidden;position:relative;box-shadow:0 16px 40px rgba(0,0,0,.42);
+     font-family:"Archivo",system-ui,sans-serif;color:#1A1A1A;display:flex;flex-direction:column;flex:none}
+.fon *{box-sizing:border-box}
+.fon .st{height:22px;background:#FDF8F0;display:flex;align-items:center;justify-content:space-between;
+         padding:0 12px;font-size:8.5px;color:#1A1A1A;font-weight:600;flex:none}
+.fon .bd{flex:1;overflow:hidden;position:relative}
+.fon .sc{height:100%;overflow:hidden}
+.fon .nav{height:48px;background:#fff;border-top:1px solid #E7E4DE;display:flex;flex:none}
+.fon .nav div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+              font-size:8px;color:#8A8A8A}
+.fon .nav div.on{color:#12695C;font-weight:700}
+.fon .nav .ic{width:15px;height:15px;border-radius:5px;border:1.6px solid currentColor}
+.fon .nav div.on .ic{background:#DFF0E7}
+
+.hd2{padding:11px 14px 9px;display:flex;align-items:center;gap:9px;background:#FDF8F0}
+.hd2 .bk2{width:24px;height:24px;border-radius:50%;background:#fff;border:1px solid #E7E4DE;
+          display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none}
+.hd2 .tt2{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.hd2 .sb2{font-size:10px;color:#6E6E6E;margin-top:1px}
+.hd2 .der{margin-left:auto;font-size:10px;color:#12695C;font-weight:700}
+
+.pin{width:24px;height:24px;border-radius:50%;background:#DFF0E7;border:1.5px solid #12695C;flex:none;
+     display:flex;align-items:center;justify-content:center}
+.loc{font-size:10px;color:#6E6E6E;line-height:1.3}
+.loc b{color:#1A1A1A;font-size:12px;display:block}
+
+.cats{display:flex;gap:9px;padding:2px 14px 8px;overflow:hidden}
+.cat{flex:none;width:50px;text-align:center;font-size:8px;color:#3A3A3A;line-height:1.2}
+.cat i{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:13px;
+       margin:0 auto 4px}
+.cat.on i{outline:2px solid #12695C;outline-offset:1px}
+
+.h5{margin:12px 14px 7px;font-size:13.5px;font-weight:800;letter-spacing:-.01em}
+.h5 .vt{float:right;font-size:10px;color:#12695C;font-weight:700;text-decoration:underline}
+
+.card{background:#fff;border:1px solid #E7E4DE;border-radius:14px;margin:0 14px 11px;overflow:hidden}
+.card .img{height:80px;position:relative;display:flex;align-items:center;justify-content:center}
+.card .img .bg{position:absolute;top:8px;left:8px;background:#FBE2DB;color:#B4462F;font-size:8px;
+               font-weight:800;padding:3px 8px;border-radius:20px}
+.card .img .rt{position:absolute;top:8px;right:8px;background:#fff;color:#1A1A1A;font-size:8.5px;
+               font-weight:800;padding:3px 7px;border-radius:20px}
+.card .img .lg{position:absolute;left:10px;bottom:-13px;width:32px;height:32px;border-radius:50%;
+               background:#12695C;color:#fff;font-size:10px;font-weight:800;display:flex;
+               align-items:center;justify-content:center;border:2.5px solid #fff}
+.card .in{padding:17px 11px 10px}
+.card .t1{font-size:12.5px;font-weight:800}
+.card .t2{font-size:9.5px;color:#6E6E6E;margin:1px 0 5px}
+.card .t3{font-size:9px;color:#3A3A3A;padding-bottom:7px;border-bottom:1px dashed #E7E4DE}
+.card .pr{display:flex;align-items:baseline;gap:6px;justify-content:flex-end;padding-top:7px}
+.card .old{font-size:9.5px;color:#8A8A8A;text-decoration:line-through}
+.card .new{font-size:13.5px;font-weight:800}
+
+.hero{height:132px;position:relative;display:flex;align-items:center;justify-content:center}
+.hero .bk{position:absolute;top:10px;left:10px;width:26px;height:26px;border-radius:50%;background:#fff;
+          display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.sec{padding:11px 14px 0}
+.sec .tt{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
+.sec .sb{font-size:10.5px;color:#6E6E6E;margin-top:2px}
+.chip{display:inline-block;font-size:8.5px;font-weight:800;padding:3px 9px;border-radius:20px;
+      background:#DFF0E7;color:#0B4F45}
+.chip.urg{background:#FBE2DB;color:#B4462F}
+.chip.gris{background:#EFEDE8;color:#6E6E6E}
+
+.fila{display:flex;gap:9px;align-items:flex-start;padding:9px 14px;border-bottom:1px solid #E7E4DE;font-size:10.5px}
+.fila .ic2{width:22px;height:22px;border-radius:7px;background:#DFF0E7;flex:none;
+           display:flex;align-items:center;justify-content:center}
+.fila b{display:block;font-size:11px;margin-bottom:1px}
+.fila span{color:#6E6E6E;font-size:10px;line-height:1.45}
+.fila .fin{margin-left:auto;font-size:11px;font-weight:800;white-space:nowrap}
+
+.barra{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #E7E4DE;
+       padding:10px 14px;display:flex;align-items:center;gap:10px}
+.btn{flex:1;background:#12695C;color:#fff;text-align:center;font-size:12px;font-weight:800;
+     padding:11px 0;border-radius:11px;display:block}
+.btn.sec2{background:#fff;color:#12695C;border:1.6px solid #12695C}
+.btn.off{background:#E7E4DE;color:#9A9A9A}
+.btn.rojo{background:#B4462F}
+.prbig{text-align:right}
+.prbig .old{font-size:9.5px;color:#8A8A8A;text-decoration:line-through;display:block}
+.prbig .new{font-size:15px;font-weight:800}
+
+.campo{margin:0 14px 10px}
+.campo label{display:block;font-size:9.5px;color:#6E6E6E;font-weight:700;margin-bottom:4px}
+.campo .inp{background:#fff;border:1px solid #E7E4DE;border-radius:10px;padding:10px 11px;font-size:11.5px}
+.campo .inp.ph{color:#B0ADA7}
+.campo .inp.foco{border-color:#12695C;border-width:1.6px}
+.campo .err{font-size:9px;color:#B4462F;margin-top:4px}
+
+.qty{display:flex;align-items:center;justify-content:space-between;margin:10px 14px;padding:10px 12px;
+     border:1px solid #E7E4DE;border-radius:12px;background:#fff}
+.qty .c{display:flex;align-items:center;gap:13px}
+.qty .b{width:25px;height:25px;border-radius:50%;border:1.6px solid #12695C;color:#12695C;
+        display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.qty .b.off{border-color:#D8D5CE;color:#C9C6BF}
+.qty .n{font-size:14px;font-weight:800;min-width:13px;text-align:center}
+
+.pay{margin:0 14px 10px;border:1px solid #E7E4DE;border-radius:12px;background:#fff;overflow:hidden}
+.pay .op{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-bottom:1px solid #F0EEE9;font-size:11px}
+.pay .op:last-child{border-bottom:none}
+.pay .rd{width:14px;height:14px;border-radius:50%;border:1.8px solid #C9C6BF;flex:none;margin-top:1px}
+.pay .op.on .rd{border-color:#12695C;background:radial-gradient(#12695C 45%,#fff 50%)}
+.pay .op.dis{color:#A8A5A0}
+.pay .op small{display:block;font-size:9px;color:#B4462F;margin-top:2px}
+
+.tot{margin:0 14px;border-top:1px dashed #E7E4DE;padding-top:8px;font-size:10.5px;color:#4A4A4A}
+.tot div{display:flex;justify-content:space-between;padding:2px 0}
+.tot .g{font-size:13.5px;font-weight:800;color:#1A1A1A;padding-top:5px}
+
+.pleno{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+       text-align:center;padding:0 26px}
+.pleno .ilus{width:78px;height:78px;border-radius:24px;display:flex;align-items:center;justify-content:center;
+             margin-bottom:16px}
+.pleno h3{margin:0 0 6px;font-size:16px;font-weight:800}
+.pleno p{margin:0;font-size:11px;color:#6E6E6E;line-height:1.55}
+.pleno .acc{margin-top:18px;width:100%}
+
+.cod{background:#0B4F45;color:#fff;height:100%;display:flex;flex-direction:column;align-items:center;
+     justify-content:center;text-align:center;padding:0 20px}
+.cod .lbl{font-size:10.5px;opacity:.85;margin-bottom:13px;line-height:1.5}
+.cod .big{background:#fff;color:#0B4F45;font-family:"IBM Plex Mono",monospace;font-size:25px;font-weight:700;
+          letter-spacing:.09em;padding:15px 18px;border-radius:14px;margin-bottom:14px}
+.cod .who{font-size:13px;font-weight:800}
+.cod .adr{font-size:10px;opacity:.8;margin-top:3px;line-height:1.5}
+.cod .win{margin-top:14px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);
+          border-radius:12px;padding:9px 15px}
+.cod .win b{display:block;font-size:12px}
+.cod .win span{font-size:9.5px;opacity:.85}
+.cod .est{margin-top:12px;background:#DFF0E7;color:#0B4F45;font-size:9px;font-weight:800;
+          padding:4px 12px;border-radius:20px}
+
+.tabs{display:flex;gap:18px;padding:9px 14px 0;border-bottom:1px solid #E7E4DE;font-size:11px;color:#8A8A8A}
+.tabs b{color:#12695C;border-bottom:2.5px solid #12695C;padding-bottom:7px}
+.res{background:#fff;border:1px solid #E7E4DE;border-radius:13px;margin:10px 14px;padding:10px 11px}
+.res .r1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.res .r1 b{font-size:12px}
+.res .r1 span{font-size:9.5px;color:#6E6E6E;display:block;margin-top:1px}
+.res .e2{font-size:8px;font-weight:800;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.e-ok{background:#DFF0E7;color:#0B4F45}
+.e-gr{background:#EFEDE8;color:#6E6E6E}
+.e-rd{background:#FBE2DB;color:#B4462F}
+.e-am{background:#FBEEDA;color:#8A5B12}
+.res .r2{margin-top:8px;padding-top:7px;border-top:1px dashed #E7E4DE;display:flex;
+         justify-content:space-between;align-items:center}
+.res .cd{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:700;color:#0B4F45}
+.res .hr{font-size:9.5px;color:#6E6E6E}
+
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:9px 22px}
+.pad div{background:#fff;border:1px solid #E7E4DE;border-radius:11px;padding:10px 0;text-align:center;
+         font-size:15px;font-weight:700}
+.entrada{margin:13px 14px 4px;background:#fff;border:2px solid #12695C;border-radius:12px;padding:12px;
+         text-align:center;font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:700;letter-spacing:.12em}
+.hint{text-align:center;font-size:9.5px;color:#6E6E6E;margin-bottom:2px}
+
+.dlg{position:absolute;inset:0;background:rgba(10,20,17,.55);display:flex;align-items:center;
+     justify-content:center;padding:26px}
+.dlg .box{background:#fff;border-radius:16px;padding:20px 18px;text-align:center;width:100%}
+.dlg .ic3{width:46px;height:46px;border-radius:50%;margin:0 auto 12px;display:flex;
+          align-items:center;justify-content:center;font-size:22px;font-weight:800}
+.dlg h4{margin:0 0 6px;font-size:14.5px;font-weight:800}
+.dlg p{margin:0 0 16px;font-size:10.5px;color:#6E6E6E;line-height:1.5}
+
+.skel{background:linear-gradient(90deg,#EDEAE3,#F6F3EC,#EDEAE3);border-radius:8px}
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:10px 14px}
+.kpi .k{background:#fff;border:1px solid #E7E4DE;border-radius:12px;padding:11px}
+.kpi .k b{display:block;font-size:19px;font-weight:800;color:#12695C}
+.kpi .k span{font-size:8.5px;color:#6E6E6E;text-transform:uppercase;letter-spacing:.04em}
+.bar{display:flex;align-items:flex-end;gap:7px;height:74px;padding:6px 14px 0}
+.bar i{flex:1;background:#12695C;border-radius:4px 4px 0 0;display:block}
+.bleyenda{display:flex;gap:7px;padding:4px 14px 0;font-size:8px;color:#8A8A8A}
+.bleyenda span{flex:1;text-align:center}
+
+/* ---------- fichas de pantalla en el documento ---------- */
+.pantalla{display:grid;grid-template-columns:318px 1fr;gap:26px;padding:30px 0;
+          border-bottom:1px solid var(--linea);align-items:start}
+.pantalla:first-of-type{border-top:1px solid var(--linea)}
+.pinfo h3{margin:0 0 3px;font-family:var(--sans);font-size:20px;font-weight:700;color:var(--crema)}
+.pinfo .met{font-family:var(--mono);font-size:11px;color:var(--crema-3);margin:0 0 14px}
+.pinfo .met b{color:var(--ocre-2);font-weight:600}
+.pinfo h5{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+          color:var(--crema-3);margin:16px 0 7px}
+.pinfo ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--crema-2);line-height:1.55}
+.pinfo li{margin-bottom:5px}
+.pinfo .desc{font-size:15.5px;color:var(--crema-2);margin:0 0 4px}
+.rutas{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px}
+.ruta{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:6px;background:var(--panel-2);
+      color:var(--crema-2);border:1px solid var(--linea-2)}
+.ruta.api{color:var(--be);border-color:var(--be)}
+.futura{opacity:.72}
+.sello{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
+        padding:2px 9px;border-radius:20px;background:var(--rojo-tenue);color:var(--rojo);
+        border:1px solid var(--rojo);margin-left:8px;vertical-align:3px}
+
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 4px}
+.seq .s{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border-radius:8px;background:var(--panel);
+        border:1px solid var(--linea-2);color:var(--crema-2)}
+.seq .s.ini{border-color:var(--be);color:var(--be)}
+.seq .s.fin{border-color:var(--ocre);color:var(--ocre-2)}
+.seq .fl{color:var(--crema-3);font-size:13px}
+.seq .br{flex-basis:100%;height:0}
+
+.catgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin-top:20px}
+.catf{background:var(--panel);border:1px solid var(--linea);border-radius:12px;padding:14px}
+.catf .ci{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+          margin-bottom:9px}
+.catf b{display:block;font-size:14px;color:var(--crema)}
+.catf code{font-family:var(--mono);font-size:10.5px;color:var(--ocre-2)}
+.catf span{display:block;font-size:12px;color:var(--crema-3);margin-top:5px}
+
+.tec{margin-top:9px;border:1px solid var(--linea-2);border-radius:10px;overflow:hidden;background:var(--noche-2)}
+.tfila{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:9px 12px;border-bottom:1px solid var(--linea)}
+.tfila:last-child{border-bottom:none}
+.tk{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--crema-3);padding-top:3px}
+.tv{font-family:var(--mono);font-size:11.5px;color:var(--crema-2);line-height:1.7}
+.tv .ln{display:block}
+.tv .ln + .ln{margin-top:2px}
+.verbo{font-family:var(--mono);font-size:9px;font-weight:600;padding:1px 7px;border-radius:4px;margin-right:7px}
+.v-get{background:#0F2A1E;color:var(--be);border:1px solid var(--be)}
+.v-post{background:var(--ocre-tenue);color:var(--ocre-2);border:1px solid var(--ocre)}
+.tv .nota2{color:var(--crema-3)}
+.dos-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;margin-top:22px}
+.bloque{background:var(--panel);border:1px solid var(--linea);border-left:3px solid var(--c);
+        border-radius:0 12px 12px 0;padding:16px 20px 12px}
+.bloque h3{margin:0 0 10px;font-size:18px;color:var(--c)}
+.bloque h4{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+           color:var(--crema-3);margin:14px 0 6px}
+.bloque ul{margin:0;padding-left:17px;font-size:14px;color:var(--crema-2);line-height:1.55}
+.bloque li{margin-bottom:5px}
+.bloque code{font-family:var(--mono);font-size:12.5px;background:var(--panel-2);padding:1px 5px;
+             border-radius:4px;color:var(--ocre-2)}
+.cadena{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0 6px}
+.cadena .cp{font-family:var(--mono);font-size:11.5px;padding:6px 12px;border-radius:8px;
+            background:var(--panel);border:1px solid var(--linea-2);color:var(--crema-2)}
+.cadena .cp.fe2{border-color:var(--fe);color:var(--fe)}
+.cadena .cp.be2{border-color:var(--be);color:var(--be)}
+.cadena .cp.bd2{border-color:var(--bd);color:var(--bd)}
+.cadena .fx{color:var(--crema-3)}
+pre.cod2{background:var(--noche-2);border:1px solid var(--linea);border-radius:10px;padding:14px 16px;
+         overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.65;color:var(--crema-2);
+         margin:12px 0 0}
+pre.cod2 b{color:var(--ocre-2);font-weight:500}
+pre.cod2 i{color:var(--crema-3);font-style:normal}
+
+</style>
+
+<header class="top">
+  <div class="wrap"><div class="col">
+    <div class="kicker"><span>Last Bite</span><span>INF308</span><span>Levantamiento de requerimiento</span></div>
+    <h1>Todas las pantallas del producto, <em>con sus reglas</em></h1>
+    <p class="lema">Mockups · secuencias · reglas de negocio</p>
+    <p class="dek">Cada pantalla con su maqueta, las reglas de negocio que hace cumplir, los
+    datos que consume y a dónde lleva. Es el documento base para el levantamiento del
+    requerimiento.</p>
+    <div class="resumen" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:24px">
+      <div class="cifra" style="background:var(--panel);border:1px solid var(--linea);border-radius:12px;padding:15px 18px">
+        <b style="display:block;font-family:var(--sans);font-size:30px;font-weight:800;color:var(--ocre);line-height:1">39</b>
+        <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--crema-3);display:block;margin-top:6px">Pantallas</span></div>
+      <div class="cifra" style="background:var(--panel);border:1px solid var(--linea);border-radius:12px;padding:15px 18px">
+        <b style="display:block;font-family:var(--sans);font-size:30px;font-weight:800;color:var(--be);line-height:1">35</b>
+        <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--crema-3);display:block;margin-top:6px">Del MVP</span></div>
+      <div class="cifra" style="background:var(--panel);border:1px solid var(--linea);border-radius:12px;padding:15px 18px">
+        <b style="display:block;font-family:var(--sans);font-size:30px;font-weight:800;color:var(--fe);line-height:1">20</b>
+        <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--crema-3);display:block;margin-top:6px">App del cliente</span></div>
+      <div class="cifra" style="background:var(--panel);border:1px solid var(--linea);border-radius:12px;padding:15px 18px">
+        <b style="display:block;font-family:var(--sans);font-size:30px;font-weight:800;color:var(--fe);line-height:1">13</b>
+        <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--crema-3);display:block;margin-top:6px">Panel del comercio</span></div>
+    </div>
+    <nav class="toc">
+      <a href="#cats"><i>00</i> Categorías</a>
+      <a href="#conv"><i>01</i> Convenciones de código</a>
+      <a href="#mod-M0"><i>M0</i> Identidad y acceso</a><a href="#mod-M1"><i>M1</i> Comercios y sucursales</a><a href="#mod-M2"><i>M2</i> Oferta y búsqueda</a><a href="#mod-M3"><i>M3</i> Reserva y pago</a><a href="#mod-M4"><i>M4</i> Retiro y validación</a><a href="#mod-M5"><i>M5</i> Cierre del día</a><a href="#mod-M6"><i>M6</i> Liquidación</a><a href="#mod-M7"><i>M7</i> Consultas de negocio</a><a href="#mod-Transversal"><i>Transversal</i> Estados comunes</a><a href="#mod-Futuro"><i>Futuro</i> Fuera del alcance</a>
+    </nav>
+  </div></div>
+</header>
+
+<section id="cats">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>00</b> · Sistema visual</div>
+    <h2>Categorías con ícono y color</h2>
+    <p class="lead">Decisión tomada: el ícono y el color <strong>viven en la aplicación</strong>,
+    no en la base de datos. Este mapa es la única fuente de verdad y debe replicarse tal cual en
+    Flutter, asociando cada categoría por su nombre.</p>
+    <div class="catgrid">
+      <div class="catf">
+        <div class="ci" style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg></div>
+        <b>Panadería</b><code>#E8A33D</code>
+        <span>Fondo #FBEEDA</span>
+      </div>
+      <div class="catf">
+        <div class="ci" style="background:#F7E4D6"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#C4703A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z"/><path d="M3 14.5 12 19l9-4.5"/></svg></div>
+        <b>Sándwiches</b><code>#C4703A</code>
+        <span>Fondo #F7E4D6</span>
+      </div>
+      <div class="catf">
+        <div class="ci" style="background:#F9E0D9"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#C4533A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6.5"/><path d="M5 6.5C7 4 17 4 19 6.5"/></svg></div>
+        <b>Comida preparada</b><code>#C4533A</code>
+        <span>Fondo #F9E0D9</span>
+      </div>
+      <div class="catf">
+        <div class="ci" style="background:#E2F1E3"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#4F9A5A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></div>
+        <b>Frutas y verduras</b><code>#4F9A5A</code>
+        <span>Fondo #E2F1E3</span>
+      </div>
+      <div class="catf">
+        <div class="ci" style="background:#DFECF5"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#3F7EA8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V4Z"/><path d="M7 13h10"/></svg></div>
+        <b>Lácteos</b><code>#3F7EA8</code>
+        <span>Fondo #DFECF5</span>
+      </div>
+      <div class="catf">
+        <div class="ci" style="background:#EAE4F5"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#7A6BA8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8Z"/><path d="M3 4h18v4H3zM12 8v12"/></svg></div>
+        <b>Abarrotes</b><code>#7A6BA8</code>
+        <span>Fondo #EAE4F5</span>
+      </div></div>
+    <div class="nota">
+      <p><b>Por qué en la app y no en la base.</b> El ícono depende del set gráfico de Flutter y
+      el color es una decisión de marca, no un dato del negocio. Guardarlos en la base obligaría
+      a una migración cada vez que se ajusta un tono. El costo de esta decisión es que agregar
+      una categoría nueva exige recompilar la aplicación, y como las seis categorías vienen de
+      los datos semilla y no cambian, ese costo es cero en la práctica.</p>
+      <p><b>Regla para el desarrollo:</b> si llega una categoría que no está en el mapa, se usa
+      un ícono y un color neutro por defecto. Nunca debe romperse la pantalla por eso.</p>
+    </div>
+  </div></div>
+</section>
+
+<section id="conv">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>01</b> · Cómo se escribe</div>
+    <h2>Convenciones de código</h2>
+    <p class="lead">Cada pantalla de este documento lleva un bloque de contrato técnico con su
+    endpoint, las clases de C# que lo atienden y el servicio de Flutter que lo consume. Esta
+    sección explica las reglas que siguen todos esos nombres.</p>
+
+    <h3>La cadena completa, de la pantalla a la base</h3>
+    <div class="cadena">
+      <span class="cp fe2">Pantalla</span><span class="fx">&#8594;</span>
+      <span class="cp fe2">Controlador</span><span class="fx">&#8594;</span>
+      <span class="cp fe2">Api (interfaz)</span><span class="fx">&#8594;</span>
+      <span class="cp">HTTP + JSON</span><span class="fx">&#8594;</span>
+      <span class="cp be2">Controller</span><span class="fx">&#8594;</span>
+      <span class="cp be2">IService</span><span class="fx">&#8594;</span>
+      <span class="cp be2">IRepository</span><span class="fx">&#8594;</span>
+      <span class="cp bd2">Dapper</span><span class="fx">&#8594;</span>
+      <span class="cp bd2">Procedimiento o vista</span>
+    </div>
+    <p>Ninguna capa se salta. La pantalla no llama HTTP directamente y el controlador de C# no
+    consulta la base: entre ambos siempre hay una interfaz, que es lo que permite trabajar con
+    respuestas simuladas mientras la otra parte no está lista.</p>
+
+    <div class="dos-col">
+      <div class="bloque" style="--c:var(--be)">
+        <h3>Backend · C# y .NET</h3>
+        <h4>Estructura de carpetas</h4>
+        <ul>
+          <li><code>Controllers/</code> — un archivo por recurso</li>
+          <li><code>Services/</code> — interfaz y su implementación</li>
+          <li><code>Repositories/</code> — todo el SQL vive aquí</li>
+          <li><code>Dtos/</code> — objetos de entrada y salida</li>
+          <li><code>Common/</code> — conexión, errores, token</li>
+        </ul>
+        <h4>Nombres</h4>
+        <ul>
+          <li>Controlador en plural: <code>ReservasController</code></li>
+          <li>Servicio en singular con interfaz: <code>IReservaService</code> y <code>ReservaService</code></li>
+          <li>Repositorio igual: <code>IReservaRepository</code></li>
+          <li>Entrada: sufijo <code>Request</code>. Salida: sufijo <code>Response</code></li>
+          <li>Métodos asíncronos terminan en <code>Async</code></li>
+          <li>Clases y métodos en PascalCase; parámetros en camelCase</li>
+        </ul>
+        <h4>Reglas</h4>
+        <ul>
+          <li>El controlador no tiene lógica: valida, llama al servicio y devuelve</li>
+          <li>Los DTO nunca son la entidad de la base; se mapean explícitamente</li>
+          <li>Todo el SQL está en el repositorio, nunca en el controlador</li>
+          <li>Un solo middleware traduce los errores del procedimiento a HTTP</li>
+          <li>Cada petición fija <code>app.usuario_id</code> al abrir la conexión</li>
+        </ul>
+      </div>
+
+      <div class="bloque" style="--c:var(--fe)">
+        <h3>Frontend · Flutter y Dart</h3>
+        <h4>Estructura de carpetas</h4>
+        <ul>
+          <li><code>lib/api/</code> — interfaces e implementaciones HTTP</li>
+          <li><code>lib/modelos/</code> — clases con <code>fromJson</code></li>
+          <li><code>lib/estado/</code> — controladores de pantalla</li>
+          <li><code>lib/pantallas/</code> — una por vista</li>
+          <li><code>lib/widgets/</code> — piezas reutilizables</li>
+          <li><code>lib/nucleo/</code> — cliente HTTP, errores, formatos</li>
+        </ul>
+        <h4>Nombres</h4>
+        <ul>
+          <li>Archivos en snake_case: <code>reserva_api.dart</code></li>
+          <li>Clases en PascalCase: <code>ReservaApiHttp</code></li>
+          <li>La interfaz es una <code>abstract class</code> con sufijo <code>Api</code></li>
+          <li>La implementación agrega <code>Http</code>: <code>ReservaApiHttp</code></li>
+          <li>El estado lleva sufijo <code>Controlador</code></li>
+          <li>Las pantallas llevan prefijo <code>Pantalla</code></li>
+        </ul>
+        <h4>Reglas</h4>
+        <ul>
+          <li>La pantalla no llama a la API: habla con su controlador</li>
+          <li>Todo modelo tiene <code>fromJson</code>; los de entrada, <code>toJson</code></li>
+          <li>Un solo <code>ClienteApi</code> agrega el token y traduce los errores</li>
+          <li><b>La app nunca calcula dinero</b>: muestra el total que devuelve el backend</li>
+          <li>Los estados llegan como texto en mayúsculas y se traducen para mostrar</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:34px">El JSON que viaja entre los dos</h3>
+    <ul>
+      <li>Claves en <b>camelCase</b>, tanto de ida como de vuelta.</li>
+      <li>Fechas en formato ISO 8601. Las horas de retiro viajan como texto <code>"18:00"</code>
+      porque son horas de pared, no instantes.</li>
+      <li>Los importes viajan como número con dos decimales. En C# son <code>decimal</code>;
+      en Dart se leen como <code>num</code> y solo se formatean para mostrar.</li>
+      <li>Todo error tiene la misma forma: <code>{ "codigo": "SIN_CUPO", "mensaje": "..." }</code>.
+      El <code>codigo</code> es estable y es el que la app usa para decidir qué texto mostrar.</li>
+    </ul>
+
+    <h3 style="margin-top:30px">Ejemplo completo: reservar una bolsa</h3>
+    <p>Es el recorrido más representativo porque atraviesa las nueve capas y termina en un
+    procedimiento almacenado con parámetros de salida.</p>
+
+    <pre class="cod2"><i>// ---------- Flutter · lib/api/reserva_api.dart</i>
+<b>abstract class</b> ReservaApi {
+  Future&lt;ReservaCreada&gt; crear(CrearReservaPeticion p);
+}
+
+<b>class</b> ReservaApiHttp <b>implements</b> ReservaApi {
+  <b>final</b> ClienteApi cliente;
+  ReservaApiHttp(<b>this</b>.cliente);
+
+  @override
+  Future&lt;ReservaCreada&gt; crear(CrearReservaPeticion p) <b>async</b> {
+    <b>final</b> json = <b>await</b> cliente.post('/api/reservas', p.toJson());
+    <b>return</b> ReservaCreada.fromJson(json);
+  }
+}
+
+<i>// ---------- lib/estado/reserva_controlador.dart</i>
+<b>class</b> ReservaControlador <b>extends</b> ChangeNotifier {
+  <b>final</b> ReservaApi api;
+  EstadoCarga estado = EstadoCarga.inicial;
+  String? mensajeError;
+
+  Future&lt;<b>void</b>&gt; reservar(<b>int</b> publicacionId, <b>int</b> cantidad, <b>int</b> metodoPagoId) <b>async</b> {
+    estado = EstadoCarga.cargando; notifyListeners();
+    <b>try</b> {
+      <b>final</b> r = <b>await</b> api.crear(CrearReservaPeticion(
+        publicacionId: publicacionId, cantidad: cantidad, metodoPagoId: metodoPagoId));
+      estado = EstadoCarga.listo; reserva = r;
+    } <b>on</b> ApiExcepcion <b>catch</b> (e) {
+      mensajeError = mensajesError[e.codigo] ?? 'No se pudo completar la reserva.';
+      estado = EstadoCarga.error;
+    }
+    notifyListeners();
+  }
+}</pre>
+
+    <pre class="cod2"><i>// ---------- C# · Controllers/ReservasController.cs</i>
+[ApiController]
+[Route("api/reservas")]
+<b>public class</b> ReservasController : ControllerBase
+{
+    <b>private readonly</b> IReservaService _servicio;
+
+    [HttpPost]
+    <b>public async</b> Task&lt;IActionResult&gt; Crear(CrearReservaRequest peticion)
+    {
+        <b>var</b> usuarioId = User.ObtenerId();
+        <b>var</b> creada = <b>await</b> _servicio.CrearAsync(peticion, usuarioId);
+        <b>return</b> Created($"/api/reservas/{creada.ReservaId}", creada);
+    }
+}
+
+<i>// ---------- Repositories/ReservaRepository.cs</i>
+<b>public async</b> Task&lt;ReservaCreadaResponse&gt; CrearAsync(CrearReservaRequest p, <b>long</b> usuarioId)
+{
+    <b>await using var</b> conexion = <b>await</b> _fabrica.AbrirAsync(usuarioId); <i>// fija app.usuario_id</i>
+
+    <i>// Los tres NULL finales son p_mpu_id y los dos parámetros OUT.</i>
+    <i>// En PostgreSQL un CALL con OUT devuelve una fila: por eso QuerySingle y no Execute.</i>
+    <b>return await</b> conexion.QuerySingleAsync&lt;ReservaCreadaResponse&gt;(
+        "CALL venta.sp_reserva_crear(@pub, @usr, @cant, @metodo, NULL, NULL, NULL)",
+        <b>new</b> { pub = p.PublicacionId, usr = usuarioId,
+              cant = (<b>short</b>)p.Cantidad, metodo = (<b>short</b>)p.MetodoPagoId });
+}</pre>
+
+    <div class="nota no">
+      <p><b>El detalle que más tiempo puede costar.</b> En PostgreSQL, llamar a un procedimiento
+      con parámetros de salida <b>exige pasar marcadores</b> para esos parámetros y la llamada
+      <b>devuelve una fila</b> con los valores. Si se omiten, el motor responde
+      <em class="t">procedure does not exist</em>. Por eso el repositorio usa
+      <code>QuerySingleAsync</code> y no <code>ExecuteAsync</code>. Está verificado sobre
+      PostgreSQL 16.</p>
+    </div>
+  </div></div>
+</section>
+
+
+<section id="mod-M0">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M0</b> · Módulo</div>
+    <h2>Identidad y acceso</h2>
+    <p class="lead">Entrar al sistema y saber quién es cada quien. &nbsp;·&nbsp; 5 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Apertura</span><span class="fl">&#8594;</span><span class="s">Bienvenida</span><span class="fl">&#8594;</span><span class="s">Registro</span><span class="fl">&#8594;</span><span class="s fin">Inicio · bolsas disponibles</span></div><div class="seq"><span class="s ini">Apertura</span><span class="fl">&#8594;</span><span class="s">Bienvenida</span><span class="fl">&#8594;</span><span class="s">Inicio de sesión</span><span class="fl">&#8594;</span><span class="s fin">Inicio (cliente) o Elegir sucursal (panel)</span></div><div class="seq"><span class="s ini">Perfil del cliente</span><span class="fl">&#8594;</span><span class="s">Cerrar sesión</span><span class="fl">&#8594;</span><span class="s fin">Bienvenida</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd"><div class="pleno" style="background:#0B4F45;color:#fff">
+   <div class="ilus" style="background:rgba(255,255,255,.12)"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#DFF0E7" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8Z"/><path d="M3 4h18v4H3zM12 8v12"/></svg></div>
+   <h3 style="color:#fff">Last Bite</h3>
+   <p style="color:rgba(255,255,255,.75)">Rescatá comida buena<br>antes de que se pierda</p>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P01 · Apertura</h3>
+          <p class="met"><b>M0</b> &nbsp;·&nbsp; Ambas superficies</p>
+          <p class="desc">Primera pantalla al abrir la aplicación. Decide a dónde entrar según si hay sesión guardada y qué rol tiene el usuario.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Si hay token válido y el rol es CLIENTE, entra directo al Inicio.</li><li>Si el rol es COMERCIO, entra al panel en la última sucursal usada.</li><li>Si el token expiró o no existe, va a Bienvenida.</li><li>Es una sola aplicación: el rol decide la superficie, no hay dos instalables.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/auth/yo</span><span class="ruta api">Almacenamiento local del token</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Bienvenida</span><span class="ruta">Inicio (cliente)</span><span class="ruta">Reservas del día (panel)</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/auth/yo<br><span class="nota2">&nbsp;&nbsp;&nbsp;Valida el token guardado y devuelve el perfil</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">AuthController.Yo() → 200 UsuarioResponse | 401</span><span class="ln">IAuthService.ObtenerActualAsync(usuarioId)</span><span class="ln">IUsuarioRepository.PorIdAsync(id) → Dapper sobre seguridad.usuario</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">UsuarioResponse { long Id; string Nombres; string Apellidos; string Correo; List<string> Roles; short NoShows; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class AuthApi { Future<Usuario> yo(); }</span><span class="ln">class AuthApiHttp implements AuthApi</span><span class="ln">modelo Usuario.fromJson(Map<String,dynamic>)</span><span class="ln">SesionControlador (ChangeNotifier) decide la ruta inicial</span><span class="ln">almacen_token.dart guarda el JWT con shared_preferences</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd"><div class="pleno">
+   <div class="ilus" style="background:#DFF0E7"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#12695C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></div>
+   <h3>Comida buena, precio justo</h3>
+   <p>Comercios de San Pedro Sula publican lo que les sobró del día. Vos lo rescatás.</p>
+   <div class="acc"><span class="btn">Crear cuenta</span>
+     <span class="btn sec2" style="margin-top:9px">Ya tengo cuenta</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P02 · Bienvenida</h3>
+          <p class="met"><b>M0</b> &nbsp;·&nbsp; Ambas superficies</p>
+          <p class="desc">Punto de entrada para quien no tiene sesión. Sin carrusel ni pasos de introducción, para no alargar el camino a la primera compra.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>No requiere sesión.</li><li>El botón principal es crear cuenta porque el usuario nuevo es el caso más frecuente en la demo.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">Ninguno</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Registro</span><span class="ruta">Inicio de sesión</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno: pantalla sin servicio</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">pantalla_bienvenida.dart · solo navegación local</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Crear cuenta</div><div class="sb2">Solo toma un minuto</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="campo"><label>Nombres</label><div class="inp">Kevin</div></div>
+   <div class="campo"><label>Apellidos</label><div class="inp">Zelaya</div></div>
+   <div class="campo"><label>Correo electrónico</label><div class="inp">kevin.zelaya@correo.hn</div></div>
+   <div class="campo"><label>Teléfono</label><div class="inp">+504 9700 1111</div></div>
+   <div class="campo"><label>Contraseña</label><div class="inp foco">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div></div>
+   <div style="padding:4px 14px 0"><span class="btn">Crear cuenta</span></div>
+   <p style="font-size:9.5px;color:#6E6E6E;text-align:center;padding:11px 26px;line-height:1.5">
+     Al continuar aceptás los términos del servicio.</p>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P03 · Registro</h3>
+          <p class="met"><b>M0</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Alta de cuenta de cliente. El registro de comercios queda fuera del alcance: las cuentas de empleado se crean desde los datos semilla.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El correo debe ser único: el dominio de la base valida el formato y hay un índice único sobre el correo en minúsculas.</li><li>El teléfono se valida con el formato hondureño del dominio dm_tel_hn.</li><li>La contraseña nunca viaja ni se guarda en claro; se almacena el hash.</li><li>Al crear la cuenta se le asigna automáticamente el rol CLIENTE.</li><li>El usuario nace en estado ACTIVO y con cero faltas.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">POST /api/auth/registro</span><span class="ruta api">seguridad.usuario</span><span class="ruta api">seguridad.usuario_rol</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Inicio (cliente)</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/auth/registro<br><span class="nota2">&nbsp;&nbsp;&nbsp;Crea la cuenta y le asigna el rol CLIENTE</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">AuthController.Registrar(RegistroRequest) → 201 UsuarioResponse | 409 correo duplicado</span><span class="ln">IAuthService.RegistrarAsync(RegistroRequest)</span><span class="ln">IUsuarioRepository.CrearAsync(...) → INSERT en seguridad.usuario + usuario_rol</span><span class="ln">IHashService.Hash(contrasena) → BCrypt</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">RegistroRequest { string Nombres; string Apellidos; string Correo; string Telefono; string Contrasena; }</span><span class="ln">UsuarioResponse { ... }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">AuthApi.registrar(RegistroPeticion) → Future<Usuario></span><span class="ln">modelo RegistroPeticion con toJson()</span><span class="ln">RegistroControlador valida el formulario antes de llamar</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Iniciar sesión</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="campo"><label>Correo electrónico</label><div class="inp">rosa.mejia@eltrigal.hn</div></div>
+   <div class="campo"><label>Contraseña</label><div class="inp foco">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div></div>
+   <div style="padding:4px 14px 0"><span class="btn">Entrar</span></div>
+   <p style="font-size:10px;color:#8A8A8A;text-align:center;padding:14px">
+     ¿No tenés cuenta? <b style="color:#12695C">Creá una</b></p>
+   <div style="margin:8px 14px;padding:10px 12px;background:#FBEEDA;border-radius:10px;
+        font-size:9.5px;color:#8A5B12;line-height:1.5">
+     Recuperar contraseña no está disponible en esta versión.</div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P04 · Inicio de sesión</h3>
+          <p class="met"><b>M0</b> &nbsp;·&nbsp; Ambas superficies</p>
+          <p class="desc">Mismo formulario para cliente y empleado. El rol que devuelve el backend decide qué superficie se abre.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Si el usuario está SUSPENDIDO o ELIMINADO, el acceso se rechaza con USUARIO_NO_ACTIVO.</li><li>El token se guarda localmente; la sesión no se cierra sola en la demo.</li><li>La recuperación de contraseña quedó fuera del alcance y se avisa en pantalla en vez de mostrar un enlace que no funciona.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">POST /api/auth/login</span><span class="ruta api">seguridad.usuario</span><span class="ruta api">seguridad.rol</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Inicio (cliente)</span><span class="ruta">Reservas del día (panel)</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/auth/login<br><span class="nota2">&nbsp;&nbsp;&nbsp;Devuelve el token y el perfil con sus roles</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">AuthController.Login(LoginRequest) → 200 LoginResponse | 401 | 403 USUARIO_NO_ACTIVO</span><span class="ln">IAuthService.LoginAsync(LoginRequest)</span><span class="ln">IUsuarioRepository.PorCorreoAsync(correo)</span><span class="ln">ITokenService.Generar(usuario) → JWT firmado</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">LoginRequest { string Correo; string Contrasena; }</span><span class="ln">LoginResponse { string Token; UsuarioResponse Usuario; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">AuthApi.login(String correo, String contrasena) → Future<Sesion></span><span class="ln">modelo Sesion { String token; Usuario usuario; }</span><span class="ln">SesionControlador.iniciarSesion() guarda el token y redirige por rol</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Mi perfil</div></div></div>
+ <div class="bd"><div class="sc">
+   <div style="display:flex;align-items:center;gap:11px;padding:2px 14px 12px">
+     <span style="width:48px;height:48px;border-radius:50%;background:#DFF0E7;color:#0B4F45;
+       display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px">KZ</span>
+     <span><b style="font-size:14px">Kevin Zelaya</b>
+       <span style="display:block;font-size:10px;color:#6E6E6E">kevin.zelaya@correo.hn</span></span>
+   </div>
+   <div style="margin:0 14px 12px;background:#FBEEDA;border-radius:12px;padding:11px 12px">
+     <b style="font-size:11.5px;color:#8A5B12">1 falta acumulada</b>
+     <div style="font-size:9.5px;color:#8A5B12;margin-top:3px;line-height:1.5">
+       Con 3 faltas se desactiva el pago en efectivo. Retirá tus bolsas a tiempo.</div>
+   </div>
+   <div class="fila"><span class="ic2"></span><span><b>Mis reservas</b><span>Historial completo</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Teléfono</b><span>+504 9700 1111</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Zona preferida</b><span>Colonia Trejo</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Cerrar sesión</b></span></div>
+ </div></div><div class="nav"><div class=""><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class="on"><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P05 · Perfil del cliente</h3>
+          <p class="met"><b>M0</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Datos de la cuenta y, sobre todo, el contador de faltas, que es lo que explica por qué en algún momento se le bloquea el pago en efectivo.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El contador de faltas viene de usuario.no_shows y lo actualiza el proceso de cierre del día.</li><li>Con 3 o más faltas, el método de pago en efectivo se deshabilita en la pantalla de reserva.</li><li>El aviso es informativo, no punitivo: explica la regla antes de que el usuario choque con ella.</li><li>La zona preferida se guarda localmente; no es un campo del modelo.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/auth/yo</span><span class="ruta api">seguridad.usuario</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Mis reservas</span><span class="ruta">Bienvenida (al cerrar sesión)</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/auth/yo<br><span class="nota2">&nbsp;&nbsp;&nbsp;Perfil del usuario en sesión</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">AuthController.Yo() → 200 UsuarioResponse</span><span class="ln">IAuthService.ObtenerActualAsync(usuarioId del token)</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">UsuarioResponse { ... short NoShows; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">AuthApi.yo() → Future<Usuario></span><span class="ln">PerfilControlador expone usuario y bloqueoEfectivo = noShows >= 3</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-M1">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M1</b> · Módulo</div>
+    <h2>Comercios y sucursales</h2>
+    <p class="lead">Dónde se retira y quién puede entregar. &nbsp;·&nbsp; 2 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Detalle de la bolsa</span><span class="fl">&#8594;</span><span class="s fin">Detalle de la sucursal</span></div><div class="seq"><span class="s ini">Inicio de sesión (rol COMERCIO)</span><span class="fl">&#8594;</span><span class="s">Elegir sucursal</span><span class="fl">&#8594;</span><span class="s fin">Reservas del día</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div>
+ <div class="bd"><div class="sc">
+   <div class="hero" style="background:#DFF0E7"><span class="bk">&#8249;</span>
+     <span style="width:56px;height:56px;border-radius:50%;background:#12695C;color:#fff;
+       display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px">ET</span></div>
+   <div class="sec"><div class="tt">El Trigal · Centro</div>
+     <div class="sb">Panadería y repostería</div>
+     <span class="chip" style="margin-top:8px">Abierto ahora</span></div>
+   <div style="height:10px"></div>
+   <div class="fila"><span class="ic2"></span><span><b>Av. Circunvalación, SPS</b><span>Colonia Trejo</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Retiros hasta las 8:30 PM</b><span>Hora límite de la zona</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Teléfono</b><span>+504 2550 1122</span></span></div>
+   <div class="h5">Bolsas de hoy</div>
+   <div class="card">
+      <div class="img" style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg>
+        <span class="lg">ET</span></div>
+      <div class="in"><div class="t1">Bolsa de panadería</div><div class="t2">Retiro 6:00 – 8:00 PM</div>
+        <div class="t3">Quedan 3 bolsas</div>
+        <div class="pr"><span class="old">L 180.00</span><span class="new">L 65.00</span></div>
+      </div></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P06 · Detalle de la sucursal</h3>
+          <p class="met"><b>M1</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">A dónde tiene que ir el cliente y a qué hora. Se llega desde el detalle de una bolsa.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El horario mostrado sale de horario_sucursal para el día en curso.</li><li>La hora límite de retiro no es del comercio sino de la zona: es una regla de seguridad local.</li><li>Si el comercio no está en estado ACTIVO, la sucursal no aparece en ninguna búsqueda.</li><li>Solo se listan sucursales con es_activo verdadero.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/sucursales/{id}</span><span class="ruta api">comercio.vw_sucursal_activa</span><span class="ruta api">geo.zona</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de la bolsa</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/sucursales/{id}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Detalle con horario y zona resueltos</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">SucursalesController.PorId(int id) → 200 SucursalDetalleResponse | 404</span><span class="ln">ISucursalService.ObtenerAsync(id)</span><span class="ln">ISucursalRepository.PorIdAsync(id) → SELECT sobre comercio.vw_sucursal_activa</span><span class="ln">ISucursalRepository.HorariosAsync(id) → comercio.horario_sucursal</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">SucursalDetalleResponse { int SucursalId; string Sucursal; string NombreComercial; string Rubro; string Direccion; string Zona; TimeSpan? HoraLimiteRetiro; List<HorarioResponse> Horarios; }</span><span class="ln">HorarioResponse { short DiaSemana; TimeSpan HoraApertura; TimeSpan HoraCierre; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class SucursalApi { Future<SucursalDetalle> porId(int id); }</span><span class="ln">modelo SucursalDetalle · Horario</span><span class="ln">PantallaDetalleSucursal consume el futuro con FutureBuilder</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">¿Dónde estás hoy?</div><div class="sb2">Elegí la sucursal donde vas a trabajar</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="fila"><span class="ic2"></span><span><b>El Trigal · Centro</b><span>Colonia Trejo · Cajero</span></span><span class="fin">&#8250;</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>El Trigal · Circunvalación</b><span>Av. Circunvalación · Cajero</span></span><span class="fin">&#8250;</span></div>
+   <div style="margin:14px;padding:11px 12px;background:#DFF0E7;border-radius:10px;
+        font-size:9.5px;color:#0B4F45;line-height:1.5">
+     Solo podés entregar bolsas en la sucursal donde estás asignado.</div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P07 · Elegir sucursal</h3>
+          <p class="met"><b>M1</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Aparece al iniciar sesión si el empleado está asignado a más de un local. Con una sola sucursal se salta automáticamente.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La lista sale de usuario_sucursal: un empleado solo ve los locales donde está asignado.</li><li>Si intenta validar un código de otra sucursal, el procedimiento lo rechaza con EMPLEADO_AJENO.</li><li>El cargo puede ser PROPIETARIO, ENCARGADO o CAJERO; en el MVP los tres pueden entregar.</li><li>La sucursal elegida se guarda localmente y encabeza el resto de las pantallas del panel.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/mis-sucursales</span><span class="ruta api">comercio.usuario_sucursal</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Reservas del día</span><span class="ruta">Publicaciones de hoy</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/mis-sucursales<br><span class="nota2">&nbsp;&nbsp;&nbsp;Locales donde el empleado está asignado</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">SucursalesController.Mias() → 200 List<AsignacionResponse></span><span class="ln">ISucursalService.MisSucursalesAsync(usuarioId)</span><span class="ln">ISucursalRepository.PorEmpleadoAsync(usuarioId) → comercio.usuario_sucursal</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">AsignacionResponse { int SucursalId; string Sucursal; string Cargo; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">SucursalApi.mias() → Future<List<Asignacion>></span><span class="ln">SucursalControlador.seleccionar(id) guarda la sucursal activa localmente</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-M2">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M2</b> · Módulo</div>
+    <h2>Oferta y búsqueda</h2>
+    <p class="lead">Qué se vende hoy y cómo lo encuentra el cliente. &nbsp;·&nbsp; 9 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Inicio · bolsas</span><span class="fl">&#8594;</span><span class="s">Selector de zona</span><span class="fl">&#8594;</span><span class="s fin">Inicio · bolsas</span></div><div class="seq"><span class="s ini">Inicio · bolsas</span><span class="fl">&#8594;</span><span class="s">Resultados por categoría</span><span class="fl">&#8594;</span><span class="s fin">Sin resultados</span></div><div class="seq"><span class="s ini">Inicio · bolsas</span><span class="fl">&#8594;</span><span class="s">Detalle de la bolsa</span><span class="fl">&#8594;</span><span class="s fin">Confirmar reserva</span></div><div class="seq"><span class="s ini">Mis plantillas</span><span class="fl">&#8594;</span><span class="s">Crear plantilla</span><span class="fl">&#8594;</span><span class="s fin">Mis plantillas</span></div><div class="seq"><span class="s ini">Mis plantillas</span><span class="fl">&#8594;</span><span class="s">Publicar bolsas de hoy</span><span class="fl">&#8594;</span><span class="s fin">Publicaciones de hoy</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div>
+ <div class="bd"><div class="sc">
+   <div class="hd2"><span class="pin"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#12695C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></span>
+     <span class="loc">Zona seleccionada<b>Colonia Trejo &#9662;</b></span></div>
+   <div class="cats"><div class="cat"><i style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg></i>Panadería</div><div class="cat"><i style="background:#F7E4D6"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4703A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z"/><path d="M3 14.5 12 19l9-4.5"/></svg></i>Sándwiches</div><div class="cat"><i style="background:#F9E0D9"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4533A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6.5"/><path d="M5 6.5C7 4 17 4 19 6.5"/></svg></i>Preparada</div><div class="cat"><i style="background:#E2F1E3"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4F9A5A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></i>Frutas</div><div class="cat"><i style="background:#DFECF5"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3F7EA8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V4Z"/><path d="M7 13h10"/></svg></i>Lácteos</div></div>
+   <div class="h5">Cerca de vos <span class="vt">Ver todo</span></div>
+   <div class="card">
+      <div class="img" style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg><span class="bg">Quedan 3</span><span class="rt">&#9733; 4.6</span>
+        <span class="lg">ET</span></div>
+      <div class="in"><div class="t1">El Trigal · Centro</div><div class="t2">Panadería</div>
+        <div class="t3">Retiro hoy 6:00 – 8:00 PM</div>
+        <div class="pr"><span class="old">L 180.00</span><span class="new">L 65.00</span></div>
+      </div></div>
+   <div class="card">
+      <div class="img" style="background:#F9E0D9"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#C4533A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6.5"/><path d="M5 6.5C7 4 17 4 19 6.5"/></svg><span class="bg">Última bolsa</span><span class="rt">&#9733; 4.3</span>
+        <span class="lg">CE</span></div>
+      <div class="in"><div class="t1">Comedor La Esquina</div><div class="t2">Restaurante</div>
+        <div class="t3">Retiro hoy 7:00 – 8:00 PM</div>
+        <div class="pr"><span class="old">L 220.00</span><span class="new">L 80.00</span></div>
+      </div></div>
+ </div></div><div class="nav"><div class="on"><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P08 · Inicio · bolsas disponibles</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">La pantalla principal del producto y la más consultada del sistema. Todo lo que se ve aquí sale de una sola vista de la base.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Solo aparecen publicaciones en estado PUBLICADA, con cupo mayor a cero y dentro de la ventana de retiro. Ese filtro ya viene resuelto en la vista.</li><li>El descuento mostrado se calcula comparando el precio de venta contra el valor estimado de la plantilla.</li><li>La etiqueta de urgencia cambia según cantidad_disponible: última bolsa cuando queda una.</li><li>No se muestra distancia porque el filtro es por zona y no por geolocalización.</li><li>Si la zona tiene hora límite de retiro, no se listan publicaciones que la excedan.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/publicaciones?zonaId=</span><span class="ruta api">oferta.vw_publicacion_vigente</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de la bolsa</span><span class="ruta">Selector de zona</span><span class="ruta">Resultados por categoría</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/publicaciones?zonaId={id}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Bolsas disponibles hoy en esa zona</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">PublicacionesController.Listar([FromQuery] FiltroPublicaciones f) → 200 List<PublicacionResponse></span><span class="ln">IPublicacionService.ListarVigentesAsync(f)</span><span class="ln">IPublicacionRepository.VigentesAsync(zonaId, categoriaId) → oferta.vw_publicacion_vigente</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">FiltroPublicaciones { int? ZonaId; short? CategoriaId; }</span><span class="ln">PublicacionResponse { long PublicacionId; string Bolsa; string TipoAlimento; decimal PrecioVenta; decimal ValorEstimado; int DescuentoPct; short CantidadDisponible; DateOnly Fecha; TimeSpan HoraInicioRetiro; TimeSpan HoraFinRetiro; int SucursalId; string Sucursal; string NombreComercial; string Rubro; string Zona; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class PublicacionApi { Future<List<Publicacion>> listar({int? zonaId, int? categoriaId}); }</span><span class="ln">class PublicacionApiHttp implements PublicacionApi</span><span class="ln">modelo Publicacion.fromJson · getter urgencia según cantidadDisponible</span><span class="ln">InicioControlador guarda zona y categoría activas y recarga al cambiar</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div>
+ <div class="bd"><div class="sc" style="filter:blur(1.5px);opacity:.5">
+   <div class="hd2"><span class="pin"></span><span class="loc">Zona seleccionada<b>Colonia Trejo</b></span></div>
+   <div class="cats"><div class="cat"><i style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg></i>Panadería</div><div class="cat"><i style="background:#F7E4D6"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4703A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z"/><path d="M3 14.5 12 19l9-4.5"/></svg></i>Sándwiches</div><div class="cat"><i style="background:#F9E0D9"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4533A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6.5"/><path d="M5 6.5C7 4 17 4 19 6.5"/></svg></i>Preparada</div><div class="cat"><i style="background:#E2F1E3"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4F9A5A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></i>Frutas</div><div class="cat"><i style="background:#DFECF5"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3F7EA8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V4Z"/><path d="M7 13h10"/></svg></i>Lácteos</div></div>
+ </div>
+ <div style="position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;
+      box-shadow:0 -8px 24px rgba(0,0,0,.14);padding-bottom:8px">
+   <div style="width:34px;height:4px;background:#E7E4DE;border-radius:4px;margin:9px auto 4px"></div>
+   <div class="h5" style="margin-bottom:2px">Elegí tu zona</div>
+   <div class="fila"><span><b>Barrio Los Andes</b><span>Sin hora límite</span></span><span class="fin">4 bolsas</span></div>
+   <div class="fila"><span><b>Colonia Trejo</b><span>Retiros hasta 8:30 PM</span></span><span class="fin">7 bolsas</span></div>
+   <div class="fila"><span><b>Barrio Guamilito</b><span>Retiros hasta 7:30 PM</span></span><span class="fin">2 bolsas</span></div>
+   <div class="fila"><span><b>Av. Circunvalación</b><span>Retiros hasta 9:00 PM</span></span><span class="fin">5 bolsas</span></div>
+   <div class="fila"><span><b>Barrio Río de Piedras</b><span>Retiros hasta 7:30 PM</span></span><span class="fin">0 bolsas</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P09 · Selector de zona</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Reemplaza al selector de ubicación por GPS. Se abre como hoja inferior desde el encabezado.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Solo se listan zonas con es_activo verdadero: hay dos zonas sembradas inactivas que no deben aparecer.</li><li>La hora límite es propia de cada zona; el Barrio Los Andes no tiene por ser céntrico.</li><li>El contador de bolsas por zona ayuda a que el usuario no elija una zona vacía.</li><li>La zona elegida se guarda en el dispositivo y se recuerda al volver a abrir la app.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/zonas</span><span class="ruta api">geo.zona</span><span class="ruta api">geo.ciudad</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Inicio · bolsas disponibles</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/zonas<br><span class="nota2">&nbsp;&nbsp;&nbsp;Zonas activas con su hora límite y conteo de bolsas</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ZonasController.Listar() → 200 List<ZonaResponse></span><span class="ln">IZonaService.ListarActivasAsync()</span><span class="ln">IZonaRepository.ActivasAsync() → geo.zona con es_activo verdadero</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ZonaResponse { int Id; string Nombre; string Ciudad; TimeSpan? HoraLimiteRetiro; int BolsasDisponibles; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class ZonaApi { Future<List<Zona>> listar(); }</span><span class="ln">modelo Zona</span><span class="ln">ZonaControlador guarda la zona elegida con shared_preferences</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div>
+ <div class="bd"><div class="sc">
+   <div class="hd2"><span class="pin"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#12695C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></span>
+     <span class="loc">Zona seleccionada<b>Colonia Trejo &#9662;</b></span></div>
+   <div class="cats"><div class="cat on"><i style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg></i>Panadería</div><div class="cat"><i style="background:#F7E4D6"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4703A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z"/><path d="M3 14.5 12 19l9-4.5"/></svg></i>Sándwiches</div><div class="cat"><i style="background:#F9E0D9"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4533A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6.5"/><path d="M5 6.5C7 4 17 4 19 6.5"/></svg></i>Preparada</div><div class="cat"><i style="background:#E2F1E3"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4F9A5A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></i>Frutas</div><div class="cat"><i style="background:#DFECF5"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3F7EA8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V4Z"/><path d="M7 13h10"/></svg></i>Lácteos</div></div>
+   <div class="h5">Panadería · 3 resultados</div>
+   <div class="card">
+      <div class="img" style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg><span class="bg">Quedan 3</span><span class="rt">&#9733; 4.6</span>
+        <span class="lg">ET</span></div>
+      <div class="in"><div class="t1">El Trigal · Centro</div><div class="t2">Panadería</div>
+        <div class="t3">Retiro hoy 6:00 – 8:00 PM</div>
+        <div class="pr"><span class="old">L 180.00</span><span class="new">L 65.00</span></div>
+      </div></div>
+   <div class="card">
+      <div class="img" style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg><span class="rt">&#9733; 4.2</span>
+        <span class="lg">DP</span></div>
+      <div class="in"><div class="t1">Doña Pastelería</div><div class="t2">Repostería</div>
+        <div class="t3">Retiro hoy 5:30 – 7:00 PM</div>
+        <div class="pr"><span class="old">L 150.00</span><span class="new">L 55.00</span></div>
+      </div></div>
+ </div></div><div class="nav"><div class="on"><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P10 · Resultados por categoría</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Mismo listado con el filtro de categoría aplicado. Los íconos y colores de categoría son la identidad visual del producto en toda la aplicación.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El filtro es por categoria_alimento de la plantilla, no por rubro del comercio: una cafetería puede vender una bolsa de panadería.</li><li>El ícono y el color de cada categoría están definidos en la aplicación, no en la base.</li><li>Filtrar no recarga la zona: se combinan ambos filtros.</li><li>Las seis categorías del catálogo son fijas y vienen de los datos semilla.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/publicaciones?zonaId=&categoriaId=</span><span class="ruta api">oferta.categoria_alimento</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de la bolsa</span><span class="ruta">Sin resultados</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/publicaciones?zonaId={id}&categoriaId={c}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Mismo listado con filtro de categoría</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">PublicacionesController.Listar(FiltroPublicaciones) → 200 List<PublicacionResponse></span><span class="ln">Reutiliza el mismo servicio y repositorio del listado general</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">FiltroPublicaciones { int? ZonaId; short? CategoriaId; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">PublicacionApi.listar(zonaId: x, categoriaId: y)</span><span class="ln">mapa_categorias.dart asocia nombre de categoría con ícono y color</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div>
+ <div class="bd">
+   <div class="hd2"><span class="pin"></span>
+     <span class="loc">Zona seleccionada<b>Barrio Río de Piedras &#9662;</b></span></div>
+   <div class="cats"><div class="cat"><i style="background:#FBEEDA"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg></i>Panadería</div><div class="cat"><i style="background:#F7E4D6"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4703A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 5l9 4.5-9 4.5-9-4.5Z"/><path d="M3 14.5 12 19l9-4.5"/></svg></i>Sándwiches</div><div class="cat"><i style="background:#F9E0D9"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C4533A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="6.5"/><path d="M5 6.5C7 4 17 4 19 6.5"/></svg></i>Preparada</div><div class="cat"><i style="background:#E2F1E3"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4F9A5A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></i>Frutas</div><div class="cat"><i style="background:#DFECF5"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3F7EA8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V4Z"/><path d="M7 13h10"/></svg></i>Lácteos</div></div>
+   <div class="pleno" style="height:auto;padding-top:36px">
+     <div class="ilus" style="background:#EFEDE8"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#9A968E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8Z"/><path d="M3 4h18v4H3zM12 8v12"/></svg></div>
+     <h3>No hay bolsas por ahora</h3>
+     <p>En esta zona ya se rescató todo lo de hoy. Probá con otra zona o volvé más tarde.</p>
+     <div class="acc"><span class="btn sec2">Cambiar de zona</span></div>
+   </div>
+ </div><div class="nav"><div class="on"><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P11 · Sin resultados</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Estado vacío. Es una pantalla frecuente en la demo porque las publicaciones vencen al pasar su ventana de retiro.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Se muestra cuando la consulta devuelve cero filas, sea por zona sin oferta o por filtro de categoría demasiado estrecho.</li><li>No es un error: no debe usarse el color de error ni un ícono de alerta.</li><li>La acción principal saca al usuario del callejón sin salida ofreciendo cambiar de zona.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/publicaciones (0 resultados)</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Selector de zona</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno: es el resultado vacío del mismo endpoint del listado</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">widget_estado_vacio.dart · se muestra cuando la lista viene vacía</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div>
+ <div class="bd">
+   <div class="hero" style="background:#FBEEDA"><span class="bk">&#8249;</span>
+     <svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="#E8A33D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-4 3.6-7 8-7s8 3 8 7c0 1.1-.9 2-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8.5 9.5 7 16M12 8.5V16m3.5-6.5L17 16"/></svg></div>
+   <div class="sec">
+     <div class="tt">Bolsa de panadería</div>
+     <div class="sb">El Trigal · Centro &nbsp;·&nbsp; Panadería</div>
+     <span class="chip urg" style="margin-top:8px">Quedan 3 bolsas</span>
+     <div style="display:flex;align-items:baseline;gap:8px;margin-top:11px">
+       <span style="font-size:10.5px;color:#8A8A8A;text-decoration:line-through">L 180.00</span>
+       <span style="font-size:21px;font-weight:800">L 65.00</span>
+       <span class="chip">-64%</span></div>
+   </div>
+   <div style="height:11px"></div>
+   <div class="fila"><span class="ic2"></span><span><b>Recoger hoy, 6:00 – 8:00 PM</b><span>La zona cierra retiros a las 8:30 PM</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Av. Circunvalación, SPS</b><span>Colonia Trejo · Ver sucursal</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Qué puede traer</b><span>Pan del día y repostería surtida. El contenido varía según lo que sobre.</span></span></div>
+   <div style="padding:9px 14px 70px;font-size:9.5px;color:#6E6E6E">
+     <b style="color:#1A1A1A">Alérgenos:</b> gluten, lácteos, huevo.</div>
+   <div class="barra">
+     <span class="prbig"><span class="old">L 180.00</span><span class="new">L 65.00</span></span>
+     <span class="btn">Reservar</span></div>
+ </div></div></div>
+        <div class="pinfo">
+          <h3>P12 · Detalle de la bolsa</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Toda la información para decidir la compra, con la acción de reservar siempre visible en una barra fija.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El precio de venta siempre es menor al valor estimado; la base lo exige con un trigger. Si no hay ahorro, la publicación no existe.</li><li>El contenido es sorpresa por diseño: se describe el tipo de bolsa, no artículos concretos.</li><li>Los alérgenos son obligatorios de mostrar por tratarse de alimentos.</li><li>Si la publicación se agota mientras el cliente mira la pantalla, el error aparece al intentar reservar, no antes.</li><li>La ventana de retiro nunca puede exceder las horas máximas de la categoría; para panadería son 3 horas.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/publicaciones/{id}</span><span class="ruta api">oferta.vw_publicacion_vigente</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Confirmar reserva</span><span class="ruta">Detalle de la sucursal</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/publicaciones/{id}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Detalle completo de una publicación</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">PublicacionesController.PorId(long id) → 200 PublicacionDetalleResponse | 404</span><span class="ln">IPublicacionService.ObtenerAsync(id)</span><span class="ln">IPublicacionRepository.PorIdAsync(id) → oferta.vw_publicacion_vigente</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">PublicacionDetalleResponse : PublicacionResponse { string Descripcion; string Alergenos; decimal PesoEstimadoKg; bool EsPerecible; string Direccion; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">PublicacionApi.porId(int id) → Future<PublicacionDetalle></span><span class="ln">modelo PublicacionDetalle extends Publicacion</span><span class="ln">PantallaDetalleBolsa pasa el id por parámetro de ruta</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Mis bolsas</div><div class="sb2">El Trigal · Centro</div></div><span class="der">+ Nueva</span></div>
+ <div class="bd"><div class="sc">
+   <div class="fila"><span class="ic2"></span><span><b>Bolsa de panadería</b><span>Panadería · L 65.00 · 1.2 kg</span></span><span class="fin">&#8250;</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Caja de repostería</b><span>Panadería · L 90.00 · 1.5 kg</span></span><span class="fin">&#8250;</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Bolsa de sándwiches</b><span>Sándwiches · L 70.00 · 0.9 kg</span></span><span class="fin">&#8250;</span></div>
+   <div style="margin:14px;padding:11px 12px;background:#DFF0E7;border-radius:10px;
+        font-size:9.5px;color:#0B4F45;line-height:1.55">
+     Una plantilla es el producto. Para ponerla a la venta hoy tenés que publicarla.</div>
+ </div></div><div class="nav"><div class="on"><span class="ic"></span>Hoy</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P13 · Mis plantillas de bolsa</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Catálogo de lo que la sucursal suele vender. Se define una vez y se reutiliza todos los días.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La plantilla no tiene inventario ni fecha: es solo la descripción del producto.</li><li>Separar plantilla de publicación es la decisión de modelo más importante del proyecto.</li><li>Una plantilla desactivada deja de poder publicarse pero conserva su historial de ventas.</li><li>Solo se ven las plantillas de la sucursal seleccionada.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/sucursales/{id}/plantillas</span><span class="ruta api">oferta.plantilla_bolsa</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Crear plantilla</span><span class="ruta">Publicar bolsas de hoy</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/sucursales/{id}/plantillas<br><span class="nota2">&nbsp;&nbsp;&nbsp;Catálogo de bolsas de la sucursal</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">PlantillasController.Listar(int sucursalId) → 200 List<PlantillaResponse></span><span class="ln">IPlantillaService.ListarAsync(sucursalId)</span><span class="ln">IPlantillaRepository.PorSucursalAsync(id) → oferta.plantilla_bolsa</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">PlantillaResponse { int Id; string Nombre; string TipoAlimento; decimal PrecioBase; decimal ValorEstimado; decimal PesoEstimadoKg; bool EsActivo; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class PlantillaApi { Future<List<Plantilla>> porSucursal(int id); }</span><span class="ln">modelo Plantilla</span><span class="ln">PlantillaControlador para el panel del comercio</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Nueva bolsa</div><div class="sb2">El Trigal · Centro</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="campo"><label>Nombre</label><div class="inp">Bolsa de panadería</div></div>
+   <div class="campo"><label>Categoría de alimento</label><div class="inp">Panadería &#9662;</div></div>
+   <div class="campo"><label>Descripción</label><div class="inp">Pan del día y repostería surtida</div></div>
+   <div style="display:flex;gap:0">
+     <div style="flex:1"><div class="campo"><label>Precio de venta</label><div class="inp">L 65.00</div></div></div>
+     <div style="flex:1"><div class="campo"><label>Valor estimado</label><div class="inp">L 180.00</div></div></div>
+   </div>
+   <div class="campo"><label>Peso aproximado</label><div class="inp">1.20 kg</div></div>
+   <div class="campo"><label>Alérgenos</label><div class="inp">Gluten, lácteos, huevo</div></div>
+   <div style="padding:2px 14px 14px"><span class="btn">Guardar bolsa</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P14 · Crear plantilla de bolsa</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Formulario del producto. Aquí se fijan el precio de referencia y el valor estimado, que son los que producen el porcentaje de ahorro que ve el cliente.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El valor estimado debe ser mayor que el precio de venta; un trigger rechaza lo contrario.</li><li>Ambos importes usan el dominio de dinero con dos decimales exactos, nunca punto flotante.</li><li>La categoría define la ventana máxima de retiro: comida preparada solo admite 1 hora.</li><li>El peso alimenta el cálculo de impacto ambiental, aunque esa pantalla quede fuera del MVP.</li><li>El nombre debe ser único dentro de la sucursal.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">POST /api/sucursales/{id}/plantillas</span><span class="ruta api">oferta.plantilla_bolsa</span><span class="ruta api">oferta.categoria_alimento</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Mis plantillas</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/sucursales/{id}/plantillas<br><span class="nota2">&nbsp;&nbsp;&nbsp;Crea una plantilla de bolsa</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">PlantillasController.Crear(int sucursalId, CrearPlantillaRequest r) → 201 { id } | 400</span><span class="ln">IPlantillaService.CrearAsync(sucursalId, r)</span><span class="ln">IPlantillaRepository.CrearAsync(...) → INSERT en oferta.plantilla_bolsa</span><span class="ln">El trigger de la base valida que valorEstimado sea mayor que precioBase</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">CrearPlantillaRequest { string Nombre; short CategoriaAlimentoId; string Descripcion; decimal PrecioBase; decimal ValorEstimado; decimal PesoEstimadoKg; bool RequiereRefrigeracion; string Alergenos; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">PlantillaApi.crear(int sucursalId, CrearPlantillaPeticion p) → Future<int></span><span class="ln">FormularioPlantilla valida en el cliente y confía la regla dura a la base</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Publicar hoy</div><div class="sb2">El Trigal · Centro</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="campo"><label>Bolsa</label><div class="inp">Bolsa de panadería &#9662;</div></div>
+   <div class="campo"><label>Fecha</label><div class="inp">Hoy, 8 de septiembre</div></div>
+   <div style="display:flex;gap:0">
+     <div style="flex:1"><div class="campo"><label>Desde</label><div class="inp">6:00 PM</div></div></div>
+     <div style="flex:1"><div class="campo"><label>Hasta</label><div class="inp">8:00 PM</div></div></div>
+   </div>
+   <div style="margin:0 14px 10px;padding:9px 11px;background:#FBEEDA;border-radius:10px;
+        font-size:9px;color:#8A5B12;line-height:1.5">
+     Panadería admite hasta 3 horas de ventana. La zona cierra retiros a las 8:30 PM.</div>
+   <div style="display:flex;gap:0">
+     <div style="flex:1"><div class="campo"><label>Cantidad</label><div class="inp">5 bolsas</div></div></div>
+     <div style="flex:1"><div class="campo"><label>Precio de hoy</label><div class="inp">L 65.00</div></div></div>
+   </div>
+   <div style="padding:2px 14px 14px"><span class="btn">Publicar</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P15 · Publicar bolsas de hoy</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">La acción diaria del comercio y el arranque del camino dorado. Define cuántas bolsas hay y en qué ventana se retiran.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La ventana de retiro debe caber dentro del horario de atención de la sucursal ese día.</li><li>La ventana no puede exceder las horas máximas de la categoría de alimento.</li><li>No puede haber dos publicaciones de la misma bolsa con ventanas que se encimen.</li><li>La cantidad disponible arranca igual a la cantidad total y solo la baja el procedimiento de reserva.</li><li>El precio del día puede diferir del precio base de la plantilla, pero sigue teniendo que ser menor al valor estimado.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">POST /api/publicaciones</span><span class="ruta api">oferta.publicacion</span><span class="ruta api">comercio.horario_sucursal</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Publicaciones de hoy</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/publicaciones<br><span class="nota2">&nbsp;&nbsp;&nbsp;Publica la oferta del día</span></span><span class="ln"><span class="verbo v-get">GET</span>/api/categorias-alimento<br><span class="nota2">&nbsp;&nbsp;&nbsp;Catálogo para el selector</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">PublicacionesController.Crear(CrearPublicacionRequest r) → 201 PublicacionCreadaResponse | 409</span><span class="ln">IPublicacionService.PublicarAsync(r)</span><span class="ln">IPublicacionRepository.CrearAsync(...) → INSERT en oferta.publicacion</span><span class="ln">Los triggers validan horario de la sucursal, ventana máxima y traslape</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">CrearPublicacionRequest { int PlantillaBolsaId; DateOnly Fecha; TimeSpan HoraInicioRetiro; TimeSpan HoraFinRetiro; short CantidadTotal; decimal PrecioVenta; }</span><span class="ln">PublicacionCreadaResponse { long Id; string Estado; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">PublicacionApi.crear(CrearPublicacionPeticion p) → Future<PublicacionCreada></span><span class="ln">PublicarControlador traduce los errores de traslape a texto del formulario</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Hoy</div><div class="sb2">El Trigal · Centro</div></div><span class="der">+ Publicar</span></div>
+ <div class="bd"><div class="sc">
+   <div class="res"><div class="r1"><span><b>Bolsa de panadería</b>
+     <span>6:00 – 8:00 PM · L 65.00</span></span><span class="e2 e-ok">PUBLICADA</span></div>
+     <div class="r2"><span class="hr">3 de 5 disponibles</span><span class="hr">2 reservadas</span></div></div>
+   <div class="res"><div class="r1"><span><b>Caja de repostería</b>
+     <span>5:00 – 7:00 PM · L 90.00</span></span><span class="e2 e-am">AGOTADA</span></div>
+     <div class="r2"><span class="hr">0 de 3 disponibles</span><span class="hr">3 reservadas</span></div></div>
+   <div class="res"><div class="r1"><span><b>Bolsa de sándwiches</b>
+     <span>12:00 – 2:00 PM · L 70.00</span></span><span class="e2 e-gr">VENCIDA</span></div>
+     <div class="r2"><span class="hr">1 sin vender</span><span class="hr">2 reservadas</span></div></div>
+ </div></div><div class="nav"><div class="on"><span class="ic"></span>Hoy</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P16 · Publicaciones de hoy</h3>
+          <p class="met"><b>M2</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Estado de lo publicado en la jornada: cuánto queda, cuánto se vendió y qué ya venció.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Los estados posibles son PROGRAMADA, PUBLICADA, AGOTADA, VENCIDA y CANCELADA.</li><li>El paso a AGOTADA ocurre solo cuando la cantidad disponible llega a cero.</li><li>El paso a VENCIDA lo hace el proceso de cierre, que en el MVP se dispara con un botón.</li><li>Las transiciones inválidas las rechaza un trigger con TRANSICION_INVALIDA.</li><li>Una publicación vencida con bolsas sin vender es exactamente la comida que se desperdició: es el dato que da sentido al producto.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/sucursales/{id}/publicaciones</span><span class="ruta api">oferta.publicacion</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Publicar bolsas de hoy</span><span class="ruta">Reservas del día</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/sucursales/{id}/publicaciones?fecha=<br><span class="nota2">&nbsp;&nbsp;&nbsp;Publicaciones del día con su estado</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">PublicacionesController.PorSucursal(int id, DateOnly? fecha) → 200 List<PublicacionPanelResponse></span><span class="ln">IPublicacionService.DelDiaAsync(sucursalId, fecha)</span><span class="ln">IPublicacionRepository.PorSucursalYFechaAsync(...) → oferta.publicacion</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">PublicacionPanelResponse { long Id; string Bolsa; TimeSpan HoraInicioRetiro; TimeSpan HoraFinRetiro; decimal PrecioVenta; short CantidadTotal; short CantidadDisponible; short Reservadas; string Estado; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">PublicacionApi.delDia(int sucursalId, DateTime fecha)</span><span class="ln">modelo PublicacionPanel · getter colorEstado</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-M3">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M3</b> · Módulo</div>
+    <h2>Reserva y pago</h2>
+    <p class="lead">Apartar la bolsa y cobrarla. &nbsp;·&nbsp; 7 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Detalle de la bolsa</span><span class="fl">&#8594;</span><span class="s">Confirmar reserva</span><span class="fl">&#8594;</span><span class="s">Procesando pago</span><span class="fl">&#8594;</span><span class="s">Reserva confirmada</span><span class="fl">&#8594;</span><span class="s fin">Código de retiro</span></div><div class="seq"><span class="s ini">Confirmar reserva</span><span class="fl">&#8594;</span><span class="s">No se pudo reservar</span><span class="fl">&#8594;</span><span class="s fin">Inicio · bolsas</span></div><div class="seq"><span class="s ini">Mis reservas · activas</span><span class="fl">&#8594;</span><span class="s">Detalle de la reserva</span><span class="fl">&#8594;</span><span class="s fin">Código de retiro</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Confirmar reserva</div><div class="sb2">Bolsa de panadería · El Trigal</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="qty"><div><b style="font-size:11.5px">Cantidad</b>
+     <div style="font-size:9px;color:#6E6E6E;margin-top:2px">Máximo 3 por persona</div></div>
+     <div class="c"><span class="b off">&minus;</span><span class="n">1</span><span class="b">+</span></div></div>
+   <div class="h5" style="margin-bottom:6px">Método de pago</div>
+   <div class="pay">
+     <div class="op on"><span class="rd"></span>Tarjeta de crédito o débito</div>
+     <div class="op"><span class="rd"></span>Billetera móvil</div>
+     <div class="op"><span class="rd"></span>Transferencia bancaria</div>
+     <div class="op dis"><span class="rd"></span><span>Efectivo al retirar
+       <small>No disponible: tenés 3 faltas acumuladas</small></span></div>
+   </div>
+   <div class="tot">
+     <div><span>Subtotal</span><span>L 65.00</span></div>
+     <div><span>ISV</span><span>L 9.75</span></div>
+     <div class="g"><span>Total</span><span>L 74.75</span></div></div>
+   <div style="padding:13px 14px"><span class="btn">Pagar L 74.75</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P17 · Confirmar reserva</h3>
+          <p class="met"><b>M3</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Cantidad y método de pago. Es la pantalla donde dos reglas del modelo se vuelven visibles: el tope por cliente y el bloqueo del efectivo.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El tope es de 3 bolsas por cliente y por publicación; el botón de restar se apaga en 1 y el de sumar en 3.</li><li>El efectivo se deshabilita cuando el cliente acumula 3 o más faltas. Se muestra la opción en gris con el motivo, en vez de ocultarla, para que la regla se entienda.</li><li>El ISV y la comisión se calculan en el procedimiento con la tarifa vigente del día y se copian dentro de la reserva como hechos históricos.</li><li>El total mostrado es informativo: el monto real lo devuelve la base al crear la reserva.</li><li>Si otra persona toma la última bolsa mientras esta pantalla está abierta, el error aparece al confirmar.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/metodos-pago</span><span class="ruta api">POST /api/reservas</span><span class="ruta api">venta.sp_reserva_crear</span><span class="ruta api">finanza.tarifa</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Procesando pago</span><span class="ruta">No se pudo reservar</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/metodos-pago<br><span class="nota2">&nbsp;&nbsp;&nbsp;Formas de pago activas</span></span><span class="ln"><span class="verbo v-post">POST</span>/api/reservas<br><span class="nota2">&nbsp;&nbsp;&nbsp;Crea la reserva llamando al procedimiento</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ReservasController.Crear(CrearReservaRequest r) → 201 ReservaCreadaResponse | 409</span><span class="ln">IReservaService.CrearAsync(r, usuarioId)</span><span class="ln">IReservaRepository.CrearAsync(...) → Dapper QuerySingleAsync</span><span class="ln">CALL venta.sp_reserva_crear(@pub, @usr, @cant, @metodo, NULL, NULL, NULL)</span><span class="ln">El procedimiento devuelve una fila con o_reserva_id y o_codigo</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">CrearReservaRequest { long PublicacionId; short Cantidad; short MetodoPagoId; }</span><span class="ln">ReservaCreadaResponse { long ReservaId; string Codigo; decimal Total; string Estado; }</span><span class="ln">MetodoPagoResponse { short Id; string Codigo; string Nombre; bool RequiereConfirmacionEnSitio; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class ReservaApi { Future<ReservaCreada> crear(CrearReservaPeticion p); }</span><span class="ln">class ReservaApiHttp implements ReservaApi</span><span class="ln">modelo ReservaCreada.fromJson · CrearReservaPeticion.toJson</span><span class="ln">ReservaControlador expone cantidad, metodoSeleccionado y estadoEnvio</span><span class="ln">La app nunca calcula el total: muestra el que devuelve el backend</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd"><div class="pleno">
+   <div class="ilus" style="background:#DFF0E7"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#12695C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V4Z"/><path d="M7 13h10"/></svg></div>
+   <h3>Procesando tu pago</h3>
+   <p>No cierres la aplicación.<br>Esto toma unos segundos.</p>
+   <div style="margin-top:20px;width:150px;height:5px;background:#E7E4DE;border-radius:5px;overflow:hidden">
+     <div style="width:62%;height:100%;background:#12695C"></div></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P18 · Procesando pago</h3>
+          <p class="met"><b>M3</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Espera breve mientras se registra el cobro. En el MVP el pago es simulado y siempre aprueba, pero la pantalla existe porque el flujo real la necesita.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La reserva ya existe en estado PENDIENTE_PAGO antes de llegar aquí.</li><li>Si el pago falla, la reserva queda pendiente y se puede reintentar; no se pierde el cupo de inmediato.</li><li>Con método efectivo esta pantalla se salta: el cobro se cierra en el mostrador.</li><li>No debe permitirse volver atrás con el gesto del sistema mientras se procesa.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">POST /api/reservas/{id}/pago</span><span class="ruta api">venta.pago</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Reserva confirmada</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/reservas/{id}/pago<br><span class="nota2">&nbsp;&nbsp;&nbsp;Registra el cobro simulado y confirma la reserva</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ReservasController.Pagar(long id) → 200 PagoResponse | 409</span><span class="ln">IPagoService.RegistrarAsync(reservaId, usuarioId)</span><span class="ln">IPagoRepository.CrearAsync(...) → INSERT en venta.pago con estado CAPTURADO</span><span class="ln">IReservaRepository.ConfirmarAsync(id) → UPDATE de estado a CONFIRMADA</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">PagoResponse { string EstadoPago; string EstadoReserva; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ReservaApi.pagar(int reservaId) → Future<ResultadoPago></span><span class="ln">PagoControlador bloquea el botón de retroceso mientras espera</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd"><div class="pleno">
+   <div class="ilus" style="background:#DFF0E7;font-size:34px;color:#12695C">&#10003;</div>
+   <h3>¡Bolsa reservada!</h3>
+   <p>Pasá por El Trigal · Centro<br>hoy entre 6:00 y 8:00 PM</p>
+   <div style="margin-top:16px;padding:11px 16px;background:#fff;border:1px solid #E7E4DE;
+        border-radius:12px;font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:700;
+        color:#0B4F45;letter-spacing:.08em">LB-000088</div>
+   <div class="acc"><span class="btn">Ver mi código</span>
+     <span class="btn sec2" style="margin-top:9px">Seguir buscando</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P19 · Reserva confirmada</h3>
+          <p class="met"><b>M3</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Cierre positivo del flujo de compra. Lleva directo al código, que es lo único que el cliente necesita a partir de este momento.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El código lo genera la base con un correlativo; la aplicación nunca lo inventa.</li><li>La reserva queda en estado CONFIRMADA solo después de que el pago se captura.</li><li>Desde aquí ya se descontó el cupo de la publicación: la bolsa es del cliente.</li><li>Si no la retira dentro de la ventana, pasará a NO_RETIRADA y le sumará una falta.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">venta.reserva</span><span class="ruta api">venta.vw_reserva_detalle</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Código de retiro</span><span class="ruta">Inicio · bolsas disponibles</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno: usa la respuesta que ya devolvió el pago</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">PantallaReservaConfirmada recibe ReservaCreada por argumento de ruta</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd">
+   <div class="sc" style="filter:blur(2px);opacity:.45">
+     <div class="qty"><div><b style="font-size:11.5px">Cantidad</b></div>
+       <div class="c"><span class="b">&minus;</span><span class="n">1</span><span class="b">+</span></div></div>
+     <div class="h5">Método de pago</div>
+     <div class="pay"><div class="op on"><span class="rd"></span>Tarjeta</div></div></div>
+   <div class="dlg"><div class="box">
+     <div class="ic3" style="background:#FBE2DB;color:#B4462F">!</div>
+     <h4>Ya no quedan bolsas</h4>
+     <p>Alguien la reservó hace un momento. Probá con otra bolsa de la zona.</p>
+     <span class="btn">Ver otras bolsas</span>
+   </div></div>
+ </div></div></div>
+        <div class="pinfo">
+          <h3>P20 · No se pudo reservar</h3>
+          <p class="met"><b>M3</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Diálogo de error sobre la pantalla de confirmación. Cubre los tres rechazos que devuelve el procedimiento de reserva.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>SIN_CUPO aparece cuando otra persona tomó la última bolsa; es el caso más probable en la demo.</li><li>LIMITE_POR_CLIENTE aparece si ya tiene 3 bolsas de esa publicación.</li><li>EFECTIVO_BLOQUEADO aparece si eligió efectivo teniendo 3 o más faltas.</li><li>El mensaje técnico del backend nunca se muestra tal cual: se traduce a lenguaje del usuario.</li><li>El botón saca al usuario del error hacia una acción útil, no solo cierra el diálogo.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">Error P0001 del procedimiento</span><span class="ruta api">Códigos SIN_CUPO, LIMITE_POR_CLIENTE, EFECTIVO_BLOQUEADO</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Inicio · bolsas disponibles</span><span class="ruta">Confirmar reserva</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno: es el manejo del error que devolvieron POST /api/reservas o el pago</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ErrorResponse { string Codigo; string Mensaje; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">class ApiExcepcion implements Exception { final String codigo; final String mensaje; }</span><span class="ln">mensajes_error.dart traduce el código a texto para el usuario</span><span class="ln">El controlador captura ApiExcepcion y expone el mensaje traducido</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Mis reservas</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="tabs"><b>Activas</b><span>Historial</span></div>
+   <div class="res"><div class="r1"><span><b>El Trigal · Centro</b>
+     <span>Bolsa de panadería · 1 unidad</span></span><span class="e2 e-ok">LISTA</span></div>
+     <div class="r2"><span class="cd">LB-000088</span><span class="hr">Hoy 6:00 – 8:00 PM</span></div></div>
+   <div class="res"><div class="r1"><span><b>Comedor La Esquina</b>
+     <span>Almuerzo del día · 1 unidad</span></span><span class="e2 e-am">SIN PAGAR</span></div>
+     <div class="r2"><span class="hr">Completá el pago para asegurarla</span>
+       <span class="hr">Hoy 7:00 PM</span></div></div>
+ </div></div><div class="nav"><div class=""><span class="ic"></span>Inicio</div><div class="on"><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P21 · Mis reservas · activas</h3>
+          <p class="met"><b>M3</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Lo que el cliente tiene pendiente de retirar. Es la segunda pestaña de la barra inferior.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Activas son las reservas en estado PENDIENTE_PAGO y CONFIRMADA.</li><li>Una reserva sin pagar sigue ocupando cupo; conviene que el cliente la complete o la abandone.</li><li>El código solo se muestra cuando la reserva está CONFIRMADA.</li><li>El orden es por hora de retiro más próxima, no por fecha de creación.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/reservas/mias</span><span class="ruta api">venta.vw_reserva_detalle</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de reserva</span><span class="ruta">Código de retiro</span><span class="ruta">Mis reservas · historial</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/reservas/mias?estado=activas<br><span class="nota2">&nbsp;&nbsp;&nbsp;Reservas pendientes y confirmadas</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ReservasController.Mias(string estado) → 200 List<ReservaResponse></span><span class="ln">IReservaService.MisReservasAsync(usuarioId, estado)</span><span class="ln">IReservaRepository.PorClienteAsync(...) → venta.vw_reserva_detalle</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ReservaResponse { long ReservaId; string Codigo; string EstadoReserva; string EstadoPago; string Bolsa; string Sucursal; string NombreComercial; short Cantidad; decimal Total; DateOnly Fecha; TimeSpan HoraInicioRetiro; TimeSpan HoraFinRetiro; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ReservaApi.mias({required String estado}) → Future<List<Reserva>></span><span class="ln">modelo Reserva · getter esActiva y puedeVerCodigo</span><span class="ln">MisReservasControlador maneja las dos pestañas con un solo estado</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Mis reservas</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="tabs"><span>Activas</span><b>Historial</b></div>
+   <div class="res"><div class="r1"><span><b>Doña Pastelería</b>
+     <span>Caja de dulces · 1 unidad</span></span><span class="e2 e-gr">RETIRADA</span></div>
+     <div class="r2"><span class="cd">LB-000071</span><span class="hr">Ayer 5:30 PM</span></div></div>
+   <div class="res"><div class="r1"><span><b>Súper La Colonia</b>
+     <span>Bolsa de frutas · 1 unidad</span></span><span class="e2 e-rd">NO RETIRADA</span></div>
+     <div class="r2"><span class="hr">Sumó una falta a tu cuenta</span>
+       <span class="hr">03 sep</span></div></div>
+   <div class="res"><div class="r1"><span><b>El Trigal · Centro</b>
+     <span>Bolsa de panadería · 2 unidades</span></span><span class="e2 e-gr">RETIRADA</span></div>
+     <div class="r2"><span class="cd">LB-000063</span><span class="hr">01 sep</span></div></div>
+ </div></div><div class="nav"><div class=""><span class="ic"></span>Inicio</div><div class="on"><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P22 · Mis reservas · historial</h3>
+          <p class="met"><b>M3</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Lo ya cerrado. Aquí es donde el cliente entiende por qué tiene faltas acumuladas.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Historial son las reservas RETIRADA, NO_RETIRADA, CANCELADA y REEMBOLSADA.</li><li>La reserva no retirada explica en la propia tarjeta que sumó una falta: es la única forma de que el bloqueo posterior del efectivo no se sienta arbitrario.</li><li>Nada se borra: la baja siempre es por estado, nunca con DELETE.</li><li>El histórico conserva el precio que se pagó ese día aunque el catálogo haya cambiado.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/reservas/mias?estado=historial</span><span class="ruta api">venta.vw_reserva_detalle</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de reserva</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/reservas/mias?estado=historial<br><span class="nota2">&nbsp;&nbsp;&nbsp;Reservas ya cerradas</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Mismo controlador y servicio; cambia el filtro de estado en el repositorio</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ReservaResponse { ... }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ReservaApi.mias(estado: 'historial')</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Reserva LB-000088</div><div class="sb2">Confirmada</div></div></div>
+ <div class="bd"><div class="sc">
+   <div style="margin:2px 14px 12px;padding:12px;background:#fff;border:1px solid #E7E4DE;border-radius:13px">
+     <b style="font-size:13px">Bolsa de panadería</b>
+     <div style="font-size:10px;color:#6E6E6E;margin-top:2px">El Trigal · Centro</div>
+     <div style="margin-top:9px;padding-top:9px;border-top:1px dashed #E7E4DE;font-size:10.5px;color:#4A4A4A">
+       <div style="display:flex;justify-content:space-between;padding:2px 0"><span>1 bolsa &times; L 65.00</span><span>L 65.00</span></div>
+       <div style="display:flex;justify-content:space-between;padding:2px 0"><span>ISV</span><span>L 9.75</span></div>
+       <div style="display:flex;justify-content:space-between;padding:6px 0 0;font-size:13px;font-weight:800;color:#1A1A1A"><span>Total</span><span>L 74.75</span></div>
+     </div>
+   </div>
+   <div class="fila"><span class="ic2"></span><span><b>Retiro hoy, 6:00 – 8:00 PM</b><span>Av. Circunvalación, SPS</span></span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Pagado con tarjeta</b><span>Cobro capturado</span></span></div>
+   <div style="padding:12px 14px"><span class="btn">Ver mi código</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P23 · Detalle de la reserva</h3>
+          <p class="met"><b>M3</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">El comprobante. Muestra el desglose exacto que quedó congelado en la base al momento de reservar.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El desglose no se recalcula: sale de las columnas copiadas en la reserva el día de la compra.</li><li>La comisión de la plataforma existe en la base pero no se le muestra al cliente.</li><li>Si la reserva está pendiente de pago, el botón principal cambia a completar el pago.</li><li>El total es una columna generada por la base: subtotal más ISV, y no se puede escribir a mano.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/reservas/{id}</span><span class="ruta api">venta.vw_reserva_detalle</span><span class="ruta api">venta.pago</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Código de retiro</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/reservas/{id}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Comprobante con el desglose congelado</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ReservasController.PorId(long id) → 200 ReservaDetalleResponse | 404 | 403 si no es suya</span><span class="ln">IReservaService.ObtenerAsync(id, usuarioId)</span><span class="ln">IReservaRepository.PorIdAsync(id) → venta.vw_reserva_detalle</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ReservaDetalleResponse : ReservaResponse { decimal PrecioUnitario; decimal Subtotal; decimal Isv; string MetodoPago; string Direccion; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ReservaApi.porId(int id) → Future<ReservaDetalle></span><span class="ln">Los importes se muestran con formato_dinero.dart, nunca se recalculan</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-M4">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M4</b> · Módulo</div>
+    <h2>Retiro y validación</h2>
+    <p class="lead">Entregar la bolsa contra un código. &nbsp;·&nbsp; 5 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Reservas del día</span><span class="fl">&#8594;</span><span class="s">Ingresar código</span><span class="fl">&#8594;</span><span class="s">Entrega confirmada</span><span class="fl">&#8594;</span><span class="s fin">Ingresar código</span></div><div class="seq"><span class="s ini">Ingresar código</span><span class="fl">&#8594;</span><span class="s">Código inválido</span><span class="fl">&#8594;</span><span class="s fin">Ingresar código</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd"><div class="cod">
+   <div class="lbl">Mostrá este código en el mostrador<br>para retirar tu bolsa</div>
+   <div class="big">LB-000088</div>
+   <div class="who">El Trigal · Centro</div>
+   <div class="adr">Av. Circunvalación, SPS<br>Colonia Trejo</div>
+   <div class="win"><b>6:00 PM – 8:00 PM</b><span>Faltan 1 h 12 min para que cierre</span></div>
+   <div class="est">LISTA PARA RETIRAR</div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P24 · Código de retiro</h3>
+          <p class="met"><b>M4</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">El momento culminante de la demo. Pantalla completa, sin distracciones, pensada para mostrarse en el mostrador.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El código es único en todo el sistema y lo genera la base al crear la reserva.</li><li>Solo se muestra si la reserva está CONFIRMADA; una reserva sin pagar no tiene código visible.</li><li>La cuenta regresiva sale de la hora de fin de la ventana de retiro.</li><li>Pasada la ventana, la pantalla debe cambiar a un estado de vencida y dejar de mostrar el código como válido.</li><li>No hay QR en esta versión: el código se lee y se teclea.</li><li>Conviene subir el brillo de la pantalla al abrirla, como hacen las apps de boletos.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/reservas/{id}</span><span class="ruta api">venta.reserva.codigo</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de la reserva</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/reservas/{id}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Trae el código y la ventana de retiro</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ReservasController.PorId(long id) → 200 ReservaDetalleResponse</span><span class="ln">El código no se genera aquí: viene de venta.reserva.codigo</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ReservaDetalleResponse { string Codigo; TimeSpan HoraFinRetiro; string EstadoReserva; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ReservaApi.porId(int id)</span><span class="ln">CodigoControlador calcula el tiempo restante con un Timer local</span><span class="ln">PantallaCodigoRetiro sube el brillo con screen_brightness al abrirse</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Por retirar</div><div class="sb2">El Trigal · Centro · 8 sep</div></div><span class="der">Validar</span></div>
+ <div class="bd"><div class="sc">
+   <div class="res"><div class="r1"><span><b>Kevin Zelaya</b>
+     <span>Bolsa de panadería · 1 unidad</span></span><span class="e2 e-ok">LISTA</span></div>
+     <div class="r2"><span class="cd">LB-000088</span><span class="hr">6:00 – 8:00 PM</span></div></div>
+   <div class="res"><div class="r1"><span><b>Sofía Andino</b>
+     <span>Caja de repostería · 1 unidad</span></span><span class="e2 e-ok">LISTA</span></div>
+     <div class="r2"><span class="cd">LB-000089</span><span class="hr">6:00 – 8:00 PM</span></div></div>
+   <div class="res"><div class="r1"><span><b>Marlon Pineda</b>
+     <span>Bolsa de panadería · 2 unidades</span></span><span class="e2 e-gr">RETIRADA</span></div>
+     <div class="r2"><span class="hr">Entregada 6:42 PM</span><span class="hr">por Rosa M.</span></div></div>
+ </div></div><div class="nav"><div class=""><span class="ic"></span>Hoy</div><div class="on"><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P25 · Reservas del día</h3>
+          <p class="met"><b>M4</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">La pantalla de trabajo del empleado durante la ventana de retiro. Muestra quién falta por llegar.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Solo se ven las reservas de la sucursal donde el empleado está asignado.</li><li>El nombre y el teléfono del cliente vienen de la vista de detalle de reserva.</li><li>Las ya entregadas muestran la hora y quién las entregó, dato que la base guarda por auditoría.</li><li>Las reservas sin pagar no aparecen aquí: no son entregables.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/sucursales/{id}/reservas?fecha=</span><span class="ruta api">venta.vw_reserva_detalle</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Ingresar código</span><span class="ruta">Entrega confirmada</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/sucursales/{id}/reservas?fecha=<br><span class="nota2">&nbsp;&nbsp;&nbsp;Reservas por retirar en la sucursal</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">RetirosController.DelDia(int sucursalId, DateOnly? fecha) → 200 List<ReservaPanelResponse></span><span class="ln">IRetiroService.ReservasDelDiaAsync(sucursalId, empleadoId)</span><span class="ln">IReservaRepository.PorSucursalAsync(...) → venta.vw_reserva_detalle</span><span class="ln">El servicio verifica que el empleado pertenezca a esa sucursal antes de consultar</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ReservaPanelResponse { long ReservaId; string Codigo; string Cliente; string ClienteTelefono; string Bolsa; short Cantidad; string EstadoReserva; DateTimeOffset? RetiroDate; string EntregadoPor; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class RetiroApi { Future<List<ReservaPanel>> delDia(int sucursalId); }</span><span class="ln">modelo ReservaPanel</span><span class="ln">EntregaControlador refresca la lista después de cada entrega</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Entregar bolsa</div><div class="sb2">El Trigal · Centro</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="entrada">LB-0000<span style="opacity:.35">__</span></div>
+   <div class="hint">Escribí el código que muestra el cliente</div>
+   <div class="pad">
+     <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+     <div>7</div><div>8</div><div>9</div>
+     <div style="background:transparent;border:none"></div><div>0</div>
+     <div style="color:#B4462F">&#9003;</div>
+   </div>
+   <div style="padding:5px 14px"><span class="btn">Validar y entregar</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P26 · Ingresar código</h3>
+          <p class="met"><b>M4</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Teclado numérico grande, pensado para usarse con una mano mientras se entrega la bolsa con la otra.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El prefijo del código es fijo, así que solo se teclean los dígitos.</li><li>La validación la hace el procedimiento, no la aplicación: comprueba estado, ventana horaria y pertenencia del empleado a la sucursal.</li><li>Un empleado de otra sucursal recibe EMPLEADO_AJENO aunque el código sea correcto.</li><li>Fuera de la ventana de retiro se rechaza con FUERA_DE_VENTANA.</li><li>Un código ya usado se rechaza con RESERVA_NO_ENTREGABLE.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">POST /api/retiros</span><span class="ruta api">venta.sp_reserva_retirar</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Entrega confirmada</span><span class="ruta">Código inválido</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/retiros<br><span class="nota2">&nbsp;&nbsp;&nbsp;Valida el código y marca la entrega</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">RetirosController.Entregar(EntregarRequest r) → 200 EntregaResponse | 403 | 404 | 409</span><span class="ln">IRetiroService.EntregarAsync(codigo, empleadoId)</span><span class="ln">IRetiroRepository.EntregarAsync(...) → Dapper QuerySingleAsync</span><span class="ln">CALL venta.sp_reserva_retirar(@codigo, @empleado, NULL)</span><span class="ln">El procedimiento valida estado, ventana horaria y pertenencia a la sucursal</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">EntregarRequest { string Codigo; }</span><span class="ln">EntregaResponse { long ReservaId; string Estado; string Cliente; string Bolsa; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">RetiroApi.entregar(String codigo) → Future<Entrega></span><span class="ln">TecladoNumerico es un widget propio, no el teclado del sistema</span><span class="ln">EntregaControlador limpia el campo tras cada intento</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd"><div class="pleno" style="background:#12695C;color:#fff">
+   <div class="ilus" style="background:rgba(255,255,255,.15);font-size:38px;color:#fff">&#10003;</div>
+   <h3 style="color:#fff;font-size:19px">Bolsa entregada</h3>
+   <p style="color:rgba(255,255,255,.82)">Kevin Zelaya<br>Bolsa de panadería · 1 unidad</p>
+   <div style="margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:14px;
+        background:rgba(255,255,255,.14);padding:7px 14px;border-radius:9px">LB-000088</div>
+   <div class="acc"><span class="btn" style="background:#fff;color:#12695C">Entregar otra</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P27 · Entrega confirmada</h3>
+          <p class="met"><b>M4</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Confirmación visible desde lejos, para que el empleado no tenga que acercarse a leer.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La reserva pasa a RETIRADA y la base registra la hora exacta y el empleado que entregó.</li><li>El cambio de estado dispara el trigger de bitácora: queda constancia de quién lo hizo.</li><li>No se puede deshacer desde la aplicación; una entrega equivocada se corrige por otra vía.</li><li>Volver a entregar es la acción principal porque durante la ventana llegan varios clientes seguidos.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">venta.reserva.estado = RETIRADA</span><span class="ruta api">auditoria.bitacora</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Ingresar código</span><span class="ruta">Reservas del día</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno: usa la respuesta de POST /api/retiros</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">PantallaEntregaConfirmada recibe Entrega por argumento y vuelve al teclado</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd">
+   <div class="sc" style="filter:blur(2px);opacity:.45">
+     <div class="entrada">LB-000099</div><div class="hint">Escribí el código</div></div>
+   <div class="dlg"><div class="box">
+     <div class="ic3" style="background:#FBE2DB;color:#B4462F">!</div>
+     <h4>Fuera de horario</h4>
+     <p>Esta bolsa se retira de 6:00 a 8:00 PM. Todavía no podés entregarla.</p>
+     <span class="btn">Entendido</span>
+     <span class="btn sec2" style="margin-top:8px">Ver reservas del día</span>
+   </div></div>
+ </div></div></div>
+        <div class="pinfo">
+          <h3>P28 · Código inválido</h3>
+          <p class="met"><b>M4</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Los tres rechazos posibles al validar. El mensaje debe decirle al empleado qué hacer, no solo que falló.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>CODIGO_INEXISTENTE: el código no existe o se tecleó mal. Sugerir revisar los dígitos.</li><li>RESERVA_NO_ENTREGABLE: la bolsa ya se entregó o la reserva fue cancelada.</li><li>FUERA_DE_VENTANA: se intenta entregar antes o después del horario permitido.</li><li>EMPLEADO_AJENO: el empleado no pertenece a esa sucursal.</li><li>Cada caso necesita su propio texto; un mensaje genérico deja al empleado sin saber qué hacer.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">Error P0001 del procedimiento</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Ingresar código</span><span class="ruta">Reservas del día</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno: manejo del error de POST /api/retiros</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ErrorResponse { string Codigo; string Mensaje; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">mensajes_error.dart cubre CODIGO_INEXISTENTE, RESERVA_NO_ENTREGABLE, FUERA_DE_VENTANA y EMPLEADO_AJENO con textos distintos</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-M5">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M5</b> · Módulo</div>
+    <h2>Cierre del día</h2>
+    <p class="lead">Vencer lo que ya no se puede retirar. &nbsp;·&nbsp; 1 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Publicaciones de hoy</span><span class="fl">&#8594;</span><span class="s">Cierre del día</span><span class="fl">&#8594;</span><span class="s fin">Publicaciones de hoy</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">Cierre del día</div><div class="sb2">El Trigal · Centro</div></div></div>
+ <div class="bd"><div class="sc">
+   <div style="margin:4px 14px 12px;padding:13px;background:#fff;border:1px solid #E7E4DE;border-radius:13px">
+     <b style="font-size:12.5px">Qué hace este proceso</b>
+     <div style="font-size:10px;color:#6E6E6E;margin-top:6px;line-height:1.6">
+       Cierra las publicaciones cuya ventana de retiro ya pasó y marca como no retiradas las
+       reservas que nadie recogió.</div>
+   </div>
+   <div class="fila"><span class="ic2"></span><span><b>Publicaciones por vencer</b><span>Ventana terminada</span></span><span class="fin">2</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Reservas sin retirar</b><span>Pagadas y no recogidas</span></span><span class="fin">1</span></div>
+   <div style="padding:14px"><span class="btn">Ejecutar cierre</span></div>
+   <div style="margin:0 14px;padding:10px 12px;background:#FBEEDA;border-radius:10px;
+        font-size:9px;color:#8A5B12;line-height:1.55">
+     En la versión final esto correrá solo cada cierto tiempo, sin que nadie lo pulse.</div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P29 · Cierre del día</h3>
+          <p class="met"><b>M5</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Sustituye al servicio automático que quedó fuera del alcance. Un botón que dispara el procedimiento de vencimiento.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Marcar una reserva como no retirada suma una falta al cliente, que es lo que después le bloquea el pago en efectivo.</li><li>El procedimiento devuelve cuántas publicaciones y cuántas reservas cerró.</li><li>Es idempotente: ejecutarlo dos veces seguidas no produce efectos adicionales.</li><li>En la demo conviene ejecutarlo a propósito para mostrar el ciclo completo del producto.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">POST /api/mantenimiento/vencer-publicaciones</span><span class="ruta api">oferta.sp_publicacion_vencer</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Publicaciones de hoy</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/mantenimiento/vencer-publicaciones<br><span class="nota2">&nbsp;&nbsp;&nbsp;Cierra publicaciones y marca no-shows</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">MantenimientoController.Vencer() → 200 CierreResponse</span><span class="ln">IMantenimientoService.VencerAsync()</span><span class="ln">IMantenimientoRepository.VencerAsync() → Dapper QuerySingleAsync</span><span class="ln">CALL oferta.sp_publicacion_vencer(NULL, NULL)</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">CierreResponse { int Publicaciones; int Reservas; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class MantenimientoApi { Future<ResultadoCierre> vencer(); }</span><span class="ln">modelo ResultadoCierre { int publicaciones; int reservas; }</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-M6">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M6</b> · Módulo</div>
+    <h2>Liquidación</h2>
+    <p class="lead">Cuánto se le paga al comercio. &nbsp;·&nbsp; 2 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Liquidaciones</span><span class="fl">&#8594;</span><span class="s">Detalle de liquidación</span><span class="fl">&#8594;</span><span class="s fin">Liquidaciones</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Liquidaciones</div><div class="sb2">El Trigal</div></div><span class="der">+ Generar</span></div>
+ <div class="bd"><div class="sc">
+   <div class="res"><div class="r1"><span><b>1 – 7 de septiembre</b>
+     <span>18 bolsas retiradas</span></span><span class="e2 e-am">CALCULADA</span></div>
+     <div class="r2"><span class="hr">Comisión L 292.50</span>
+       <span style="font-size:13px;font-weight:800">L 877.50</span></div></div>
+   <div class="res"><div class="r1"><span><b>25 – 31 de agosto</b>
+     <span>22 bolsas retiradas</span></span><span class="e2 e-ok">PAGADA</span></div>
+     <div class="r2"><span class="hr">Comisión L 357.50</span>
+       <span style="font-size:13px;font-weight:800">L 1,072.50</span></div></div>
+ </div></div><div class="nav"><div class=""><span class="ic"></span>Hoy</div><div class=""><span class="ic"></span>Reservas</div><div class="on"><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P30 · Liquidaciones</h3>
+          <p class="met"><b>M6</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Cuánto le debe la plataforma al comercio. Solo lectura: el cálculo lo hace la base.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Solo entran reservas en estado RETIRADA: lo reservado y no recogido no se le paga al comercio.</li><li>Una reserva no puede entrar en dos liquidaciones distintas.</li><li>La comisión sale de lo que quedó congelado en cada reserva, no de la tarifa de hoy.</li><li>Los estados son CALCULADA, PAGADA y ANULADA.</li><li>Este módulo es el primero en recortarse si falta tiempo.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/liquidaciones</span><span class="ruta api">finanza.liquidacion</span><span class="ruta api">finanza.sp_liquidacion_generar</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de liquidación</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/liquidaciones?comercioId=<br><span class="nota2">&nbsp;&nbsp;&nbsp;Cortes generados</span></span><span class="ln"><span class="verbo v-post">POST</span>/api/liquidaciones<br><span class="nota2">&nbsp;&nbsp;&nbsp;Genera el corte de un periodo</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">LiquidacionesController.Listar(int comercioId) → 200 List<LiquidacionResponse></span><span class="ln">LiquidacionesController.Generar(GenerarLiquidacionRequest r) → 201 { liquidacionId }</span><span class="ln">ILiquidacionService.GenerarAsync(r)</span><span class="ln">ILiquidacionRepository.GenerarAsync(...) → CALL finanza.sp_liquidacion_generar(@com,@desde,@hasta,NULL)</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">LiquidacionResponse { int Id; DateOnly Desde; DateOnly Hasta; int Reservas; decimal Ventas; decimal Comision; decimal Total; string Estado; }</span><span class="ln">GenerarLiquidacionRequest { int ComercioId; DateOnly Desde; DateOnly Hasta; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class LiquidacionApi { Future<List<Liquidacion>> listar(int comercioId); Future<int> generar(GenerarLiquidacionPeticion p); }</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">1 – 7 de septiembre</div><div class="sb2">18 bolsas · CALCULADA</div></div></div>
+ <div class="bd"><div class="sc">
+   <div style="margin:2px 14px 12px;padding:13px;background:#fff;border:1px solid #E7E4DE;border-radius:13px">
+     <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;color:#4A4A4A">
+       <span>Ventas del periodo</span><span>L 1,170.00</span></div>
+     <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:11px;color:#4A4A4A">
+       <span>Comisión plataforma (25%)</span><span>&minus; L 292.50</span></div>
+     <div style="display:flex;justify-content:space-between;padding:8px 0 0;margin-top:6px;
+          border-top:1px dashed #E7E4DE;font-size:15px;font-weight:800">
+       <span>A recibir</span><span>L 877.50</span></div>
+   </div>
+   <div class="h5">Reservas incluidas</div>
+   <div class="fila"><span class="ic2"></span><span><b>LB-000088 · 8 sep</b><span>Bolsa de panadería</span></span><span class="fin">L 65.00</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>LB-000089 · 8 sep</b><span>Caja de repostería</span></span><span class="fin">L 90.00</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>LB-000071 · 7 sep</b><span>Bolsa de panadería</span></span><span class="fin">L 65.00</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P31 · Detalle de liquidación</h3>
+          <p class="met"><b>M6</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">El desglose que respalda el monto. Es lo que el comercio revisaría antes de aceptar el pago.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>El detalle es la evidencia: cada reserva incluida queda registrada en detalle_liquidacion.</li><li>El monto a recibir es la suma de los montos del comercio ya calculados en cada reserva.</li><li>La comisión pudo variar entre reservas si la tarifa cambió durante el periodo; por eso se guarda por reserva y no se recalcula.</li><li>Anular una liquidación libera las reservas para una liquidación posterior.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/liquidaciones/{id}</span><span class="ruta api">finanza.detalle_liquidacion</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Liquidaciones</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/liquidaciones/{id}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Desglose con las reservas incluidas</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">LiquidacionesController.PorId(int id) → 200 LiquidacionDetalleResponse | 404</span><span class="ln">ILiquidacionRepository.DetalleAsync(id) → finanza.detalle_liquidacion</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">LiquidacionDetalleResponse : LiquidacionResponse { List<DetalleLiquidacionResponse> Detalle; }</span><span class="ln">DetalleLiquidacionResponse { string Codigo; DateOnly Fecha; string Bolsa; decimal Monto; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">LiquidacionApi.porId(int id) → Future<LiquidacionDetalle></span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-M7">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>M7</b> · Módulo</div>
+    <h2>Consultas de negocio</h2>
+    <p class="lead">Las métricas del proyecto. &nbsp;·&nbsp; 1 pantallas.</p>
+    
+      <h3 style="margin-top:26px">Secuencia de pantallas</h3>
+      <p class="lead" style="font-size:16px">Cómo se encadenan dentro del módulo.</p>
+      <div class="seq"><span class="s ini">Tablero</span><span class="fl">&#8594;</span><span class="s fin">Liquidaciones</span></div>
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Tablero</div><div class="sb2">Últimos 7 días</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="kpi">
+     <div class="k"><b>L 4,280</b><span>Vendido</span></div>
+     <div class="k"><b>62</b><span>Bolsas rescatadas</span></div>
+     <div class="k"><b>74 kg</b><span>Comida salvada</span></div>
+     <div class="k"><b>4</b><span>No retiradas</span></div>
+   </div>
+   <div class="h5" style="margin-bottom:2px">Ventas por día</div>
+   <div class="bar"><i style="height:44%"></i><i style="height:66%"></i><i style="height:38%"></i>
+     <i style="height:81%"></i><i style="height:59%"></i><i style="height:100%"></i><i style="height:72%"></i></div>
+   <div class="bleyenda"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+   <div class="h5">Zonas con más ventas</div>
+   <div class="fila"><span class="ic2"></span><span><b>Colonia Trejo</b><span>24 reservas</span></span><span class="fin">L 1,560</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Av. Circunvalación</b><span>18 reservas</span></span><span class="fin">L 1,180</span></div>
+ </div></div><div class="nav"><div class=""><span class="ic"></span>Hoy</div><div class=""><span class="ic"></span>Reservas</div><div class="on"><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P32 · Tablero</h3>
+          <p class="met"><b>M7</b> &nbsp;·&nbsp; Panel del comercio</p>
+          <p class="desc">Las métricas del negocio. Es el módulo más barato de construir porque las vistas ya existen, y el que más peso tiene en la evaluación de la clase.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Todas las cifras salen de vistas materializadas ya construidas; la aplicación no calcula nada.</li><li>Las vistas materializadas no se actualizan solas: hay que refrescarlas antes de presentar.</li><li>Los kilos de comida salvada se calculan con el peso estimado de cada plantilla.</li><li>El conteo de no retiradas es el indicador de salud del producto: si sube, algo falla en los recordatorios o en las ventanas de retiro.</li><li>Si falta tiempo, este tablero se reduce de cinco métricas a dos sin perder sentido.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">GET /api/reportes/venta-diaria</span><span class="ruta api">core.mv_venta_diaria</span><span class="ruta api">core.mv_ranking_sucursal</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Liquidaciones</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/reportes/venta-diaria<br><span class="nota2">&nbsp;&nbsp;&nbsp;Ventas por día, zona y rubro</span></span><span class="ln"><span class="verbo v-get">GET</span>/api/reportes/ranking-sucursales<br><span class="nota2">&nbsp;&nbsp;&nbsp;Ranking de sucursales</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ReportesController.VentaDiaria() → 200 List<VentaDiariaResponse></span><span class="ln">ReportesController.RankingSucursales() → 200 List<RankingResponse></span><span class="ln">IReporteService.VentaDiariaAsync()</span><span class="ln">IReporteRepository.VentaDiariaAsync() → SELECT sobre core.mv_venta_diaria</span><span class="ln">Solo lectura: este módulo no escribe en ninguna tabla</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">VentaDiariaResponse { DateOnly Fecha; string Zona; string Rubro; int Reservas; decimal TotalVendido; decimal Comision; int NoShows; }</span><span class="ln">RankingResponse { int SucursalId; string Sucursal; string NombreComercial; int Calificaciones; decimal Promedio; int Retiradas; int NoRetiradas; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class ReporteApi { Future<List<VentaDiaria>> ventaDiaria(); }</span><span class="ln">TableroControlador agrupa los datos para las tarjetas y el gráfico</span><span class="ln">El gráfico se dibuja con CustomPainter propio, sin librería externa</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-Transversal">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>Transversal</b> · Módulo</div>
+    <h2>Estados comunes</h2>
+    <p class="lead">Lo que toda pantalla necesita cuando algo tarda o falla. &nbsp;·&nbsp; 3 pantallas.</p>
+    
+  </div>
+  
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div>
+ <div class="bd"><div class="sc">
+   <div class="hd2"><span class="pin"></span><span class="loc">Zona seleccionada<b>Colonia Trejo</b></span></div>
+   <div style="padding:6px 14px">
+     <div class="skel" style="height:42px;width:100%;margin-bottom:14px"></div>
+     <div class="skel" style="height:80px;margin-bottom:9px"></div>
+     <div class="skel" style="height:14px;width:60%;margin-bottom:6px"></div>
+     <div class="skel" style="height:14px;width:40%;margin-bottom:20px"></div>
+     <div class="skel" style="height:80px;margin-bottom:9px"></div>
+     <div class="skel" style="height:14px;width:55%;margin-bottom:6px"></div>
+     <div class="skel" style="height:14px;width:35%"></div>
+   </div>
+ </div></div><div class="nav"><div class="on"><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P33 · Cargando</h3>
+          <p class="met"><b>Transversal</b> &nbsp;·&nbsp; Ambas superficies</p>
+          <p class="desc">Esqueleto de contenido mientras llega la respuesta. Se usa en toda pantalla que consulta la API.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Se prefiere el esqueleto sobre un indicador giratorio porque anticipa la forma del contenido.</li><li>Nunca debe mostrarse una pantalla en blanco mientras se espera.</li><li>Si la respuesta tarda más de unos segundos, conviene pasar al estado de sin conexión.</li><li>Aplica a las once pantallas que consultan la API.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">Cualquier endpoint</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">La pantalla correspondiente</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">widget_esqueleto.dart · se muestra mientras el Future está pendiente</span><span class="ln">Cada controlador expone un enum EstadoCarga { inicial, cargando, listo, error }</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd"><div class="pleno">
+   <div class="ilus" style="background:#EFEDE8"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#9A968E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3l2 3v9a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-9l2-3V4Z"/><path d="M7 13h10"/></svg></div>
+   <h3>Sin conexión</h3>
+   <p>No pudimos conectar con el servidor.<br>Revisá tu conexión e intentá de nuevo.</p>
+   <div class="acc"><span class="btn">Reintentar</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P34 · Sin conexión</h3>
+          <p class="met"><b>Transversal</b> &nbsp;·&nbsp; Ambas superficies</p>
+          <p class="desc">Error de red. Distinto de un error de negocio: aquí la aplicación no pudo ni preguntar.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>No confundir con los errores de negocio: aquí no hay código de error del procedimiento.</li><li>La acción principal es reintentar la misma petición, no navegar a otro lado.</li><li>En el panel del comercio este estado es crítico: sin conexión no se puede entregar ninguna bolsa.</li><li>Conviene conservar en pantalla los datos que ya se habían cargado, si los hay.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">Fallo de red o tiempo de espera agotado</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">La pantalla anterior</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Ninguno: es un fallo de red antes de llegar al backend</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ClienteApi captura SocketException y TimeoutException</span><span class="ln">class SinConexionExcepcion implements Exception</span><span class="ln">widget_sin_conexion.dart recibe el callback de reintentar</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="bd">
+   <div class="sc" style="filter:blur(2px);opacity:.4">
+     <div class="hd2"><span class="pin"></span><span class="loc">Zona<b>Colonia Trejo</b></span></div></div>
+   <div class="dlg"><div class="box">
+     <div class="ic3" style="background:#FBEEDA;color:#8A5B12">!</div>
+     <h4>Tu sesión expiró</h4>
+     <p>Por seguridad cerramos la sesión. Iniciá sesión de nuevo para continuar.</p>
+     <span class="btn">Iniciar sesión</span>
+   </div></div>
+ </div></div></div>
+        <div class="pinfo">
+          <h3>P35 · Sesión expirada</h3>
+          <p class="met"><b>Transversal</b> &nbsp;·&nbsp; Ambas superficies</p>
+          <p class="desc">El token dejó de ser válido. Saca al usuario al inicio de sesión sin perder el contexto de lo que estaba haciendo.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Se dispara ante una respuesta 401 del backend.</li><li>El token guardado se borra del dispositivo antes de redirigir.</li><li>En la versión final el token se renovaría con el de refresco; la tabla de sesión ya existe en la base para eso, aunque el MVP no la use.</li><li>Si el empleado estaba entregando una bolsa, la operación no se completó: hay que repetirla.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">Respuesta 401</span><span class="ruta api">seguridad.sesion</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Inicio de sesión</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">Cualquier endpoint puede devolver 401 si el token venció</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ClienteApi intercepta el 401, borra el token y notifica a SesionControlador</span><span class="ln">class SesionExpiradaExcepcion implements Exception</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+<section id="mod-Futuro">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>Futuro</b> · Módulo</div>
+    <h2>Fuera del alcance</h2>
+    <p class="lead">Diseñadas para dejar constancia, no para construirse ahora. &nbsp;·&nbsp; 4 pantallas.</p>
+    
+  </div>
+  
+      <div class="pantalla futura">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Favoritos</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="fila"><span class="ic2"></span><span><b>El Trigal · Centro</b><span>Panadería · Colonia Trejo</span></span><span class="fin">&#9829;</span></div>
+   <div class="fila"><span class="ic2"></span><span><b>Doña Pastelería</b><span>Repostería · Guamilito</span></span><span class="fin">&#9829;</span></div>
+   <div style="margin:14px;padding:11px;background:#EFEDE8;border-radius:10px;font-size:9.5px;
+        color:#6E6E6E;line-height:1.5">La tabla social.favorito ya existe en la base.</div>
+ </div></div><div class="nav"><div class="on"><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P36 · Favoritos<span class="sello">Fuera del MVP</span></h3>
+          <p class="met"><b>Futuro</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Sucursales que el cliente sigue, para enterarse primero de sus publicaciones.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La tabla social.favorito ya está creada con su índice; solo falta el endpoint y la pantalla.</li><li>Fuera del MVP porque no forma parte del camino dorado.</li><li>Tendría sentido junto con notificaciones: seguir a un comercio sin recibir aviso sirve de poco.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">social.favorito (tabla creada, sin uso)</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Detalle de la sucursal</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/favoritos<br><span class="nota2">&nbsp;&nbsp;&nbsp;Sucursales seguidas</span></span><span class="ln"><span class="verbo v-post">POST</span>/api/favoritos<br><span class="nota2">&nbsp;&nbsp;&nbsp;Marcar o desmarcar</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">FavoritosController → IFavoritoService → IFavoritoRepository → social.favorito</span><span class="ln">Fuera del MVP: la tabla existe, no hay controlador escrito</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">FavoritoResponse { int SucursalId; string Sucursal; string NombreComercial; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class FavoritoApi { Future<List<Favorito>> listar(); }</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla futura">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><span class="bk2">&#8249;</span><div><div class="tt2">¿Cómo estuvo?</div><div class="sb2">Bolsa de panadería · El Trigal</div></div></div>
+ <div class="bd"><div class="pleno">
+   <div style="font-size:30px;letter-spacing:5px;color:#E8A33D">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+   <p style="margin-top:14px">Tu opinión ayuda a otros a elegir<br>y al comercio a mejorar.</p>
+   <div class="acc"><span class="btn">Enviar</span>
+     <span class="btn sec2" style="margin-top:9px">Ahora no</span></div>
+ </div></div></div></div>
+        <div class="pinfo">
+          <h3>P37 · Calificar la bolsa<span class="sello">Fuera del MVP</span></h3>
+          <p class="met"><b>Futuro</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Valoración después del retiro. Alimenta el ranking de sucursales que ya calcula la base.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>Solo se puede calificar una reserva en estado RETIRADA; un trigger lo valida.</li><li>Una reserva admite una sola calificación.</li><li>El promedio ya lo calcula la vista materializada de ranking de sucursales.</li><li>Fuera del MVP: la estrella que se ve en las tarjetas del listado hoy es un dato de ejemplo.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">social.calificacion (tabla creada, sin uso)</span><span class="ruta api">core.mv_ranking_sucursal</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Mis reservas · historial</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-post">POST</span>/api/reservas/{id}/calificacion<br><span class="nota2">&nbsp;&nbsp;&nbsp;Califica una reserva retirada</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">CalificacionesController → ICalificacionService → social.calificacion</span><span class="ln">Un trigger valida que la reserva esté en estado RETIRADA</span><span class="ln">Fuera del MVP</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">CalificarRequest { short Estrellas; string Comentario; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class CalificacionApi { Future<void> calificar(int reservaId, int estrellas); }</span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla futura">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Mi impacto</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="pleno" style="height:auto;padding:22px 26px 8px">
+     <div class="ilus" style="background:#E2F1E3"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#4F9A5A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-3.5-2-7 .5-7 4.5S8.5 20 12 20s7-3.5 7-7.5S15.5 6 12 8Z"/><path d="M12 8c0-2 1-3.5 3-4"/></svg></div>
+     <h3>12 bolsas rescatadas</h3>
+     <p>Desde que te uniste en agosto</p>
+   </div>
+   <div class="kpi">
+     <div class="k"><b>14.4 kg</b><span>Comida salvada</span></div>
+     <div class="k"><b>23 kg</b><span>CO&#8322; evitado</span></div>
+     <div class="k"><b>L 1,380</b><span>Ahorrado</span></div>
+     <div class="k"><b>#3</b><span>En tu zona</span></div>
+   </div>
+ </div></div><div class="nav"><div class=""><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class="on"><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P38 · Mi impacto<span class="sello">Fuera del MVP</span></h3>
+          <p class="met"><b>Futuro</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Cuánta comida evitó desperdiciar el cliente. Es la pantalla más vendedora del producto y la vista que la alimenta ya está construida.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La vista core.mv_impacto_usuario ya calcula bolsas, kilos, CO2 evitado y ahorro acumulado.</li><li>El factor de CO2 por categoría está sembrado en la tabla factor_impacto.</li><li>Si falta el factor, la vista usa un valor genérico por defecto y no se rompe.</li><li>Fuera del MVP por tiempo, pero es la mejora de mejor relación entre esfuerzo y efecto.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">core.mv_impacto_usuario</span><span class="ruta api">oferta.factor_impacto</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Perfil del cliente</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/reportes/impacto/{usuarioId}<br><span class="nota2">&nbsp;&nbsp;&nbsp;Impacto acumulado del cliente</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">ReportesController.Impacto(long usuarioId) → 200 ImpactoResponse</span><span class="ln">IReporteRepository.ImpactoAsync(id) → core.mv_impacto_usuario</span><span class="ln">La vista ya existe; falta el controlador</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">ImpactoResponse { int BolsasRescatadas; decimal KgRescatados; decimal KgCo2Evitados; decimal AhorroTotal; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">ReporteApi.impacto(int usuarioId) → Future<Impacto></span></div></div></div>
+        </div>
+      </div>
+      <div class="pantalla futura">
+        <div><div class="fon"><div class="st"><span>9:41</span><span>Last Bite</span><span>100%</span></div><div class="hd2"><div><div class="tt2">Avisos</div></div></div>
+ <div class="bd"><div class="sc">
+   <div class="res" style="border-left:3px solid #12695C">
+     <div class="r1"><span><b>Nueva bolsa en Colonia Trejo</b>
+       <span>El Trigal publicó 5 bolsas para hoy</span></span></div>
+     <div class="r2"><span class="hr">Hace 12 min</span></div></div>
+   <div class="res"><div class="r1"><span><b>Tu retiro es en una hora</b>
+     <span>LB-000088 · 6:00 a 8:00 PM</span></span></div>
+     <div class="r2"><span class="hr">Hoy 5:00 PM</span></div></div>
+ </div></div><div class="nav"><div class="on"><span class="ic"></span>Inicio</div><div class=""><span class="ic"></span>Reservas</div><div class=""><span class="ic"></span>Perfil</div></div></div></div>
+        <div class="pinfo">
+          <h3>P39 · Notificaciones<span class="sello">Fuera del MVP</span></h3>
+          <p class="met"><b>Futuro</b> &nbsp;·&nbsp; App del cliente</p>
+          <p class="desc">Avisos dentro de la aplicación, sin servicios externos de mensajería. La tabla ya existe con su índice de no leídas.</p>
+          <h5>Reglas de negocio que implica</h5>
+          <ul><li>La tabla social.notificacion está creada con un índice parcial para las no leídas.</li><li>Esta versión no requiere servicios externos: se consultan al abrir la aplicación.</li><li>El recordatorio de retiro reduciría las faltas, que hoy son el principal problema del modelo.</li><li>Fuera del MVP, pero es la opción más barata de las descartadas.</li></ul>
+          <h5>Datos y servicios que consume</h5>
+          <div class="rutas"><span class="ruta api">social.notificacion (tabla creada, sin uso)</span></div>
+          <h5>Desde aquí se navega a</h5>
+          <div class="rutas"><span class="ruta">Código de retiro</span></div>
+          <h5>Contrato técnico</h5><div class="tec"><div class="tfila"><span class="tk">HTTP</span><div class="tv"><span class="ln"><span class="verbo v-get">GET</span>/api/notificaciones<br><span class="nota2">&nbsp;&nbsp;&nbsp;Avisos del usuario</span></span></div></div><div class="tfila"><span class="tk">C#</span><div class="tv"><span class="ln">NotificacionesController → INotificacionService → social.notificacion</span><span class="ln">Sin servicios externos: se consultan al abrir la app</span><span class="ln">Fuera del MVP</span></div></div><div class="tfila"><span class="tk">DTO</span><div class="tv"><span class="ln">NotificacionResponse { long Id; string Tipo; string Titulo; string Cuerpo; DateTimeOffset EnvioDate; bool Leida; }</span></div></div><div class="tfila"><span class="tk">Dart</span><div class="tv"><span class="ln">abstract class NotificacionApi { Future<List<Notificacion>> listar(); }</span></div></div></div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><div class="col">
+    <p class="lema">Last Bite · INF308 · Maquetas de referencia para el levantamiento del requerimiento</p>
+  </div></div>
+</footer>
+</html>

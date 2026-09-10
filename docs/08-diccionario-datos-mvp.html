@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diccionario de Datos · MVP · Last Bite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+
+:root{
+  --noche:#0C1210; --noche-2:#131B17; --panel:#18211C; --panel-2:#1F2A23;
+  --linea:#28322B; --linea-2:#3B4A41;
+  --crema:#ECF1E7; --crema-2:#A6B3A9; --crema-3:#75847B;
+  --ocre:#E8913F; --ocre-2:#F5B978; --ocre-tenue:#2A2016;
+  --fe:#3D86C7; --be:#20A163; --bd:#D4791F;
+  --rojo:#E28379; --rojo-tenue:#2E1B18;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noche);background-image:radial-gradient(110% 70% at 84% 0%, rgba(232,145,63,.09), transparent 60%);color:var(--crema);font-family:var(--serif);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1300px;margin:0 auto;padding:0 26px}
+.col{max-width:700px;margin-left:auto;margin-right:auto}
+
+.top{border-bottom:1px solid var(--linea);background:var(--noche-2)}
+.top .wrap{padding:54px 26px 40px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ocre);display:flex;gap:10px;flex-wrap:wrap}
+.kicker span:not(:first-child)::before{content:"/";color:var(--crema-3);margin-right:10px}
+h1{font-family:var(--sans);font-weight:800;font-size:clamp(32px,5.2vw,52px);line-height:1.03;letter-spacing:-.028em;margin:18px 0 0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--ocre)}
+.lema{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--crema-3);margin:14px 0 0}
+.dek{font-size:clamp(17px,2.2vw,20px);color:var(--crema-2);max-width:62ch;margin:20px 0 0}
+.datos{display:flex;flex-wrap:wrap;gap:8px 30px;margin-top:24px;font-family:var(--mono);font-size:12.5px;color:var(--crema-3)}
+.datos b{color:var(--crema-2);font-weight:500}
+.toc{margin-top:28px;padding-top:20px;border-top:1px dashed var(--linea-2);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 26px}
+.toc a{font-family:var(--mono);font-size:13px;color:var(--crema-2);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;display:flex;gap:10px}
+.toc a i{color:var(--ocre);font-style:normal}
+.toc a:hover{color:var(--crema);border-bottom-color:var(--ocre)}
+a:focus-visible{outline:2px solid var(--ocre);outline-offset:3px;border-radius:2px}
+
+section{padding:58px 0 10px}
+section + section{border-top:1px solid var(--linea)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--crema-3);margin-bottom:12px}
+.eyebrow b{color:var(--ocre);font-weight:600}
+h2{font-family:var(--sans);font-weight:700;letter-spacing:-.022em;font-size:clamp(25px,3.6vw,34px);line-height:1.14;margin:0 0 14px;text-wrap:balance}
+h3{font-family:var(--sans);font-weight:600;font-size:19px;margin:32px 0 10px;letter-spacing:-.01em}
+p{margin:0 0 16px}
+.lead{font-size:19px;color:var(--crema-2)}
+.col ul{margin:0 0 18px;padding-left:22px;color:var(--crema-2)}
+.col li{margin-bottom:9px}
+em.t{font-style:normal;font-family:var(--mono);font-size:.87em;background:var(--panel-2);color:var(--crema-2);padding:1px 6px;border-radius:4px}
+strong{font-weight:600;color:var(--crema)}
+
+figure{margin:0}
+.lienzo{border:1px solid var(--linea);border-radius:12px;background:var(--noche-2);padding:16px;overflow-x:auto;margin:20px 0 0}
+.lienzo svg{display:block;min-width:1040px;width:100%;height:auto}
+figcaption{font-family:var(--mono);font-size:12px;color:var(--crema-3);line-height:1.6;margin-top:12px}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 22px;margin:16px 0 0;font-family:var(--mono);font-size:12px;color:var(--crema-3)}
+.leyenda span{display:flex;align-items:center;gap:8px}
+.sw{width:22px;height:12px;border-radius:3px;display:inline-block;border:1.5px solid}
+.sw.fe{background:#16232E;border-color:var(--fe)}
+.sw.be{background:#0F2A1E;border-color:var(--be)}
+.sw.bd{background:#2C1E10;border-color:var(--bd)}
+
+.tabla-wrap{overflow-x:auto;border:1px solid var(--linea);border-radius:12px;background:var(--panel);margin-top:20px}
+table{border-collapse:collapse;width:100%;min-width:1020px;font-size:13px}
+thead th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--crema-3);background:var(--panel-2);padding:10px 13px;border-bottom:1px solid var(--linea-2);white-space:nowrap;font-weight:600}
+tbody td{padding:11px 13px;border-bottom:1px solid var(--linea);vertical-align:top;color:var(--crema-2);font-family:var(--mono);font-size:11.5px;line-height:1.6}
+tbody tr:last-child td{border-bottom:none}
+td.cod{color:var(--ocre-2);font-weight:600}
+td.c1{color:var(--crema);white-space:nowrap;font-weight:500}
+td.due{color:var(--crema);white-space:nowrap}
+td.esq{color:var(--bd)}
+td.dep{color:var(--crema-3);white-space:nowrap}
+td.q{font-family:var(--serif);font-size:14px;min-width:190px}
+
+.fichas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:24px}
+.ficha{background:var(--panel);border:1px solid var(--linea);border-left:3px solid var(--c);border-radius:0 12px 12px 0;padding:18px 20px 14px}
+.ficha header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ficha h3{margin:0;font-size:19px;color:var(--c)}
+.ficha .rol{font-family:var(--mono);font-size:11px;color:var(--crema-3)}
+.ficha .apodo{font-size:14.5px;color:var(--crema-3);font-style:italic;margin:4px 0 12px}
+.ficha h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--crema-3);margin:12px 0 6px}
+.ficha ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--crema-2);line-height:1.5}
+.ficha li{margin-bottom:6px}
+.ficha .no li{color:var(--crema-3)}
+
+.dos-listas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:22px 0 8px}
+.lista{background:var(--panel);border:1px solid var(--linea);border-radius:10px;padding:16px 20px 12px}
+.lista.si{border-left:3px solid var(--be)}
+.lista.no{border-left:3px solid var(--ocre)}
+.lista h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+.lista.si h4{color:var(--be)}
+.lista.no h4{color:var(--ocre-2)}
+.lista ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--crema-2);line-height:1.55}
+.lista li{margin-bottom:7px}
+.riesgos{display:grid;gap:14px;margin-top:22px}
+.riesgo{background:var(--panel);border:1px solid var(--linea);border-radius:10px;padding:16px 20px 12px}
+.riesgo h4{font-family:var(--sans);font-size:16px;margin:0 0 8px;color:var(--crema)}
+.riesgo p{margin:0 0 6px;font-size:15px;color:var(--crema-2)}
+.riesgo b{color:var(--crema)}
+.riesgo .pq b{color:var(--rojo)}
+.riesgo .mi b{color:var(--be)}
+
+.reglas{display:grid;margin:22px 0 8px;border-top:1px solid var(--linea)}
+.regla{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--linea);align-items:start}
+.regla code{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ocre-2);background:var(--ocre-tenue);padding:3px 7px;border-radius:4px;text-align:center}
+.regla p{margin:0;font-size:15.5px}
+
+.nota{border-left:3px solid var(--ocre);background:var(--panel);padding:14px 18px;border-radius:0 10px 10px 0;margin:22px 0}
+.nota p{margin:0;font-size:15.5px;color:var(--crema-2)}
+.nota p + p{margin-top:10px}
+.nota b{color:var(--crema)}
+.nota.si{border-left-color:var(--be)}
+.nota.no{border-left-color:var(--rojo)}
+
+.recorte{counter-reset:r;list-style:none;padding:0;margin:18px 0 0}
+.recorte li{counter-increment:r;position:relative;padding:10px 0 10px 42px;border-bottom:1px solid var(--linea);font-size:15.5px;color:var(--crema-2)}
+.recorte li::before{content:counter(r);position:absolute;left:0;top:9px;width:26px;height:26px;border-radius:50%;background:var(--rojo-tenue);color:var(--rojo);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:600}
+
+footer{border-top:1px solid var(--linea);margin-top:52px;padding:32px 0 62px;font-family:var(--mono);font-size:12.5px;color:var(--crema-3)}
+@media (max-width:640px){body{font-size:16px}section{padding:44px 0 6px}.fichas{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+.tbl-ficha{margin-top:34px}
+.tbl-ficha .cab{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--linea-2);padding-bottom:8px}
+.tbl-ficha .cab h3{margin:0;font-family:var(--mono);font-size:17px;color:var(--ocre-2);font-weight:600}
+.tbl-ficha .cab .niv{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--crema-3);border:1px solid var(--linea-2);padding:2px 8px;border-radius:20px}
+.tbl-ficha .prop{margin:10px 0 0;font-size:15.5px;color:var(--crema-2)}
+.tbl-ficha .idx{font-family:var(--mono);font-size:11.5px;color:var(--crema-3);margin:10px 0 0;line-height:1.7}
+.tbl-ficha .idx b{color:var(--crema-2);font-weight:500}
+table.dic{min-width:900px}
+table.dic td.col{color:var(--crema);white-space:nowrap;font-weight:500}
+table.dic td.tip{color:var(--ocre-2);white-space:nowrap}
+table.dic td.nul{color:var(--crema-3);white-space:nowrap;text-align:center}
+table.dic td.key{color:var(--be);white-space:nowrap}
+table.dic td.des{font-family:var(--serif);font-size:14px;color:var(--crema-2);min-width:280px}
+.resumen{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:22px}
+.cifra{background:var(--panel);border:1px solid var(--linea);border-radius:10px;padding:16px 18px}
+.cifra b{display:block;font-family:var(--sans);font-size:30px;font-weight:800;color:var(--ocre);line-height:1}
+.cifra span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--crema-3);display:block;margin-top:6px}
+
+</style>
+
+<header class="top">
+  <div class="wrap"><div class="col">
+    <div class="kicker"><span>Last Bite</span><span>INF308</span><span>Diccionario v2</span></div>
+    <h1>Diccionario de datos del <em>producto mínimo viable</em></h1>
+    <p class="lema">PostgreSQL 18 · esquemas, tablas, vistas y rutinas</p>
+    <p class="dek">Las 21 tablas que el MVP escribe o consulta, con cada columna, su tipo, sus
+    restricciones y la razón de existir. Incluye dominios, tipos enumerados, vistas, procedimientos
+    y triggers.</p>
+    <div class="resumen">
+      <div class="cifra"><b>21</b><span>Tablas en uso</span></div>
+      <div class="cifra"><b>8</b><span>Esquemas</span></div>
+      <div class="cifra"><b>6</b><span>Dominios</span></div>
+      <div class="cifra"><b>6</b><span>Vistas</span></div>
+      <div class="cifra"><b>10</b><span>Rutinas</span></div>
+    </div>
+    <nav class="toc">
+      <a href="#alcance"><i>01</i> Alcance</a>
+      <a href="#conv"><i>02</i> Convenciones</a>
+      <a href="#dom"><i>03</i> Dominios y tipos</a>
+      <a href="#esq-core"><i>05</i> Núcleo</a>
+      <a href="#esq-seguridad"><i>06</i> Seguridad</a>
+      <a href="#esq-geo"><i>07</i> Geografía</a>
+      <a href="#esq-comercio"><i>08</i> Comercio</a>
+      <a href="#esq-oferta"><i>09</i> Oferta</a>
+      <a href="#esq-venta"><i>10</i> Venta</a>
+      <a href="#esq-finanza"><i>11</i> Finanza</a>
+      <a href="#esq-auditoria"><i>12</i> Auditoría</a>
+      <a href="#vistas"><i>13</i> Vistas</a>
+      <a href="#rutinas"><i>14</i> Rutinas y triggers</a>
+      <a href="#anexo"><i>15</i> Fuera del MVP</a>
+    </nav>
+  </div></div>
+</header>
+
+<section id="alcance">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>01</b> · Alcance</div>
+    <h2>Veintiuna de treinta</h2>
+    <p class="lead">El modelo completo tiene 30 tablas. El producto mínimo viable escribe en 21.</p>
+    <p>Las nueve restantes <strong>quedan creadas en la base</strong> y aparecen listadas al final de
+    este documento. No se eliminan porque quitarlas obligaría a tocar el DDL, las vistas y los
+    procedimientos, que es justo el trabajo que el recorte de alcance busca evitar. Simplemente no
+    reciben escrituras en esta versión.</p>
+    <div class="nota">
+      <p><b>Cómo leer cada ficha.</b> El nivel indica cuánta auditoría lleva la tabla:
+      <b>A</b> guarda quién creó y quién modificó, más baja lógica; <b>B</b> guarda ambos pero sin
+      baja lógica porque el estado ya cuenta la historia; <b>C</b> solo registra el alta, porque la
+      fila no se edita; <b>D</b> no lleva columnas de auditoría porque la fila entera es el registro.</p>
+    </div>
+  </div></div>
+</section>
+
+<section id="conv">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>02</b> · Convenciones</div>
+    <h2>Reglas que aplican a todo el modelo</h2>
+    <div class="reglas">
+      <div class="regla"><code>N1</code><p>Nombres en español, minúsculas y singular. Las tablas puente llevan los dos nombres unidos: <em class="t">usuario_rol</em>.</p></div>
+      <div class="regla"><code>N2</code><p>La clave primaria siempre se llama <em class="t">id</em>. La foránea se llama como la tabla destino más el sufijo: <em class="t">sucursal_id</em>.</p></div>
+      <div class="regla"><code>N3</code><p>Toda columna que termina en <em class="t">_id</em> tiene índice. No se espera a medir para crearlos.</p></div>
+      <div class="regla"><code>N4</code><p>Sin borrado físico. Se usa <em class="t">es_activo</em> o el estado de la entidad. Las claves foráneas son <em class="t">RESTRICT</em>, nunca <em class="t">CASCADE</em>.</p></div>
+      <div class="regla"><code>N5</code><p>El dinero va en <em class="t">core.dm_dinero</em>, que es <em class="t">NUMERIC(12,2)</em>. Jamás punto flotante.</p></div>
+      <div class="regla"><code>N6</code><p>Las fechas llevan zona horaria: <em class="t">TIMESTAMPTZ</em>. Las horas de atención son <em class="t">TIME</em> porque son horas de pared.</p></div>
+      <div class="regla"><code>N7</code><p>Los valores cerrados son tipos <em class="t">ENUM</em> del esquema core, no cadenas libres ni tablas catálogo de dos columnas.</p></div>
+      <div class="regla"><code>N8</code><p>Los precios y la comisión se copian en la reserva como hechos históricos. Cambiar una tarifa nunca altera una venta pasada.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<section id="dom">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>03</b> · Tipos propios</div>
+    <h2>Dominios</h2>
+    <p class="lead">Un dominio es un tipo con reglas. La validación vive en el motor y no hay
+    forma de esquivarla desde la aplicación.</p>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th>Dominio</th><th>Tipo base</th><th>Para qué</th></tr></thead>
+    <tbody><tr><td class='c1'>core.dm_dinero</td><td class='cod'>NUMERIC(12,2)</td><td class='q'>Todo importe en lempiras. Tipo exacto, nunca punto flotante: en dinero el redondeo binario descuadra la contabilidad.</td></tr><tr><td class='c1'>core.dm_rtn</td><td class='cod'>CHAR(14)</td><td class='q'>Registro Tributario Nacional. Catorce dígitos exactos validados por CHECK.</td></tr><tr><td class='c1'>core.dm_correo</td><td class='cod'>VARCHAR(120)</td><td class='q'>Correo electrónico con validación de formato en el propio dominio.</td></tr><tr><td class='c1'>core.dm_tel_hn</td><td class='cod'>VARCHAR(15)</td><td class='q'>Teléfono hondureño en formato local.</td></tr><tr><td class='c1'>core.dm_latitud</td><td class='cod'>NUMERIC(9,6)</td><td class='q'>Latitud entre −90 y 90.</td></tr><tr><td class='c1'>core.dm_longitud</td><td class='cod'>NUMERIC(9,6)</td><td class='q'>Longitud entre −180 y 180.</td></tr></tbody>
+  </table></div>
+  <div class="col">
+    <h3>Tipos enumerados</h3>
+    <p>Los once tipos existen en la base. La última columna indica si el MVP los usa.</p>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th>Tipo</th><th>Valores</th><th>¿En el MVP?</th></tr></thead>
+    <tbody><tr><td class='c1'>core.en_estado_usuario</td><td class='q'>ACTIVO · SUSPENDIDO · ELIMINADO</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_estado_comercio</td><td class='q'>PENDIENTE · ACTIVO · SUSPENDIDO</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_cargo</td><td class='q'>PROPIETARIO · ENCARGADO · CAJERO</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_estado_publicacion</td><td class='q'>PROGRAMADA · PUBLICADA · AGOTADA · VENCIDA · CANCELADA</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_estado_reserva</td><td class='q'>PENDIENTE_PAGO · CONFIRMADA · RETIRADA · NO_RETIRADA · CANCELADA · REEMBOLSADA</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_estado_pago</td><td class='q'>PENDIENTE · EN_VERIFICACION · CAPTURADO · FALLIDO · REEMBOLSADO</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_tipo_tarifa</td><td class='q'>PORCENTUAL · FIJA</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_accion</td><td class='q'>INSERT · UPDATE · DELETE</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.en_estado_liquidacion</td><td class='q'>CALCULADA · PAGADA · ANULADA</td><td class='dep'>Solo si entra M6</td></tr><tr><td class='c1'>core.en_tipo_token</td><td class='q'>RECUPERACION · VERIFICACION_CORREO</td><td class='dep'>No</td></tr><tr><td class='c1'>core.en_tipo_notificacion</td><td class='q'>NUEVA_PUBLICACION · RECORDATORIO_RETIRO · PAGO · LIQUIDACION · SISTEMA</td><td class='dep'>No</td></tr></tbody>
+  </table></div>
+  </div>
+</section>
+
+
+<section id="esq-core">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>05</b> · Esquema</div>
+      <h2>Núcleo</h2>
+      <p class="lead">Parámetros, dominios, tipos y funciones compartidas.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>core.parametro</h3><span class="niv">Nivel C · solo alta</span></div>
+    <p class="prop">Configuración del sistema en pares clave-valor. Evita constantes escondidas en el código: el ISV, el tope de bolsas por cliente o la ventana de gracia se cambian aquí, no recompilando.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>clave</td><td class='tip'>VARCHAR(40)</td><td class='nul'>NO</td><td class='key'>PK</td><td class='des'>Identificador del parámetro, en mayúsculas y sin espacios.</td></tr><tr><td class='col'>valor</td><td class='tip'>VARCHAR(200)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Valor en texto. Cada consumidor lo convierte al tipo que necesita.</td></tr><tr><td class='col'>descripcion</td><td class='tip'>VARCHAR(200)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Para qué sirve el parámetro y quién lo lee.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (clave)</p></div>
+
+  </div>
+</section>
+<section id="esq-seguridad">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>06</b> · Esquema</div>
+      <h2>Seguridad</h2>
+      <p class="lead">Identidad y acceso. Todo lo que responde a quién es quién.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>seguridad.usuario</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Persona que entra al sistema, sea cliente, empleado de comercio o administrador. Una sola tabla para los tres: el rol se asigna aparte, porque una misma persona puede ser cliente y cajera.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador interno. Nunca se muestra al usuario.</td></tr><tr><td class='col'>nombres</td><td class='tip'>VARCHAR(60)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Nombres de pila.</td></tr><tr><td class='col'>apellidos</td><td class='tip'>VARCHAR(60)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Apellidos.</td></tr><tr><td class='col'>correo</td><td class='tip'>core.dm_correo</td><td class='nul'>NO</td><td class='key'>UQ (lower)</td><td class='des'>Correo de acceso. La unicidad se valida en minúsculas para que no entren duplicados por mayúsculas.</td></tr><tr><td class='col'>telefono</td><td class='tip'>core.dm_tel_hn</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Teléfono hondureño validado por el dominio.</td></tr><tr><td class='col'>contrasena_hash</td><td class='tip'>VARCHAR(255)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Hash de la contraseña. La base nunca ve el texto plano y la bitácora excluye esta columna.</td></tr><tr><td class='col'>contrasena_actualizada</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Última vez que se cambió la contraseña.</td></tr><tr><td class='col'>correo_verificado</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF false</td><td class='des'>Si el correo fue confirmado. En el MVP se deja en true al registrar.</td></tr><tr><td class='col'>intentos_fallidos</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>DEF 0</td><td class='des'>Contador de intentos de acceso erróneos. Sin uso en el MVP.</td></tr><tr><td class='col'>bloqueado_hasta</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Momento hasta el que la cuenta queda bloqueada. Sin uso en el MVP.</td></tr><tr><td class='col'>no_shows</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>DEF 0</td><td class='des'>Reservas pagadas que el cliente no retiró. Sustituye a la garantía por tarjeta como mecanismo de reputación.</td></tr><tr><td class='col'>ultimo_acceso</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último inicio de sesión.</td></tr><tr><td class='col'>estado</td><td class='tip'>core.en_estado_usuario</td><td class='nul'>NO</td><td class='key'>DEF &#x27;ACTIVO&#x27;</td><td class='des'>ACTIVO, SUSPENDIDO o ELIMINADO.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ correo en minúsculas · índices por created_by y modified_by</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>seguridad.rol</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Catálogo de roles del sistema. Se carga con datos semilla y no se toca en operación.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador del rol.</td></tr><tr><td class='col'>codigo</td><td class='tip'>VARCHAR(20)</td><td class='nul'>NO</td><td class='key'>UQ</td><td class='des'>Clave estable que usa el código: CLIENTE, COMERCIO, ADMIN.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(50)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Nombre legible para pantalla.</td></tr><tr><td class='col'>descripcion</td><td class='tip'>VARCHAR(150)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Qué puede hacer quien tiene este rol.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (codigo)</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>seguridad.usuario_rol</h3><span class="niv">Nivel C · solo alta</span></div>
+    <p class="prop">Qué roles tiene cada usuario. Relación de muchos a muchos con clave primaria compuesta: la fila es el hecho, y quitar un rol es borrar la fila, no editarla.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>usuario_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · FK → usuario</td><td class='des'>Usuario al que se le asigna el rol.</td></tr><tr><td class='col'>rol_id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · FK → rol</td><td class='des'>Rol asignado.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (usuario_id, rol_id) · índice por rol_id</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>seguridad.sesion</h3><span class="niv">Nivel B · auditoría de cambios</span></div>
+    <p class="prop">Sesión activa con su token de refresco. En el MVP se usa de forma mínima: alcanza con emitir el JWT, pero la tabla queda lista para cerrar sesión desde el servidor.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la sesión.</td></tr><tr><td class='col'>usuario_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → usuario</td><td class='des'>Dueño de la sesión.</td></tr><tr><td class='col'>token_hash</td><td class='tip'>CHAR(64)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>SHA-256 del token de refresco. Nunca se guarda el token en claro.</td></tr><tr><td class='col'>dispositivo</td><td class='tip'>VARCHAR(120)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Descripción del aparato desde el que se inició sesión.</td></tr><tr><td class='col'>direccion_ip</td><td class='tip'>INET</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Dirección desde la que se autenticó. Tipo nativo de PostgreSQL.</td></tr><tr><td class='col'>expira</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Momento en que el token deja de servir.</td></tr><tr><td class='col'>revocado_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Cuándo se revocó la sesión, si aplica.</td></tr><tr><td class='col'>revocado_motivo</td><td class='tip'>VARCHAR(40)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Por qué se revocó: cierre manual, rotación o seguridad.</td></tr><tr><td class='col'>reemplazada_por_id</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → sesion</td><td class='des'>Sesión que sustituyó a esta al rotar el token. Autorreferencia.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · índice compuesto (usuario_id, expira) para la sesión vigente</p></div>
+
+  </div>
+</section>
+<section id="esq-geo">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>07</b> · Esquema</div>
+      <h2>Geografía</h2>
+      <p class="lead">Jerarquía territorial: departamento, ciudad y zona.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>geo.departamento</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Primer nivel territorial de Honduras. Catálogo cerrado que llega por datos semilla.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador del departamento.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(50)</td><td class='nul'>NO</td><td class='key'>UQ</td><td class='des'>Nombre oficial del departamento.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (nombre)</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>geo.ciudad</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Municipio o ciudad. La bandera es_operativa marca dónde el servicio está realmente disponible: el catálogo tiene todo el país, pero solo San Pedro Sula opera.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la ciudad.</td></tr><tr><td class='col'>departamento_id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>FK → departamento</td><td class='des'>Departamento al que pertenece.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(60)</td><td class='nul'>NO</td><td class='key'>UQ compuesta</td><td class='des'>Nombre de la ciudad.</td></tr><tr><td class='col'>es_operativa</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF false</td><td class='des'>Si la plataforma opera aquí. Solo las operativas se ofrecen al registrarse.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (departamento_id, nombre) · índice por departamento_id</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>geo.zona</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Colonia o sector dentro de la ciudad. Es entidad de primera clase y no un texto libre, porque la búsqueda del cliente se filtra por zona y porque cada zona tiene su propia hora límite de retiro por razones de seguridad al anochecer.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la zona.</td></tr><tr><td class='col'>ciudad_id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>FK → ciudad</td><td class='des'>Ciudad que la contiene.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(80)</td><td class='nul'>NO</td><td class='key'>UQ compuesta</td><td class='des'>Nombre de la colonia o sector.</td></tr><tr><td class='col'>latitud_centro</td><td class='tip'>core.dm_latitud</td><td class='nul'>SÍ</td><td class='key'>CHECK −90..90</td><td class='des'>Punto central aproximado, para centrar el mapa.</td></tr><tr><td class='col'>longitud_centro</td><td class='tip'>core.dm_longitud</td><td class='nul'>SÍ</td><td class='key'>CHECK −180..180</td><td class='des'>Longitud del centro de la zona.</td></tr><tr><td class='col'>hora_limite_retiro</td><td class='tip'>TIME</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Hora tope para retirar en esta zona. Regla local: en sectores de riesgo no se agenda retiro nocturno.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (ciudad_id, nombre) · índice por ciudad_id</p></div>
+
+  </div>
+</section>
+<section id="esq-comercio">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>08</b> · Esquema</div>
+      <h2>Comercio</h2>
+      <p class="lead">Socios afiliados y puntos de retiro.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>comercio.categoria_comercio</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Rubro del negocio: panadería, supermercado, restaurante. Sirve para clasificar la oferta y para que la comisión pueda variar por rubro.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador del rubro.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(50)</td><td class='nul'>NO</td><td class='key'>UQ</td><td class='des'>Nombre del rubro.</td></tr><tr><td class='col'>descripcion</td><td class='tip'>VARCHAR(150)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Qué tipo de negocios entran en la categoría.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (nombre)</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>comercio.comercio</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">La empresa afiliada, no el local. Un comercio puede tener varias sucursales y es la entidad a la que se le liquida el dinero.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador del comercio.</td></tr><tr><td class='col'>rtn</td><td class='tip'>core.dm_rtn</td><td class='nul'>NO</td><td class='key'>UQ · CHECK 14 dígitos</td><td class='des'>Registro Tributario Nacional. Clave natural que impide afiliar dos veces a la misma empresa.</td></tr><tr><td class='col'>razon_social</td><td class='tip'>VARCHAR(120)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Nombre legal, el que va en la factura.</td></tr><tr><td class='col'>nombre_comercial</td><td class='tip'>VARCHAR(120)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Nombre con el que lo conoce el público. Es el que se busca.</td></tr><tr><td class='col'>categoria_comercio_id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>FK → categoria_comercio</td><td class='des'>Rubro al que pertenece.</td></tr><tr><td class='col'>correo_contacto</td><td class='tip'>core.dm_correo</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Correo administrativo del comercio.</td></tr><tr><td class='col'>telefono</td><td class='tip'>core.dm_tel_hn</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Teléfono de contacto.</td></tr><tr><td class='col'>cuenta_bancaria</td><td class='tip'>VARCHAR(30)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Cuenta donde se deposita la liquidación.</td></tr><tr><td class='col'>fecha_afiliacion</td><td class='tip'>DATE</td><td class='nul'>NO</td><td class='key'>DEF current_date</td><td class='des'>Cuándo entró a la plataforma.</td></tr><tr><td class='col'>estado</td><td class='tip'>core.en_estado_comercio</td><td class='nul'>NO</td><td class='key'>DEF &#x27;PENDIENTE&#x27;</td><td class='des'>PENDIENTE, ACTIVO o SUSPENDIDO. Solo los activos pueden publicar.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (rtn) · índice por categoría · índice GIN de trigramas sobre el nombre comercial</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>comercio.sucursal</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">El local físico donde el cliente retira. Es el punto que se muestra en la búsqueda y del que cuelgan las plantillas de bolsa.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la sucursal.</td></tr><tr><td class='col'>comercio_id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>FK → comercio</td><td class='des'>Empresa dueña del local.</td></tr><tr><td class='col'>zona_id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>FK → geo.zona</td><td class='des'>Zona donde está ubicada. Define la hora límite de retiro.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(80)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Cómo se distingue de las otras sucursales.</td></tr><tr><td class='col'>direccion</td><td class='tip'>VARCHAR(200)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Dirección para llegar.</td></tr><tr><td class='col'>latitud</td><td class='tip'>core.dm_latitud</td><td class='nul'>NO</td><td class='key'>CHECK −90..90</td><td class='des'>Coordenada del local.</td></tr><tr><td class='col'>longitud</td><td class='tip'>core.dm_longitud</td><td class='nul'>NO</td><td class='key'>CHECK −180..180</td><td class='des'>Coordenada del local.</td></tr><tr><td class='col'>telefono</td><td class='tip'>core.dm_tel_hn</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Teléfono del local.</td></tr><tr><td class='col'>licencia_sanitaria</td><td class='tip'>VARCHAR(30)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Número de licencia sanitaria. Requisito local para vender alimento.</td></tr><tr><td class='col'>licencia_vence</td><td class='tip'>DATE</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Vencimiento de la licencia.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · índices por comercio_id y zona_id · índice GiST sobre la ubicación</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>comercio.horario_sucursal</h3><span class="niv">Nivel C · solo alta</span></div>
+    <p class="prop">Franja de atención por día de la semana. Sostiene la regla RN-03: no se puede programar una ventana de retiro fuera del horario del local.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la franja.</td></tr><tr><td class='col'>sucursal_id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>FK → sucursal</td><td class='des'>Local al que aplica.</td></tr><tr><td class='col'>dia_semana</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>CHECK 0..6</td><td class='des'>Día de la semana. 0 es domingo.</td></tr><tr><td class='col'>hora_apertura</td><td class='tip'>TIME</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Hora de apertura.</td></tr><tr><td class='col'>hora_cierre</td><td class='tip'>TIME</td><td class='nul'>NO</td><td class='key'>CHECK &gt; apertura</td><td class='des'>Hora de cierre.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (sucursal_id, dia_semana) · índice por sucursal_id</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>comercio.usuario_sucursal</h3><span class="niv">Nivel C · solo alta</span></div>
+    <p class="prop">Qué empleado trabaja en qué local y con qué cargo. Sostiene la regla RN-10: nadie entrega una bolsa en una sucursal que no es la suya.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>usuario_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · FK → usuario</td><td class='des'>Empleado.</td></tr><tr><td class='col'>sucursal_id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>PK · FK → sucursal</td><td class='des'>Local donde trabaja.</td></tr><tr><td class='col'>cargo</td><td class='tip'>core.en_cargo</td><td class='nul'>NO</td><td class='key'></td><td class='des'>PROPIETARIO, ENCARGADO o CAJERO.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (usuario_id, sucursal_id) · índice por sucursal_id</p></div>
+
+  </div>
+</section>
+<section id="esq-oferta">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>09</b> · Esquema</div>
+      <h2>Oferta</h2>
+      <p class="lead">Qué se vende y cuánto hay disponible hoy.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>oferta.categoria_alimento</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Tipo de alimento que va en la bolsa. Define cuántas horas puede durar la ventana de retiro, porque no es lo mismo pan que lácteos.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la categoría.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(50)</td><td class='nul'>NO</td><td class='key'>UQ</td><td class='des'>Nombre de la categoría.</td></tr><tr><td class='col'>es_perecible</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF false</td><td class='des'>Si requiere manejo especial por caducidad.</td></tr><tr><td class='col'>horas_max_ventana</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>DEF 3</td><td class='des'>Duración máxima de la ventana de retiro. Lo valida un trigger al publicar.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (nombre)</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>oferta.plantilla_bolsa</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Qué vende la sucursal, de forma reutilizable. Se define una vez y se publica muchas veces. Esta separación es la decisión de modelo más importante del proyecto.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la plantilla.</td></tr><tr><td class='col'>sucursal_id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>FK → sucursal</td><td class='des'>Local que ofrece esta bolsa.</td></tr><tr><td class='col'>categoria_alimento_id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>FK → categoria_alimento</td><td class='des'>Tipo de alimento que contiene.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(80)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Nombre comercial de la bolsa.</td></tr><tr><td class='col'>descripcion</td><td class='tip'>TEXT</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Qué suele traer, sin comprometer contenido exacto.</td></tr><tr><td class='col'>precio_base</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'>CHECK &gt; 0</td><td class='des'>Precio de referencia al que se vende.</td></tr><tr><td class='col'>valor_estimado</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'>CHECK &gt; precio_base</td><td class='des'>Valor real del contenido. Un trigger exige que sea mayor al precio: si no hay ahorro, no hay producto.</td></tr><tr><td class='col'>peso_estimado_kg</td><td class='tip'>NUMERIC(6,2)</td><td class='nul'>NO</td><td class='key'>CHECK &gt; 0</td><td class='des'>Peso aproximado. Alimenta el cálculo de impacto ambiental.</td></tr><tr><td class='col'>requiere_refrigeracion</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF false</td><td class='des'>Si necesita frío, para advertir al cliente.</td></tr><tr><td class='col'>alergenos</td><td class='tip'>VARCHAR(150)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Alérgenos declarados.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · índices por sucursal_id y categoria_alimento_id · bitácora activa</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>oferta.publicacion</h3><span class="niv">Nivel B · auditoría de cambios</span></div>
+    <p class="prop">Cuántas bolsas hay hoy y en qué ventana se retiran. Es la tabla más consultada del sistema y sobre la que se resuelve la pelea por la última bolsa.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la publicación.</td></tr><tr><td class='col'>plantilla_bolsa_id</td><td class='tip'>INT</td><td class='nul'>NO</td><td class='key'>FK → plantilla_bolsa</td><td class='des'>Qué bolsa se está publicando.</td></tr><tr><td class='col'>fecha</td><td class='tip'>DATE</td><td class='nul'>NO</td><td class='key'>DEF current_date</td><td class='des'>Día de la oferta.</td></tr><tr><td class='col'>hora_inicio_retiro</td><td class='tip'>TIME</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Inicio de la ventana de retiro.</td></tr><tr><td class='col'>hora_fin_retiro</td><td class='tip'>TIME</td><td class='nul'>NO</td><td class='key'>CHECK &gt; inicio</td><td class='des'>Fin de la ventana. Debe caber en el horario de la sucursal y no exceder las horas máximas de la categoría.</td></tr><tr><td class='col'>cantidad_total</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>CHECK &gt; 0</td><td class='des'>Bolsas puestas a la venta.</td></tr><tr><td class='col'>cantidad_disponible</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>CHECK ≥ 0</td><td class='des'>Bolsas que quedan. Solo la baja el procedimiento de reserva, con bloqueo de fila.</td></tr><tr><td class='col'>precio_venta</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'>CHECK &gt; 0</td><td class='des'>Precio del día. Se copia de la plantilla pero puede diferir.</td></tr><tr><td class='col'>estado</td><td class='tip'>core.en_estado_publicacion</td><td class='nul'>NO</td><td class='key'>DEF &#x27;PROGRAMADA&#x27;</td><td class='des'>PROGRAMADA, PUBLICADA, AGOTADA, VENCIDA o CANCELADA. Las transiciones las vigila un trigger.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · índice parcial de publicaciones vigentes · restricción EXCLUDE contra ventanas traslapadas · bitácora activa</p></div>
+
+  </div>
+</section>
+<section id="esq-venta">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>10</b> · Esquema</div>
+      <h2>Venta</h2>
+      <p class="lead">Reserva, pago y retiro.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>venta.metodo_pago</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Formas de pago disponibles. La bandera de confirmación en sitio es la adaptación local que permite pagar en efectivo al retirar, que es como se compra en Honduras.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador del método.</td></tr><tr><td class='col'>codigo</td><td class='tip'>VARCHAR(20)</td><td class='nul'>NO</td><td class='key'>UQ</td><td class='des'>Clave estable: TARJETA, EFECTIVO, TRANSFERENCIA.</td></tr><tr><td class='col'>nombre</td><td class='tip'>VARCHAR(50)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Nombre para mostrar.</td></tr><tr><td class='col'>requiere_confirmacion_en_sitio</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF false</td><td class='des'>Si el cobro se cierra en el mostrador. En efectivo va en true.</td></tr><tr><td class='col'>orden_presentacion</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>DEF 100</td><td class='des'>Orden en que aparecen las opciones en la app.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (codigo)</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>venta.reserva</h3><span class="niv">Nivel B · auditoría de cambios</span></div>
+    <p class="prop">El registro del que cuelga todo el dinero del sistema. Apunta a una sola publicación: se descartó el modelo de carrito con cabecera y detalle porque el producto es una bolsa por compra.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador interno.</td></tr><tr><td class='col'>codigo</td><td class='tip'>VARCHAR(20)</td><td class='nul'>NO</td><td class='key'>UQ</td><td class='des'>Código que el cliente muestra en el mostrador. Lo genera fn_siguiente_codigo.</td></tr><tr><td class='col'>publicacion_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → publicacion</td><td class='des'>Qué se reservó.</td></tr><tr><td class='col'>cliente_usuario_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → usuario</td><td class='des'>Quién reservó.</td></tr><tr><td class='col'>cantidad</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>CHECK 1..3</td><td class='des'>Bolsas reservadas. El tope de 3 es la regla RN-09.</td></tr><tr><td class='col'>precio_unitario</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Precio al momento de reservar. Hecho histórico: no se recalcula nunca.</td></tr><tr><td class='col'>subtotal</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Precio por cantidad.</td></tr><tr><td class='col'>isv</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Impuesto calculado al momento de la venta.</td></tr><tr><td class='col'>total</td><td class='tip'>NUMERIC(12,2)</td><td class='nul'>NO</td><td class='key'>GENERATED STORED</td><td class='des'>Subtotal más ISV. La calcula el motor; no se puede escribir a mano.</td></tr><tr><td class='col'>comision_plataforma</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Lo que retiene la plataforma, congelado con la tarifa vigente ese día.</td></tr><tr><td class='col'>monto_comercio</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Lo que se le debe al comercio. Es la base de la liquidación.</td></tr><tr><td class='col'>estado</td><td class='tip'>core.en_estado_reserva</td><td class='nul'>NO</td><td class='key'>DEF &#x27;PENDIENTE_PAGO&#x27;</td><td class='des'>PENDIENTE_PAGO, CONFIRMADA, RETIRADA, NO_RETIRADA, CANCELADA o REEMBOLSADA.</td></tr><tr><td class='col'>retiro_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Momento exacto de la entrega.</td></tr><tr><td class='col'>entrega_usuario_id</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → usuario</td><td class='des'>Empleado que entregó la bolsa.</td></tr><tr><td class='col'>cancelacion_motivo</td><td class='tip'>VARCHAR(120)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Por qué se canceló, si aplica.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · UQ (codigo) · índice parcial de reservas por vencer · bitácora activa · trigger de transición de estado</p></div>
+
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>venta.pago</h3><span class="niv">Nivel B · auditoría de cambios</span></div>
+    <p class="prop">Intento de cobro. Se guardan todos, incluidos los fallidos, porque un cobro rechazado es información que hay que poder auditar.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador del intento.</td></tr><tr><td class='col'>reserva_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → reserva</td><td class='des'>Reserva que se está pagando.</td></tr><tr><td class='col'>metodo_pago_id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>FK → metodo_pago</td><td class='des'>Forma de pago usada.</td></tr><tr><td class='col'>metodo_pago_usuario_id</td><td class='tip'>INT</td><td class='nul'>SÍ</td><td class='key'>FK</td><td class='des'>Tarjeta guardada del cliente. Sin uso en el MVP.</td></tr><tr><td class='col'>monto</td><td class='tip'>core.dm_dinero</td><td class='nul'>NO</td><td class='key'>CHECK &gt; 0</td><td class='des'>Importe del intento.</td></tr><tr><td class='col'>referencia_externa</td><td class='tip'>VARCHAR(80)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Identificador que devolvería la pasarela. En el MVP se simula.</td></tr><tr><td class='col'>estado</td><td class='tip'>core.en_estado_pago</td><td class='nul'>NO</td><td class='key'>DEF &#x27;PENDIENTE&#x27;</td><td class='des'>PENDIENTE, EN_VERIFICACION, CAPTURADO, FALLIDO o REEMBOLSADO.</td></tr><tr><td class='col'>mensaje_error</td><td class='tip'>VARCHAR(200)</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Motivo del rechazo cuando el intento falla.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · índice único parcial: una reserva no puede tener dos pagos CAPTURADO</p></div>
+
+  </div>
+</section>
+<section id="esq-finanza">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>11</b> · Esquema</div>
+      <h2>Finanza</h2>
+      <p class="lead">Tarifas de comisión.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>finanza.tarifa</h3><span class="niv">Nivel A · auditoría completa</span></div>
+    <p class="prop">Comisión que cobra la plataforma, con vigencia por fechas. Se consulta al reservar y el resultado se copia en la reserva, para que cambiar la tarifa nunca altere ventas pasadas.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>SMALLINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador de la tarifa.</td></tr><tr><td class='col'>categoria_comercio_id</td><td class='tip'>SMALLINT</td><td class='nul'>SÍ</td><td class='key'>FK → categoria_comercio</td><td class='des'>Rubro al que aplica. Si va en nulo, es la tarifa general.</td></tr><tr><td class='col'>tipo</td><td class='tip'>core.en_tipo_tarifa</td><td class='nul'>NO</td><td class='key'>DEF &#x27;PORCENTUAL&#x27;</td><td class='des'>PORCENTUAL o FIJA.</td></tr><tr><td class='col'>valor</td><td class='tip'>NUMERIC(6,2)</td><td class='nul'>NO</td><td class='key'>CHECK &gt; 0</td><td class='des'>Porcentaje o monto, según el tipo. La comisión acordada ronda el 20 al 25 por ciento.</td></tr><tr><td class='col'>vigente_desde</td><td class='tip'>DATE</td><td class='nul'>NO</td><td class='key'>DEF current_date</td><td class='des'>Inicio de vigencia.</td></tr><tr><td class='col'>vigente_hasta</td><td class='tip'>DATE</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fin de vigencia. En nulo significa vigente hoy.</td></tr><tr><td class='col'>created_by</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Usuario que creó la fila. Lo pone el trigger de alta desde app.usuario_id.</td></tr><tr><td class='col'>creation_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Fecha de creación. Inmutable: el trigger la restaura si alguien intenta cambiarla.</td></tr><tr><td class='col'>modified_by</td><td class='tip'>BIGINT</td><td class='nul'>SÍ</td><td class='key'>FK → seguridad.usuario</td><td class='des'>Último usuario que modificó la fila.</td></tr><tr><td class='col'>modification_date</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Fecha del último cambio. La escribe el trigger de auditoría de fila.</td></tr><tr><td class='col'>es_activo</td><td class='tip'>BOOLEAN</td><td class='nul'>NO</td><td class='key'>DEF true</td><td class='des'>Baja lógica. El modelo nunca borra: se apaga la fila.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · dos índices únicos parciales que impiden dos tarifas vigentes a la vez · bitácora activa</p></div>
+
+  </div>
+</section>
+<section id="esq-auditoria">
+  <div class="wrap">
+    <div class="col">
+      <div class="eyebrow"><b>12</b> · Esquema</div>
+      <h2>Auditoría</h2>
+      <p class="lead">Bitácora de cambios.</p>
+    </div>
+    
+  <div class="col tbl-ficha">
+    <div class="cab"><h3>auditoria.bitacora</h3><span class="niv">Nivel D · la fila es el registro</span></div>
+    <p class="prop">Historial de cambios de las tablas sensibles. Solo se agrega: no se edita ni se borra, y por eso no lleva columnas de auditoría propias.</p>
+  </div>
+  <div class="tabla-wrap">
+    <table class="dic">
+      <thead><tr><th>Columna</th><th>Tipo</th><th>Nulo</th><th>Clave / regla</th><th>Descripción</th></tr></thead>
+      <tbody><tr><td class='col'>id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'>PK · IDENTITY</td><td class='des'>Identificador del asiento.</td></tr><tr><td class='col'>esquema</td><td class='tip'>VARCHAR(20)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Esquema de la tabla afectada.</td></tr><tr><td class='col'>tabla</td><td class='tip'>VARCHAR(40)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Tabla afectada.</td></tr><tr><td class='col'>registro_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Identificador de la fila afectada. Sin clave foránea a propósito: apunta a muchas tablas distintas.</td></tr><tr><td class='col'>accion</td><td class='tip'>core.en_accion</td><td class='nul'>NO</td><td class='key'></td><td class='des'>INSERT, UPDATE o DELETE.</td></tr><tr><td class='col'>datos_anteriores</td><td class='tip'>JSONB</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Estado previo de la fila. El trigger excluye la columna de contraseña.</td></tr><tr><td class='col'>datos_nuevos</td><td class='tip'>JSONB</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Estado posterior de la fila.</td></tr><tr><td class='col'>usuario_id</td><td class='tip'>BIGINT</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Usuario de la aplicación que provocó el cambio, tomado de app.usuario_id.</td></tr><tr><td class='col'>usuario_bd</td><td class='tip'>VARCHAR(60)</td><td class='nul'>NO</td><td class='key'></td><td class='des'>Rol de PostgreSQL con el que se ejecutó. Delata cambios hechos por fuera de la aplicación.</td></tr><tr><td class='col'>direccion_ip</td><td class='tip'>INET</td><td class='nul'>SÍ</td><td class='key'></td><td class='des'>Dirección de origen cuando la aplicación la informa.</td></tr><tr><td class='col'>fecha</td><td class='tip'>TIMESTAMPTZ</td><td class='nul'>NO</td><td class='key'>DEF now()</td><td class='des'>Momento del cambio.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="col"><p class="idx"><b>Claves e índices ·</b> PK (id) · índice (esquema, tabla, registro_id) · índice BRIN por fecha</p></div>
+
+  </div>
+</section>
+
+<section id="vistas">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>13</b> · Consulta</div>
+    <h2>Vistas y vistas materializadas</h2>
+    <p class="lead">Las tres vistas evitan repetir uniones en el backend. Las tres materializadas
+    son el insumo del tablero de M7 y hay que refrescarlas antes de la presentación.</p>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th>Objeto</th><th>Clase</th><th>Qué resuelve</th><th>Quién la consume</th></tr></thead>
+    <tbody><tr><td class='c1'>comercio.vw_sucursal_activa</td><td class='esq'>Vista</td><td class='q'>Sucursales de comercios activos con su zona y ciudad ya resueltas. Evita repetir tres uniones en cada consulta.</td><td class='dep'>Front B · listados del panel</td></tr><tr><td class='c1'>oferta.vw_publicacion_vigente</td><td class='esq'>Vista</td><td class='q'>Publicaciones que hoy se pueden reservar: estado publicada, con cupo y dentro de la ventana. Es la consulta que ve el cliente al abrir la app.</td><td class='dep'>M2 · pantalla principal del cliente</td></tr><tr><td class='c1'>venta.vw_reserva_detalle</td><td class='esq'>Vista</td><td class='q'>Reserva con cliente, bolsa, sucursal, montos y estado del pago en una sola fila.</td><td class='dep'>M3 y M4 · historial y pantalla de entrega</td></tr><tr><td class='c1'>core.mv_impacto_usuario</td><td class='esq'>Materializada</td><td class='q'>Kilos rescatados y ahorro acumulado por cliente. Índice único sobre usuario_id para poder refrescarla en concurrencia.</td><td class='dep'>M7 · tablero</td></tr><tr><td class='c1'>core.mv_ranking_sucursal</td><td class='esq'>Materializada</td><td class='q'>Sucursales ordenadas por volumen y calificación promedio.</td><td class='dep'>M7 · tablero</td></tr><tr><td class='c1'>core.mv_venta_diaria</td><td class='esq'>Materializada</td><td class='q'>Ventas por día, zona y rubro. Es la fuente del gráfico principal del tablero.</td><td class='dep'>M7 · tablero</td></tr></tbody>
+  </table></div>
+  <div class="col"><div class="nota">
+    <p>Las materializadas tienen índice único, así que admiten
+    <em class="t">REFRESH MATERIALIZED VIEW CONCURRENTLY</em> sin bloquear lecturas.</p>
+  </div></div>
+  </div>
+</section>
+
+<section id="rutinas">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>14</b> · Lógica en la base</div>
+    <h2>Funciones, procedimientos y triggers</h2>
+    <p class="lead">La regla del equipo es que la lógica crítica se llama, no se reimplementa.
+    Estas rutinas ya están escritas y probadas.</p>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th>Rutina</th><th>Clase</th><th>Qué hace</th><th>¿En el MVP?</th></tr></thead>
+    <tbody><tr><td class='c1'>core.fn_usuario_actual()</td><td class='esq'>Función</td><td class='q'>Devuelve el usuario de la aplicación leyendo app.usuario_id. Si no está fijado, la auditoría no puede atribuir el cambio.</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.fn_auditoria_alta()</td><td class='esq'>Función trigger</td><td class='q'>Rellena created_by y creation_date al insertar.</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.fn_auditoria_fila()</td><td class='esq'>Función trigger</td><td class='q'>Rellena modified_by y modification_date al actualizar, y restaura creation_date si alguien intenta cambiarla.</td><td class='dep'>Sí</td></tr><tr><td class='c1'>core.fn_siguiente_codigo(prefijo)</td><td class='esq'>Función</td><td class='q'>Genera el correlativo del código de retiro.</td><td class='dep'>Sí</td></tr><tr><td class='c1'>auditoria.fn_bitacora()</td><td class='esq'>Función trigger</td><td class='q'>Escribe el asiento en la bitácora con los datos anteriores y nuevos en JSONB, excluyendo credenciales.</td><td class='dep'>Sí</td></tr><tr><td class='c1'>finanza.fn_tarifa_vigente(...)</td><td class='esq'>Función</td><td class='q'>Devuelve la comisión aplicable a un comercio en una fecha. La llama el procedimiento de reserva.</td><td class='dep'>Sí</td></tr><tr><td class='c1'>venta.sp_reserva_crear(...)</td><td class='esq'>Procedimiento</td><td class='q'>Bloquea la publicación con SELECT ... FOR UPDATE, valida cupo, horario, zona y tope por cliente, calcula montos y crea la reserva. Resuelve la pelea por la última bolsa.</td><td class='dep'>Sí · núcleo de M3</td></tr><tr><td class='c1'>venta.sp_reserva_retirar(...)</td><td class='esq'>Procedimiento</td><td class='q'>Valida el código, que el empleado pertenezca a la sucursal y que la reserva esté confirmada; marca la entrega.</td><td class='dep'>Sí · núcleo de M4</td></tr><tr><td class='c1'>oferta.sp_publicacion_vencer(...)</td><td class='esq'>Procedimiento</td><td class='q'>Vence publicaciones fuera de ventana y marca como no retiradas las reservas caducadas.</td><td class='dep'>Sí · se dispara a mano</td></tr><tr><td class='c1'>finanza.sp_liquidacion_generar(...)</td><td class='esq'>Procedimiento</td><td class='q'>Agrupa las reservas retiradas de un periodo y arma la liquidación del comercio.</td><td class='dep'>Solo si entra M6</td></tr></tbody>
+  </table></div>
+  <div class="col">
+    <h3>Triggers</h3>
+    <p>Son 35 en total y responden a cuatro patrones:</p>
+    <ul>
+      <li><strong>Auditoría de alta</strong> — rellena <em class="t">created_by</em> y
+      <em class="t">creation_date</em> en cada inserción.</li>
+      <li><strong>Auditoría de fila</strong> — rellena <em class="t">modified_by</em> y
+      <em class="t">modification_date</em>, y devuelve <em class="t">creation_date</em> a su valor
+      original si alguien la altera.</li>
+      <li><strong>Bitácora</strong> — sobre tarifa, plantilla de bolsa, publicación, reserva y
+      liquidación. Escribe el antes y el después en JSONB, sin credenciales.</li>
+      <li><strong>Reglas de negocio</strong> — <em class="t">tr_publicacion_bi_valida</em> comprueba
+      horario, ventana y precio al publicar; <em class="t">tr_reserva_bu_estado</em> y
+      <em class="t">tr_publicacion_bu_estado</em> rechazan transiciones de estado imposibles.</li>
+    </ul>
+    <div class="nota no">
+      <p><b>Requisito para el backend.</b> Los triggers de auditoría leen
+      <em class="t">app.usuario_id</em>. Si la aplicación no fija esa variable en cada petición,
+      la bitácora queda sin autor y pierde todo su valor.</p>
+    </div>
+  </div></div>
+</section>
+
+<section id="anexo">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>15</b> · Anexo</div>
+    <h2>Tablas creadas y fuera del MVP</h2>
+    <p class="lead">Existen en la base, con sus índices y restricciones, pero ninguna función del
+    producto mínimo escribe en ellas.</p>
+  </div>
+  <div class="tabla-wrap"><table>
+    <thead><tr><th>Tabla</th><th>Para qué está</th></tr></thead>
+    <tbody><tr><td class='c1'>seguridad.token_recuperacion</td><td class='q'>Recuperación de contraseña por token.</td></tr><tr><td class='c1'>seguridad.intento_acceso</td><td class='q'>Registro de intentos fallidos y bloqueo por fuerza bruta.</td></tr><tr><td class='c1'>oferta.factor_impacto</td><td class='q'>Factores de CO₂ y agua por categoría de alimento.</td></tr><tr><td class='c1'>venta.metodo_pago_usuario</td><td class='q'>Tarjetas guardadas del cliente.</td></tr><tr><td class='c1'>finanza.liquidacion</td><td class='q'>Cabecera del pago al comercio. Entra en modo lectura si M6 se conserva.</td></tr><tr><td class='c1'>finanza.detalle_liquidacion</td><td class='q'>Reservas incluidas en cada liquidación.</td></tr><tr><td class='c1'>social.calificacion</td><td class='q'>Calificación de la bolsa retirada.</td></tr><tr><td class='c1'>social.favorito</td><td class='q'>Sucursales favoritas del cliente.</td></tr><tr><td class='c1'>social.notificacion</td><td class='q'>Avisos al usuario.</td></tr></tbody>
+  </table></div>
+  <div class="col"><div class="nota">
+    <p>Varias de ellas aparecen en la sección de valor agregado del documento de reparto. Como el
+    modelo ya está hecho, activarlas cuesta un endpoint y una pantalla, no un rediseño.</p>
+  </div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><div class="col">
+    <p class="lema">Last Bite · INF308 Administración de Bases de Datos · CEUTEC</p>
+  </div></div>
+</footer>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guía paso a paso · Last Bite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+
+:root{
+  --noche:#0C1210; --noche-2:#131B17; --panel:#18211C; --panel-2:#1F2A23;
+  --linea:#28322B; --linea-2:#3B4A41;
+  --crema:#ECF1E7; --crema-2:#A6B3A9; --crema-3:#75847B;
+  --ocre:#E8913F; --ocre-2:#F5B978; --ocre-tenue:#2A2016;
+  --fe:#3D86C7; --be:#20A163; --bd:#D4791F;
+  --rojo:#E28379; --rojo-tenue:#2E1B18;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--noche);background-image:radial-gradient(110% 70% at 84% 0%, rgba(232,145,63,.09), transparent 60%);color:var(--crema);font-family:var(--serif);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1300px;margin:0 auto;padding:0 26px}
+.col{max-width:700px;margin-left:auto;margin-right:auto}
+
+.top{border-bottom:1px solid var(--linea);background:var(--noche-2)}
+.top .wrap{padding:54px 26px 40px}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ocre);display:flex;gap:10px;flex-wrap:wrap}
+.kicker span:not(:first-child)::before{content:"/";color:var(--crema-3);margin-right:10px}
+h1{font-family:var(--sans);font-weight:800;font-size:clamp(32px,5.2vw,52px);line-height:1.03;letter-spacing:-.028em;margin:18px 0 0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--ocre)}
+.lema{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--crema-3);margin:14px 0 0}
+.dek{font-size:clamp(17px,2.2vw,20px);color:var(--crema-2);max-width:62ch;margin:20px 0 0}
+.datos{display:flex;flex-wrap:wrap;gap:8px 30px;margin-top:24px;font-family:var(--mono);font-size:12.5px;color:var(--crema-3)}
+.datos b{color:var(--crema-2);font-weight:500}
+.toc{margin-top:28px;padding-top:20px;border-top:1px dashed var(--linea-2);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 26px}
+.toc a{font-family:var(--mono);font-size:13px;color:var(--crema-2);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;display:flex;gap:10px}
+.toc a i{color:var(--ocre);font-style:normal}
+.toc a:hover{color:var(--crema);border-bottom-color:var(--ocre)}
+a:focus-visible{outline:2px solid var(--ocre);outline-offset:3px;border-radius:2px}
+
+section{padding:58px 0 10px}
+section + section{border-top:1px solid var(--linea)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--crema-3);margin-bottom:12px}
+.eyebrow b{color:var(--ocre);font-weight:600}
+h2{font-family:var(--sans);font-weight:700;letter-spacing:-.022em;font-size:clamp(25px,3.6vw,34px);line-height:1.14;margin:0 0 14px;text-wrap:balance}
+h3{font-family:var(--sans);font-weight:600;font-size:19px;margin:32px 0 10px;letter-spacing:-.01em}
+p{margin:0 0 16px}
+.lead{font-size:19px;color:var(--crema-2)}
+.col ul{margin:0 0 18px;padding-left:22px;color:var(--crema-2)}
+.col li{margin-bottom:9px}
+em.t{font-style:normal;font-family:var(--mono);font-size:.87em;background:var(--panel-2);color:var(--crema-2);padding:1px 6px;border-radius:4px}
+strong{font-weight:600;color:var(--crema)}
+
+figure{margin:0}
+.lienzo{border:1px solid var(--linea);border-radius:12px;background:var(--noche-2);padding:16px;overflow-x:auto;margin:20px 0 0}
+.lienzo svg{display:block;min-width:1040px;width:100%;height:auto}
+figcaption{font-family:var(--mono);font-size:12px;color:var(--crema-3);line-height:1.6;margin-top:12px}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 22px;margin:16px 0 0;font-family:var(--mono);font-size:12px;color:var(--crema-3)}
+.leyenda span{display:flex;align-items:center;gap:8px}
+.sw{width:22px;height:12px;border-radius:3px;display:inline-block;border:1.5px solid}
+.sw.fe{background:#16232E;border-color:var(--fe)}
+.sw.be{background:#0F2A1E;border-color:var(--be)}
+.sw.bd{background:#2C1E10;border-color:var(--bd)}
+
+.tabla-wrap{overflow-x:auto;border:1px solid var(--linea);border-radius:12px;background:var(--panel);margin-top:20px}
+table{border-collapse:collapse;width:100%;min-width:1020px;font-size:13px}
+thead th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--crema-3);background:var(--panel-2);padding:10px 13px;border-bottom:1px solid var(--linea-2);white-space:nowrap;font-weight:600}
+tbody td{padding:11px 13px;border-bottom:1px solid var(--linea);vertical-align:top;color:var(--crema-2);font-family:var(--mono);font-size:11.5px;line-height:1.6}
+tbody tr:last-child td{border-bottom:none}
+td.cod{color:var(--ocre-2);font-weight:600}
+td.c1{color:var(--crema);white-space:nowrap;font-weight:500}
+td.due{color:var(--crema);white-space:nowrap}
+td.esq{color:var(--bd)}
+td.dep{color:var(--crema-3);white-space:nowrap}
+td.q{font-family:var(--serif);font-size:14px;min-width:190px}
+
+.fichas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:24px}
+.ficha{background:var(--panel);border:1px solid var(--linea);border-left:3px solid var(--c);border-radius:0 12px 12px 0;padding:18px 20px 14px}
+.ficha header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ficha h3{margin:0;font-size:19px;color:var(--c)}
+.ficha .rol{font-family:var(--mono);font-size:11px;color:var(--crema-3)}
+.ficha .apodo{font-size:14.5px;color:var(--crema-3);font-style:italic;margin:4px 0 12px}
+.ficha h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--crema-3);margin:12px 0 6px}
+.ficha ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--crema-2);line-height:1.5}
+.ficha li{margin-bottom:6px}
+.ficha .no li{color:var(--crema-3)}
+
+.dos-listas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:22px 0 8px}
+.lista{background:var(--panel);border:1px solid var(--linea);border-radius:10px;padding:16px 20px 12px}
+.lista.si{border-left:3px solid var(--be)}
+.lista.no{border-left:3px solid var(--ocre)}
+.lista h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
+.lista.si h4{color:var(--be)}
+.lista.no h4{color:var(--ocre-2)}
+.lista ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--crema-2);line-height:1.55}
+.lista li{margin-bottom:7px}
+.riesgos{display:grid;gap:14px;margin-top:22px}
+.riesgo{background:var(--panel);border:1px solid var(--linea);border-radius:10px;padding:16px 20px 12px}
+.riesgo h4{font-family:var(--sans);font-size:16px;margin:0 0 8px;color:var(--crema)}
+.riesgo p{margin:0 0 6px;font-size:15px;color:var(--crema-2)}
+.riesgo b{color:var(--crema)}
+.riesgo .pq b{color:var(--rojo)}
+.riesgo .mi b{color:var(--be)}
+
+.reglas{display:grid;margin:22px 0 8px;border-top:1px solid var(--linea)}
+.regla{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--linea);align-items:start}
+.regla code{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ocre-2);background:var(--ocre-tenue);padding:3px 7px;border-radius:4px;text-align:center}
+.regla p{margin:0;font-size:15.5px}
+
+.nota{border-left:3px solid var(--ocre);background:var(--panel);padding:14px 18px;border-radius:0 10px 10px 0;margin:22px 0}
+.nota p{margin:0;font-size:15.5px;color:var(--crema-2)}
+.nota p + p{margin-top:10px}
+.nota b{color:var(--crema)}
+.nota.si{border-left-color:var(--be)}
+.nota.no{border-left-color:var(--rojo)}
+
+.recorte{counter-reset:r;list-style:none;padding:0;margin:18px 0 0}
+.recorte li{counter-increment:r;position:relative;padding:10px 0 10px 42px;border-bottom:1px solid var(--linea);font-size:15.5px;color:var(--crema-2)}
+.recorte li::before{content:counter(r);position:absolute;left:0;top:9px;width:26px;height:26px;border-radius:50%;background:var(--rojo-tenue);color:var(--rojo);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:600}
+
+footer{border-top:1px solid var(--linea);margin-top:52px;padding:32px 0 62px;font-family:var(--mono);font-size:12.5px;color:var(--crema-3)}
+@media (max-width:640px){body{font-size:16px}section{padding:44px 0 6px}.fichas{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+.paso{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:26px 0;
+      border-bottom:1px solid var(--linea);align-items:start}
+.paso:first-of-type{border-top:1px solid var(--linea)}
+.paso .num{font-family:var(--sans);font-size:38px;font-weight:800;color:var(--ocre);line-height:.9}
+.paso h3{margin:0 0 10px;font-family:var(--sans);font-size:22px;font-weight:700;color:var(--crema)}
+.paso p{margin:0 0 12px;font-size:16.5px;color:var(--crema-2)}
+.paso ol,.paso ul{margin:0 0 12px;padding-left:22px;font-size:16px;color:var(--crema-2);line-height:1.6}
+.paso li{margin-bottom:7px}
+.paso .ok{background:#0F2A1E;border-left:3px solid var(--be);border-radius:0 10px 10px 0;
+          padding:12px 16px;margin:14px 0 0}
+.paso .ok b{color:var(--be)}
+.paso .ok p{margin:0;font-size:15.5px}
+.cmd{background:var(--noche-2);border:1px solid var(--linea-2);border-radius:9px;
+     padding:12px 15px;font-family:var(--mono);font-size:13.5px;color:var(--ocre-2);
+     margin:12px 0;overflow-x:auto;white-space:pre;line-height:1.7}
+.mini{font-family:var(--mono);font-size:12.5px;background:var(--panel-2);padding:2px 7px;
+      border-radius:4px;color:var(--crema-2)}
+.instalar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px}
+.prog{background:var(--panel);border:1px solid var(--linea);border-top:3px solid var(--c);
+      border-radius:0 0 12px 12px;padding:16px 18px}
+.prog b{display:block;font-family:var(--sans);font-size:17px;color:var(--crema);margin-bottom:3px}
+.prog .para{font-size:14.5px;color:var(--crema-2);margin-bottom:8px;line-height:1.5}
+.prog .link{font-family:var(--mono);font-size:11.5px;color:var(--ocre-2);word-break:break-all}
+.orden{display:grid;gap:0;margin-top:20px;border-top:1px solid var(--linea)}
+.arch{display:grid;grid-template-columns:34px 1fr auto;gap:14px;padding:13px 0;
+      border-bottom:1px solid var(--linea);align-items:baseline}
+.arch .n2{font-family:var(--mono);font-size:13px;color:var(--ocre);font-weight:600}
+.arch .nm{font-family:var(--mono);font-size:13.5px;color:var(--crema)}
+.arch .nm small{display:block;font-family:var(--serif);font-size:14.5px;color:var(--crema-3);margin-top:3px}
+.arch .cu{font-family:var(--mono);font-size:11px;color:var(--crema-3);white-space:nowrap}
+.check{margin-top:20px}
+.ck{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:9px 0;
+    border-bottom:1px solid var(--linea);align-items:baseline}
+.ck .bx{width:14px;height:14px;border:1.8px solid var(--be);border-radius:3px;margin-top:4px}
+.ck span{font-size:16px;color:var(--crema-2)}
+
+</style>
+
+<header class="top">
+  <div class="wrap"><div class="col">
+    <div class="kicker"><span>Last Bite</span><span>INF308</span><span>Guía de arranque</span></div>
+    <h1>Cómo dejar todo <em>funcionando en tu máquina</em></h1>
+    <p class="lema">Siete pasos · una hora</p>
+    <p class="dek">Esto es lo que hicimos para que la base y la API funcionen. Seguí los pasos
+    en orden. Si algo falla, al final está la lista de errores comunes.</p>
+    <nav class="toc">
+      <a href="#instalar"><i>01</i> Qué instalar</a>
+      <a href="#pasos"><i>02</i> Los siete pasos</a>
+      <a href="#orden"><i>03</i> Orden de los archivos</a>
+      <a href="#errores"><i>04</i> Si algo falla</a>
+      <a href="#final"><i>05</i> Lista de verificación</a>
+    </nav>
+  </div></div>
+</header>
+
+<section id="instalar">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>01</b> · Antes de empezar</div>
+    <h2>Qué instalar</h2>
+    <p class="lead">Cuatro programas. Todos gratis. Todos con instalador de Windows.</p>
+
+    <div class="instalar">
+      <div class="prog" style="--c:var(--bd)">
+        <b>PostgreSQL 16 o 17</b>
+        <div class="para">La base de datos. Durante la instalación te pide una contraseña:
+        <b>anotala</b>, la vas a necesitar.</div>
+        <div class="link">postgresql.org/download/windows</div>
+      </div>
+      <div class="prog" style="--c:var(--be)">
+        <b>DBeaver Community</b>
+        <div class="para">El programa para ver la base y correr los scripts.</div>
+        <div class="link">dbeaver.io/download</div>
+      </div>
+      <div class="prog" style="--c:var(--fe)">
+        <b>.NET 8 SDK</b>
+        <div class="para">Para compilar y correr la API. Tiene que ser la versión 8, no la 9.</div>
+        <div class="link">dotnet.microsoft.com/download/dotnet/8.0</div>
+      </div>
+      <div class="prog" style="--c:var(--crema-3)">
+        <b>Git</b>
+        <div class="para">Para bajar el código del repositorio.</div>
+        <div class="link">git-scm.com/download/win</div>
+      </div>
+    </div>
+
+    <div class="nota">
+      <p><b>Cuando instales PostgreSQL, dejá todo por defecto.</b> Puerto 5432, usuario
+      <em class="t">postgres</em>, y no desmarques nada. Lo único que tenés que decidir es la
+      contraseña. Escribila en un papel.</p>
+    </div>
+  </div></div>
+</section>
+
+<section id="pasos">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>02</b> · Manos a la obra</div>
+    <h2>Los siete pasos</h2>
+
+    <div class="paso">
+      <span class="num">1</span>
+      <div>
+        <h3>Conectar DBeaver a PostgreSQL</h3>
+        <ol>
+          <li>Abrí DBeaver.</li>
+          <li>Arriba a la izquierda, clic en el enchufe con el signo <b>+</b>.</li>
+          <li>Elegí <b>PostgreSQL</b> y dale a Siguiente.</li>
+          <li>Host <span class="mini">localhost</span>, Port <span class="mini">5432</span>,
+              Database <span class="mini">postgres</span>, Username <span class="mini">postgres</span>.</li>
+          <li>En Password poné la contraseña que anotaste. Marcá <b>Save password</b>.</li>
+          <li>Clic en <b>Test Connection</b>.</li>
+        </ol>
+        <div class="ok"><p><b>Listo cuando:</b> dice «Connected» y aparece la conexión en el
+        panel de la izquierda.</p></div>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="num">2</span>
+      <div>
+        <h3>Activar «ver todas las bases»</h3>
+        <p>Por defecto DBeaver esconde las bases. Sin esto no vas a ver la nuestra.</p>
+        <ol>
+          <li>Clic derecho en la conexión → <b>Edit Connection</b>.</li>
+          <li>Pestaña <b>PostgreSQL</b>.</li>
+          <li>Marcá <b>Show all databases</b>.</li>
+          <li>OK. Después clic derecho en la conexión → <b>Invalidate/Reconnect</b>.</li>
+        </ol>
+        <div class="ok"><p><b>Listo cuando:</b> al abrir la conexión ves varias bases y no solo una.</p></div>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="num">3</span>
+      <div>
+        <h3>Crear la base de datos</h3>
+        <p>Abrí un editor SQL con <span class="mini">Ctrl + ]</span> y escribí esto:</p>
+        <div class="cmd">CREATE DATABASE lastbite;</div>
+        <p>Ejecutalo con <span class="mini">Ctrl + Enter</span>.</p>
+        <div class="ok"><p><b>Listo cuando:</b> refrescás con F5 y aparece
+        <em class="t">lastbite</em> en la lista de bases.</p></div>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="num">4</span>
+      <div>
+        <h3>Correr los tres archivos SQL</h3>
+        <p><b>Antes de cada uno, mirá arriba del editor.</b> La base seleccionada tiene que
+        decir <em class="t">lastbite</em>. Si dice <em class="t">postgres</em>, cambiala ahí mismo.
+        Este es el error más común.</p>
+        <p>Abrí cada archivo con <b>Archivo → Abrir</b> y ejecutalo con
+        <span class="mini">Alt + X</span>. Ojo: <b>Alt + X</b>, no Ctrl + Enter, porque son
+        archivos con muchas sentencias.</p>
+        <ol>
+          <li><em class="t">INSTALAR_TODO.sql</em> — tarda unos segundos. Crea todo.</li>
+          <li><em class="t">S003__contrasenas_demo.sql</em> — pone las contraseñas de prueba.</li>
+          <li><em class="t">T001__pruebas_reglas.sql</em> — comprueba que todo quedó bien.</li>
+        </ol>
+        <div class="ok"><p><b>Listo cuando:</b> el tercero muestra
+        <em class="t">RESULTADO: 16 pruebas correctas, 0 fallas</em>.<br>
+        Ese mensaje sale en la pestaña <b>Server Output</b>, no en la de resultados.</p></div>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="num">5</span>
+      <div>
+        <h3>Bajar el código de la API</h3>
+        <p>Abrí PowerShell donde quieras guardar el proyecto y escribí:</p>
+        <div class="cmd">git clone https://github.com/&lt;usuario&gt;/LastBite_Backend.git
+cd LastBite_Backend</div>
+        <div class="ok"><p><b>Listo cuando:</b> adentro ves la carpeta
+        <em class="t">LastBite.Api</em> y el archivo <em class="t">CONTEXTO-BACKEND.md</em>.</p></div>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="num">6</span>
+      <div>
+        <h3>Poner tu contraseña en la configuración</h3>
+        <p>Abrí con cualquier editor de texto:</p>
+        <div class="cmd">LastBite.Api/appsettings.Development.json</div>
+        <p>Buscá la línea que empieza con <em class="t">"LastBite"</em> y cambiá solo la parte
+        que dice <em class="t">Password=</em> por tu contraseña de PostgreSQL. Lo demás queda igual.</p>
+        <div class="cmd">"LastBite": "Host=localhost;Port=5432;Database=lastbite;Username=postgres;Password=<b>TU_CONTRASEÑA</b>"</div>
+        <div class="ok"><p><b>Ojo:</b> guardá el archivo. Es el paso que más se olvida.</p></div>
+      </div>
+    </div>
+
+    <div class="paso">
+      <span class="num">7</span>
+      <div>
+        <h3>Correr la API</h3>
+        <div class="cmd">cd LastBite.Api
+dotnet restore
+dotnet run</div>
+        <p>Se abre solo el navegador en Swagger. Si no, entrá a
+        <span class="mini">http://localhost:5080/swagger</span>.</p>
+        <p>Probá estos dos, en orden. Se abren con «Try it out» y después «Execute»:</p>
+        <ul>
+          <li><em class="t">GET /api/ping</em> → debe decir <em class="t">estado: ok</em></li>
+          <li><em class="t">GET /api/ping/base</em> → debe decir <em class="t">tablas: 30</em></li>
+        </ul>
+        <div class="ok"><p><b>Listo cuando:</b> el segundo devuelve <b>30 tablas</b>.
+        Ahí ya tenés todo funcionando y podés empezar a programar.</p></div>
+      </div>
+    </div>
+
+    <div class="nota">
+      <p><b>Para probar desde el celular</b>, la API se levanta distinto:</p>
+      <p><em class="t">dotnet run --urls "http://0.0.0.0:5080"</em></p>
+      <p>Y hay que pasarle al equipo de frontend tu dirección de red, la que sale con
+      <em class="t">ipconfig</em>. El celular <b>no puede usar localhost</b>: eso apunta al
+      propio celular. Los dos tienen que estar en el mismo wifi.</p>
+    </div>
+  </div></div>
+</section>
+
+<section id="orden">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>03</b> · Los archivos</div>
+    <h2>Qué archivo hace qué, y en qué orden</h2>
+    <p class="lead">Solo necesitás estos tres para la base. Están en la carpeta
+    <em class="t">db</em> del proyecto y también en <em class="t">docs</em> dentro del
+    repositorio del backend.</p>
+
+    <div class="orden">
+      <div class="arch">
+        <span class="n2">1º</span>
+        <span class="nm">INSTALAR_TODO.sql
+          <small>Crea las 30 tablas, las vistas, los procedimientos, los triggers y los datos
+          de prueba. Es un solo archivo que junta todo.</small></span>
+        <span class="cu">obligatorio</span>
+      </div>
+      <div class="arch">
+        <span class="n2">2º</span>
+        <span class="nm">S003__contrasenas_demo.sql
+          <small>Le pone contraseñas de verdad a los usuarios de prueba. Sin esto nadie puede
+          iniciar sesión más adelante.</small></span>
+        <span class="cu">obligatorio</span>
+      </div>
+      <div class="arch">
+        <span class="n2">3º</span>
+        <span class="nm">T001__pruebas_reglas.sql
+          <small>Intenta romper la base a propósito, 16 veces. Sirve para comprobar que todo
+          quedó bien instalado. No cambia nada.</small></span>
+        <span class="cu">recomendado</span>
+      </div>
+    </div>
+
+    <div class="nota">
+      <p><b>Solo se corren una vez.</b> Si volvés a ejecutar el primero, va a dar error porque
+      las tablas ya existen. Si necesitás empezar de cero, borrá la base con
+      <em class="t">DROP DATABASE lastbite;</em> y volvé al paso 3.</p>
+    </div>
+
+    <h3>Y estos son para leer, no para ejecutar</h3>
+    <ul>
+      <li><em class="t">CONTEXTO-BACKEND.md</em> — todo lo que necesitás saber para programar la
+      API: estructura, nombres, los DTO y la lista de endpoints. <b>Empezá por acá.</b></li>
+      <li><em class="t">12-mockups-completos.html</em> — las 39 pantallas de la app, cada una con
+      su endpoint y sus reglas.</li>
+      <li><em class="t">08-diccionario-datos-mvp.html</em> — qué guarda cada tabla, columna por
+      columna.</li>
+    </ul>
+  </div></div>
+</section>
+
+<section id="errores">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>04</b> · Cuando algo sale mal</div>
+    <h2>Si algo falla</h2>
+    <p class="lead">Estos cinco errores nos pasaron de verdad. Son los mismos que te van a pasar
+    a vos.</p>
+  </div>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead><tr><th>El error dice</th><th>Qué pasó</th><th>Qué hacer</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="c1">password authentication failed for user "postgres"</td>
+          <td class="q">La contraseña está mal.</td>
+          <td class="q">En DBeaver: Edit Connection y escribila de nuevo. En la API: corregí
+          <em>appsettings.Development.json</em>.</td>
+        </tr>
+        <tr>
+          <td class="c1">database "lastbite" already exists</td>
+          <td class="q">Ya la creaste, pero DBeaver la esconde.</td>
+          <td class="q">Volvé al paso 2 y marcá <em>Show all databases</em>.</td>
+        </tr>
+        <tr>
+          <td class="c1">syntax error at or near ""</td>
+          <td class="q">El archivo tiene una línea que solo entiende la terminal, no DBeaver.</td>
+          <td class="q">Ya está corregido. Si te sale, borrá la línea que empieza con
+          <em>\set</em> y volvé a ejecutar.</td>
+        </tr>
+        <tr>
+          <td class="c1">relation ... does not exist</td>
+          <td class="q">Corriste el script sobre la base equivocada.</td>
+          <td class="q">Mirá arriba del editor: debe decir <em>lastbite</em>, no
+          <em>postgres</em>.</td>
+        </tr>
+        <tr>
+          <td class="c1">tablas: 0 en /api/ping/base</td>
+          <td class="q">La API conecta, pero a una base vacía.</td>
+          <td class="q">Falta correr <em>INSTALAR_TODO.sql</em>, o lo corriste en otra base.</td>
+        </tr>
+        <tr>
+          <td class="c1">BASE_NO_DISPONIBLE al llamar la API</td>
+          <td class="q">La API no alcanza PostgreSQL.</td>
+          <td class="q">Revisá que el servicio de PostgreSQL esté corriendo y que la contraseña
+          del <em>appsettings</em> sea la correcta.</td>
+        </tr>
+        <tr>
+          <td class="c1">401 en /api/zonas</td>
+          <td class="q">Nada. Es lo correcto.</td>
+          <td class="q">Ese endpoint pide token y el login todavía no existe. No es un error.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <div class="nota">
+      <p><b>El truco que resuelve la mitad de los problemas:</b> antes de ejecutar cualquier
+      script, mirá la base que está seleccionada arriba del editor de DBeaver. Si dice
+      <em class="t">postgres</em> en vez de <em class="t">lastbite</em>, todo lo que corras va a
+      parar al lugar equivocado.</p>
+    </div>
+  </div></div>
+</section>
+
+<section id="final">
+  <div class="wrap"><div class="col">
+    <div class="eyebrow"><b>05</b> · Antes de decir «ya está»</div>
+    <h2>Lista de verificación</h2>
+    <p class="lead">Si podés marcar las seis, estás listo para programar.</p>
+
+    <div class="check">
+      <div class="ck"><span class="bx"></span><span>DBeaver conecta y veo la base <b>lastbite</b> en la lista.</span></div>
+      <div class="ck"><span class="bx"></span><span>Adentro de <b>lastbite</b> veo nueve esquemas: core, seguridad, geo, comercio, oferta, venta, finanza, social y auditoria.</span></div>
+      <div class="ck"><span class="bx"></span><span>El archivo de pruebas dio <b>16 correctas, 0 fallas</b>.</span></div>
+      <div class="ck"><span class="bx"></span><span>Puse mi contraseña en <b>appsettings.Development.json</b> y guardé.</span></div>
+      <div class="ck"><span class="bx"></span><span><b>dotnet run</b> arranca sin errores y abre Swagger.</span></div>
+      <div class="ck"><span class="bx"></span><span><b>/api/ping/base</b> devuelve <b>30 tablas</b>.</span></div>
+    </div>
+
+    <h3>Y ahora qué</h3>
+    <p>Leé <em class="t">CONTEXTO-BACKEND.md</em> completo. Ahí está tu módulo asignado, los
+    endpoints que te tocan y cómo se llama cada clase que hay que escribir. Después abrí Cowork,
+    seleccioná la carpeta del proyecto y usá los prompts de
+    <em class="t">PROMPTS-PARA-EL-EQUIPO.md</em>.</p>
+    <p>Ya está hecho: el proyecto, la configuración, las clases de <em class="t">Common</em>,
+    los ocho archivos de DTO y un endpoint completo de ejemplo
+    (<em class="t">GET /api/zonas</em>) que sirve de molde. Falta escribir los demás.</p>
+  </div></div>
+</section>
+
+<footer>
+  <div class="wrap"><div class="col">
+    <p class="lema">Last Bite · INF308 Administración de Bases de Datos · CEUTEC</p>
+  </div></div>
+</footer>
+</html>
