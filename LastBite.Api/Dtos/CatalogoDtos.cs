@@ -4,12 +4,19 @@ namespace LastBite.Api.Dtos;
 /// Zona de la ciudad. HoraLimiteRetiro puede venir nula: las zonas céntricas
 /// como el Barrio Los Andes no tienen restricción horaria.
 /// </summary>
-public sealed record ZonaResponse(
-    int Id,
-    string Nombre,
-    string Ciudad,
-    TimeOnly? HoraLimiteRetiro,
-    int BolsasDisponibles);
+// Sin constructor posicional a propósito: Dapper materializa los DTOs con
+// DateOnly/TimeOnly asignando propiedad por propiedad (para poder usar los
+// TypeHandler de Common/DapperTypeHandlers.cs); con constructor posicional
+// intenta encontrar un constructor que reciba exactamente lo que Npgsql
+// entrega (TimeSpan, no TimeOnly) y revienta.
+public sealed record ZonaResponse
+{
+    public int Id { get; init; }
+    public string Nombre { get; init; } = "";
+    public string Ciudad { get; init; } = "";
+    public TimeOnly? HoraLimiteRetiro { get; init; }
+    public int BolsasDisponibles { get; init; }
+}
 
 /// <summary>
 /// Categoría de alimento. HorasMaxVentana es el límite sanitario: la comida

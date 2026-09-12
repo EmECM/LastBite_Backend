@@ -26,43 +26,50 @@ public sealed record ReservaCreadaResponse(
 /// EstadoReserva: PENDIENTE_PAGO, CONFIRMADA, RETIRADA, NO_RETIRADA,
 /// CANCELADA o REEMBOLSADA.
 /// </summary>
-public sealed record ReservaResponse(
-    long ReservaId,
-    string Codigo,
-    string EstadoReserva,
-    string? EstadoPago,
-    string Bolsa,
-    string Sucursal,
-    string NombreComercial,
-    short Cantidad,
-    decimal Total,
-    DateOnly Fecha,
-    TimeOnly HoraInicioRetiro,
-    TimeOnly HoraFinRetiro);
+// Sin constructor posicional: ver la nota en ZonaResponse (CatalogoDtos.cs).
+// Trae DateOnly/TimeOnly, así que necesita el camino de Dapper que sí
+// consulta los TypeHandler registrados en Program.cs.
+public sealed record ReservaResponse
+{
+    public long ReservaId { get; init; }
+    public string Codigo { get; init; } = "";
+    public string EstadoReserva { get; init; } = "";
+    public string? EstadoPago { get; init; }
+    public string Bolsa { get; init; } = "";
+    public string Sucursal { get; init; } = "";
+    public string NombreComercial { get; init; } = "";
+    public short Cantidad { get; init; }
+    public decimal Total { get; init; }
+    public DateOnly Fecha { get; init; }
+    public TimeOnly HoraInicioRetiro { get; init; }
+    public TimeOnly HoraFinRetiro { get; init; }
+}
 
 /// <summary>
 /// Comprobante. Los importes NO se recalculan: salen de las columnas que se
 /// copiaron dentro de la reserva el día de la compra.
 /// </summary>
-public sealed record ReservaDetalleResponse(
-    long ReservaId,
-    string Codigo,
-    string EstadoReserva,
-    string? EstadoPago,
-    string Bolsa,
-    string Sucursal,
-    string NombreComercial,
-    string Direccion,
-    short Cantidad,
-    decimal PrecioUnitario,
-    decimal Subtotal,
-    decimal Isv,
-    decimal Total,
-    string? MetodoPago,
-    DateOnly Fecha,
-    TimeOnly HoraInicioRetiro,
-    TimeOnly HoraFinRetiro,
-    DateTimeOffset? RetiroDate);
+public sealed record ReservaDetalleResponse
+{
+    public long ReservaId { get; init; }
+    public string Codigo { get; init; } = "";
+    public string EstadoReserva { get; init; } = "";
+    public string? EstadoPago { get; init; }
+    public string Bolsa { get; init; } = "";
+    public string Sucursal { get; init; } = "";
+    public string NombreComercial { get; init; } = "";
+    public string Direccion { get; init; } = "";
+    public short Cantidad { get; init; }
+    public decimal PrecioUnitario { get; init; }
+    public decimal Subtotal { get; init; }
+    public decimal Isv { get; init; }
+    public decimal Total { get; init; }
+    public string? MetodoPago { get; init; }
+    public DateOnly Fecha { get; init; }
+    public TimeOnly HoraInicioRetiro { get; init; }
+    public TimeOnly HoraFinRetiro { get; init; }
+    public DateTimeOffset? RetiroDate { get; init; }
+}
 
 /// <summary>Resultado del pago simulado.</summary>
 public sealed record PagoResponse(

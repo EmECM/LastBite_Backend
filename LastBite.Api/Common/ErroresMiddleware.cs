@@ -35,10 +35,13 @@ public sealed class ErroresMiddleware
         // 403 · no tiene permiso
         ["USUARIO_NO_ACTIVO"]         = StatusCodes.Status403Forbidden,
         ["EMPLEADO_AJENO"]            = StatusCodes.Status403Forbidden,
+        ["RESERVA_AJENA"]             = StatusCodes.Status403Forbidden,
 
         // 404 · no existe
         ["PUBLICACION_INEXISTENTE"]   = StatusCodes.Status404NotFound,
         ["CODIGO_INEXISTENTE"]        = StatusCodes.Status404NotFound,
+        ["RESERVA_INEXISTENTE"]       = StatusCodes.Status404NotFound,
+        ["LIQUIDACION_INEXISTENTE"]   = StatusCodes.Status404NotFound,
 
         // 409 · choca con una regla de negocio
         ["PUBLICACION_NO_DISPONIBLE"] = StatusCodes.Status409Conflict,
@@ -46,6 +49,7 @@ public sealed class ErroresMiddleware
         ["LIMITE_POR_CLIENTE"]        = StatusCodes.Status409Conflict,
         ["EFECTIVO_BLOQUEADO"]        = StatusCodes.Status409Conflict,
         ["RESERVA_NO_ENTREGABLE"]     = StatusCodes.Status409Conflict,
+        ["RESERVA_NO_PAGABLE"]        = StatusCodes.Status409Conflict,
         ["FUERA_DE_VENTANA"]          = StatusCodes.Status409Conflict,
         ["VENTANA_MUY_LARGA"]         = StatusCodes.Status409Conflict,
         ["FUERA_DE_HORARIO"]          = StatusCodes.Status409Conflict,
@@ -72,6 +76,15 @@ public sealed class ErroresMiddleware
 
             _log.LogWarning("Regla de negocio rechazada: {Codigo}", codigo);
             await ResponderAsync(ctx, estado, new ErrorResponse(codigo, ex.MessageText));
+        }
+        catch (ReglaNegocioException ex)
+        {
+            var estado = Mapa.TryGetValue(ex.Codigo, out var e)
+                ? e
+                : StatusCodes.Status400BadRequest;
+
+            _log.LogWarning("Regla de negocio rechazada: {Codigo}", ex.Codigo);
+            await ResponderAsync(ctx, estado, new ErrorResponse(ex.Codigo, ex.Message));
         }
         catch (PostgresException ex) when (ex.SqlState == "23505")   // UNIQUE
         {

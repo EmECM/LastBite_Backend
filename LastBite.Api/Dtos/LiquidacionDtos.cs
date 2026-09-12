@@ -5,21 +5,27 @@ namespace LastBite.Api.Dtos;
 /// lo reservado y no recogido no se le paga al comercio.
 /// Estado: CALCULADA, PAGADA o ANULADA.
 /// </summary>
-public sealed record LiquidacionResponse(
-    int Id,
-    DateOnly Desde,
-    DateOnly Hasta,
-    int Reservas,
-    decimal Ventas,
-    decimal Comision,
-    decimal Total,
-    string Estado);
+// Sin constructor posicional: traen DateOnly y Dapper necesita el camino que
+// consulta los TypeHandler (ver la nota en ZonaResponse, CatalogoDtos.cs).
+public sealed record LiquidacionResponse
+{
+    public int Id { get; init; }
+    public DateOnly Desde { get; init; }
+    public DateOnly Hasta { get; init; }
+    public int Reservas { get; init; }
+    public decimal Ventas { get; init; }
+    public decimal Comision { get; init; }
+    public decimal Total { get; init; }
+    public string Estado { get; init; } = "";
+}
 
-public sealed record DetalleLiquidacionResponse(
-    string Codigo,
-    DateOnly Fecha,
-    string Bolsa,
-    decimal Monto);
+public sealed record DetalleLiquidacionResponse
+{
+    public string Codigo { get; init; } = "";
+    public DateOnly Fecha { get; init; }
+    public string Bolsa { get; init; } = "";
+    public decimal Monto { get; init; }
+}
 
 public sealed record LiquidacionDetalleResponse(
     int Id,

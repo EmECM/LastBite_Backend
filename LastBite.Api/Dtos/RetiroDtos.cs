@@ -20,20 +20,22 @@ public sealed record EntregaResponse(
 /// Fila de la pantalla de reservas del día del panel. Solo aparecen las
 /// reservas de la sucursal donde el empleado está asignado.
 /// </summary>
-public sealed record ReservaPanelResponse(
-    long ReservaId,
-    string Codigo,
-    string Cliente,
-    string? ClienteTelefono,
-    string Bolsa,
-    short Cantidad,
-    decimal Total,
-    string EstadoReserva,
-    string? EstadoPago,
-    TimeOnly HoraInicioRetiro,
-    TimeOnly HoraFinRetiro,
-    DateTimeOffset? RetiroDate,
-    string? EntregadoPor);
+public sealed record ReservaPanelResponse
+{
+    public long ReservaId { get; init; }
+    public string Codigo { get; init; } = "";
+    public string Cliente { get; init; } = "";
+    public string? ClienteTelefono { get; init; }
+    public string Bolsa { get; init; } = "";
+    public short Cantidad { get; init; }
+    public decimal Total { get; init; }
+    public string EstadoReserva { get; init; } = "";
+    public string? EstadoPago { get; init; }
+    public TimeOnly HoraInicioRetiro { get; init; }
+    public TimeOnly HoraFinRetiro { get; init; }
+    public DateTimeOffset? RetiroDate { get; init; }
+    public string? EntregadoPor { get; init; }
+}
 
 /// <summary>
 /// Resultado de sp_publicacion_vencer: cuántas publicaciones se cerraron y

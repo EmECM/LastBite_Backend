@@ -18,6 +18,15 @@ var builder = WebApplication.CreateBuilder(args);
 // ---------------------------------------------------------------------------
 DefaultTypeMap.MatchNamesWithUnderscores = true;
 
+// Ver Common/DapperTypeHandlers.cs: sin esto, DateOnly/TimeOnly no se pueden
+// leer de las columnas date/time de PostgreSQL.
+SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+SqlMapper.AddTypeHandler(typeof(DateOnly?), new DateOnlyTypeHandler());
+SqlMapper.AddTypeHandler(new TimeOnlyTypeHandler());
+SqlMapper.AddTypeHandler(typeof(TimeOnly?), new TimeOnlyTypeHandler());
+SqlMapper.AddTypeHandler(new DateTimeOffsetTypeHandler());
+SqlMapper.AddTypeHandler(typeof(DateTimeOffset?), new DateTimeOffsetTypeHandler());
+
 // ---------------------------------------------------------------------------
 // Controladores y JSON
 // ---------------------------------------------------------------------------
@@ -121,8 +130,14 @@ builder.Services.AddScoped<IZonaService, ZonaService>();
 // builder.Services.AddScoped<IAuthService, AuthService>();
 
 // --- Back B · M3 reserva, M4 retiro, M6 liquidación -------------------------
-// builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
-// builder.Services.AddScoped<IReservaService, ReservaService>();
+builder.Services.AddScoped<IMetodoPagoRepository, MetodoPagoRepository>();
+builder.Services.AddScoped<IMetodoPagoService, MetodoPagoService>();
+builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
+builder.Services.AddScoped<IReservaService, ReservaService>();
+builder.Services.AddScoped<IRetiroRepository, RetiroRepository>();
+builder.Services.AddScoped<IRetiroService, RetiroService>();
+builder.Services.AddScoped<ILiquidacionRepository, LiquidacionRepository>();
+builder.Services.AddScoped<ILiquidacionService, LiquidacionService>();
 
 var app = builder.Build();
 
