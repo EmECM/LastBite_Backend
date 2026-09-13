@@ -14,7 +14,10 @@ public sealed record SucursalResponse(
     string Ciudad,
     TimeOnly? HoraLimiteRetiro);
 
-/// <summary>DiaSemana: 0 es domingo.</summary>
+/// <summary>
+/// DiaSemana: 1 es lunes y 7 es domingo, como en comercio.horario_sucursal
+/// (restricción ck_horario_dia). No es 0..6.
+/// </summary>
 public sealed record HorarioResponse(
     short DiaSemana,
     TimeOnly HoraApertura,

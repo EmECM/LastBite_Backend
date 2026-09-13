@@ -30,12 +30,14 @@ public sealed class ZonaRepository : IZonaRepository
         // Solo zonas activas: hay dos zonas sembradas inactivas que no deben
         // aparecer. El conteo de bolsas sale de la vista de publicaciones
         // vigentes, que ya filtra por estado, cupo y ventana horaria.
+        // SUM devuelve bigint: el ::int es necesario porque ZonaResponse
+        // espera int y Dapper arma los records solo si los tipos coinciden.
         const string sql = """
             SELECT z.id                        AS id,
                    z.nombre                    AS nombre,
                    c.nombre                    AS ciudad,
                    z.hora_limite_retiro        AS hora_limite_retiro,
-                   COALESCE(v.bolsas, 0)       AS bolsas_disponibles
+                   COALESCE(v.bolsas, 0)::int  AS bolsas_disponibles
               FROM geo.zona z
               INNER JOIN geo.ciudad c
                       ON c.id = z.ciudad_id

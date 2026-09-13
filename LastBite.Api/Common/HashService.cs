@@ -27,8 +27,13 @@ public sealed class HashService
         {
             return BCrypt.Net.BCrypt.Verify(contrasena, hash);
         }
-        catch (BCrypt.Net.SaltParseException)
+        catch (Exception ex) when (ex is BCrypt.Net.SaltParseException
+                                      or ArgumentException
+                                      or FormatException)
         {
+            // Un hash inválido revienta de varias formas según lo malo que sea.
+            // El marcador $2a$11$demo que deja S002, por ejemplo, lanza
+            // ArgumentOutOfRangeException. Todos cuentan como contraseña incorrecta.
             return false;
         }
     }
