@@ -28,6 +28,14 @@ SqlMapper.AddTypeHandler(new DateTimeOffsetTypeHandler());
 SqlMapper.AddTypeHandler(typeof(DateTimeOffset?), new DateTimeOffsetTypeHandler());
 
 // ---------------------------------------------------------------------------
+// Dapper 2.1.79 no convierte las columnas date y time a DateOnly y TimeOnly,
+// que son los tipos que usan los DTO. Sin estas dos líneas, cualquier DTO con
+// horarios o fechas revienta al leerse. Ver Common/FechaHoraTypeHandlers.cs.
+// ---------------------------------------------------------------------------
+SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+SqlMapper.AddTypeHandler(new TimeOnlyTypeHandler());
+
+// ---------------------------------------------------------------------------
 // Controladores y JSON
 // ---------------------------------------------------------------------------
 builder.Services.AddControllers()
@@ -126,8 +134,10 @@ builder.Services.AddScoped<IZonaRepository, ZonaRepository>();
 builder.Services.AddScoped<IZonaService, ZonaService>();
 
 // --- Back A · M0 identidad, M1 comercios, M2 oferta -------------------------
-// builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-// builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ISucursalRepository, SucursalRepository>();
+builder.Services.AddScoped<ISucursalService, SucursalService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 // --- Back B · M3 reserva, M4 retiro, M6 liquidación -------------------------
 builder.Services.AddScoped<IMetodoPagoRepository, MetodoPagoRepository>();

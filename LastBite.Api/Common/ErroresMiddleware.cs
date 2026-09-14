@@ -66,6 +66,12 @@ public sealed class ErroresMiddleware
         {
             await _siguiente(ctx);
         }
+        catch (ReglaAplicacionException ex)
+        {
+            // La lanzan los servicios: credenciales incorrectas, correo repetido...
+            _log.LogWarning("Regla de aplicación rechazada: {Codigo}", ex.Codigo);
+            await ResponderAsync(ctx, ex.Estado, new ErrorResponse(ex.Codigo, ex.Message));
+        }
         catch (PostgresException ex) when (ex.SqlState == "P0001")
         {
             // "SIN_CUPO: quedan 0 bolsas"  ->  codigo = "SIN_CUPO"

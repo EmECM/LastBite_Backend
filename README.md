@@ -51,8 +51,9 @@ Abrí `http://localhost:5080/swagger`.
 | `GET /api/ping/base` | Que la base responde. Debe devolver **30 tablas** |
 | `GET /api/zonas` | Una consulta real. Devuelve **5 zonas activas** de San Pedro Sula |
 
-`GET /api/zonas` requiere token, así que hasta que exista el login va a responder `401`.
-Es lo esperado.
+`GET /api/zonas` requiere token. Pedilo con `POST /api/auth/login` (por ejemplo con
+`kevin.zelaya@correo.hn` / `LastBite2026`), copiá el `token` de la respuesta y pegalo en el
+botón **Authorize** de Swagger. Sin token responde `401`, que es lo esperado.
 
 ### 5. Para probar desde el teléfono
 
@@ -116,14 +117,14 @@ Controller → IService → IRepository → Dapper → procedimiento o vista
 - `GET /api/ping` y `GET /api/ping/base`
 - **`GET /api/zonas` completo** — controlador, servicio y repositorio, como
   rebanada de referencia del patrón
+- **M0 · Identidad** — `POST /api/auth/registro`, `POST /api/auth/login`, `GET /api/auth/yo`
+- **M1 · Sucursales** — `GET /api/sucursales/{id}`, `GET /api/mis-sucursales`
 
-**Falta:** los 25 endpoints restantes. Están en la tabla de la sección 12 de
+**Falta:** los 20 endpoints restantes. Están en la tabla de la sección 12 de
 `CONTEXTO-BACKEND.md`, cada uno con su dueño.
 
 | Módulo | Endpoints | Dueño |
 |---|---|---|
-| M0 · Identidad | 3 | Back A |
-| M1 · Comercios y sucursales | 2 | Back A |
 | M2 · Oferta y búsqueda | 7 | Back A |
 | M3 · Reserva y pago | 5 | Back B |
 | M4 · Retiro | 2 | Back B |
