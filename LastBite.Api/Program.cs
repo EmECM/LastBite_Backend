@@ -138,6 +138,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISucursalRepository, SucursalRepository>();
 builder.Services.AddScoped<ISucursalService, SucursalService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IPublicacionRepository, PublicacionRepository>();
+builder.Services.AddScoped<IPublicacionService, PublicacionService>();
 
 // --- Back B · M3 reserva, M4 retiro, M6 liquidación -------------------------
 builder.Services.AddScoped<IMetodoPagoRepository, MetodoPagoRepository>();
